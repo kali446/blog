@@ -6,7 +6,7 @@ import CardArticle5 from "../Cards/CardArticle5";
 import { SectionSettings } from "@/utils/slider";
 
 const SliderArticles = () => {
-  const slider = useRef(null);
+  const slider = useRef<Slider>(null);
 
   return (
     <div className="pb-section">
@@ -31,7 +31,9 @@ const SliderArticles = () => {
         <div className="flex items-center gap-2">
           <div
             onClick={() => {
-              slider.current.slickPrev();
+              if (slider.current && slider.current.slickPrev) {
+                slider.current.slickPrev();
+              }
             }}
             className="group flex h-[2.2rem] w-[2.2rem] cursor-pointer items-center justify-center rounded-full bg-white text-accent shadow-sm transition-all duration-300 hover:bg-accent/20"
           >
@@ -51,7 +53,9 @@ const SliderArticles = () => {
           </div>
           <div
             onClick={() => {
-              slider.current.slickNext();
+              if (slider.current && slider.current.slickNext) {
+                slider.current.slickNext();
+              }
             }}
             className="group flex h-[2.2rem] w-[2.2rem] cursor-pointer items-center justify-center rounded-full bg-white text-accent shadow-sm transition-all duration-300 hover:bg-accent/20"
           >
