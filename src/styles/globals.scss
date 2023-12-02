@@ -1,0 +1,61 @@
+@tailwind base;
+
+html {
+   scroll-behavior: smooth;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+
+.sidebarCard {
+   @apply rounded-lg shadow-md bg-white px-[1.25rem] py-3;
+}
+
+.markdownContent {
+   p {
+      @apply dark:text-dark-primary text-[1.135rem] leading-[2] py-3 text-light-primary/80 font-light;
+   }
+
+   h2 {
+      @apply dark:text-dark-primary text-4xl text-light-primary pt-4 pb-1 font-bold;
+   }
+
+   h3 {
+      @apply dark:text-dark-primary text-3xl text-light-primary pt-4 pb-[0] font-bold;
+   }
+
+   ul {
+      @apply py-2;
+
+      li {
+         @apply text-[1.1rem] font-light pb-3 pl-3 leading-8 relative before:absolute before:h-[6px] before:w-[6px] before:bg-accent before:top-[.65rem] before:left-[0rem];
+      }
+   }
+
+   ol {
+      @apply py-2 pl-3 list-decimal;
+
+      li {
+         @apply dark:text-dark-primary text-[1.1rem] leading-8 pb-3 last:pb-[0] text-light-primary font-light;
+      }
+   }
+
+   a {
+      @apply dark:text-dark-primary dark:before:bg-accent text-black font-semibold relative before:absolute before:content-normal before:bottom-[0] before:left-[0] before:w-full before:h-[1.5px] before:bg-accent/30 hover:before:bg-accent px-[.1rem] mx-[.1rem];
+   }
+
+   strong {
+      @apply capitalize font-extrabold;
+   }
+
+   ol, ul {
+      code {
+         @apply dark:bg-dark-layoutElement dark:border-dark-contrast-200 bg-white shadow-sm border-[1px] border-light-contrast-300 rounded-[.275rem] px-[.4rem] text-sm py-[.225rem] font-semibold tracking-tight
+      }
+   }
+
+   img {
+      @apply w-full h-auto rounded-md
+   }
+}

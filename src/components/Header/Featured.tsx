@@ -1,0 +1,40 @@
+import React from "react";
+import FeaturedCard from "@/components/Cards/CardArticle3";
+
+interface Props {
+  show: string;
+  setShow: (val: string) => void;
+}
+
+const Featured = ({ show, setShow }: Props) => {
+  return (
+    <div
+      onMouseLeave={() => {
+        setShow("");
+      }}
+      className={`md:px-[1rem] fixed left-[0] top-header z-[900] w-full translate-y-[0%] rounded-b-md bg-light-site px-[4rem] py-4 shadow-sm dark:bg-dark-submenu ${
+        show === "featured"
+          ? "opacity-1 translate-y-0"
+          : "translate-y-[-150%] opacity-0"
+      } ${
+        show === "featured" ? "visible" : "hidden"
+      } transition-all duration-300`}
+    >
+      <div className="mx-[1.5rem] w-full border-b border-light-contrast-300/60 pb-2 dark:border-dark-contrast-600/50">
+        <span className="text-[.75rem] uppercase text-light-primary dark:text-dark-primary">
+          popular
+        </span>
+      </div>
+
+      <div className="mt-3 grid grid-cols-12 gap-4">
+        {Array.from({ length: 4 }).map((item, i) => (
+          <div key={i} className="col-span-3 lg:col-span-6">
+            <FeaturedCard />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Featured;
