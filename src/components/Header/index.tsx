@@ -90,7 +90,7 @@ const Header = () => {
                     setShowDropdown("featured");
                   }
                 }}
-                className="lg:px-0 group h-header cursor-pointer px-4 text-light-primary hover:text-accent dark:text-white sm:hidden"
+                className="group h-header cursor-pointer px-4 text-light-primary hover:text-accent dark:text-white lg:px-0 sm:hidden"
               >
                 <svg
                   className="transition-all group-hover:rotate-90"
@@ -105,8 +105,6 @@ const Header = () => {
                     fill="currentColor"
                   />
                 </svg>
-
-                <Featured show={showDropdown} setShow={setShowDropdown} />
               </div>
 
               {showSearch && (
@@ -203,6 +201,8 @@ const Header = () => {
           </>
         )}
       </div>
+
+      <Featured show={showDropdown} setShow={setShowDropdown} />
     </>
   );
 };

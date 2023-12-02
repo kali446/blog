@@ -12,7 +12,7 @@ const Featured = ({ show, setShow }: Props) => {
       onMouseLeave={() => {
         setShow("");
       }}
-      className={`md:px-[1rem] fixed left-[0] top-header z-[900] w-full translate-y-[0%] rounded-b-md bg-light-site px-[4rem] py-4 shadow-sm dark:bg-dark-submenu ${
+      className={`fixed left-[0] top-header z-[900] w-full translate-y-[0%] rounded-b-md bg-light-site px-[4rem] py-4 shadow-sm dark:bg-dark-submenu md:px-[1rem] ${
         show === "featured"
           ? "opacity-1 translate-y-0"
           : "translate-y-[-150%] opacity-0"
