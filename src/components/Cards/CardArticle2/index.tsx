@@ -6,7 +6,7 @@ const CardArticle2 = () => {
     <div className="group w-[100%] cursor-pointer overflow-hidden rounded-xl bg-white dark:bg-dark-layoutElement">
       <div className="h-[18rem] w-[100%] overflow-hidden">
         <Image
-          className="h-[100%] w-[100%] bg-cover bg-center"
+          className="h-[100%] w-[100%] bg-center object-cover"
           src="/images/card2.jpeg"
           width={400}
           height={400}

@@ -14,7 +14,7 @@ const CardArticle4 = ({
 }: Props) => {
   return (
     <div
-      className={`group relative cursor-pointer overflow-hidden rounded-xl ${
+      className={`w-full group relative cursor-pointer overflow-hidden rounded-xl ${
         heightFixed && "h-[45vh]"
       }`}
     >
@@ -30,7 +30,7 @@ const CardArticle4 = ({
 
       <div className="relative z-20 flex h-full w-full flex-col items-start justify-between p-4 !pb-[0] text-white">
         <div
-          className={`h-[3rem] w-[3rem] overflow-hidden rounded-xl ${
+          className={`h-[3rem] w-[3rem] shrink-0 overflow-hidden rounded-xl ${
             small ? "mb-[1.5rem]" : "mb-[2.5rem]"
           }`}
         >
@@ -45,10 +45,8 @@ const CardArticle4 = ({
 
         <div className={`w-full ${!heightFixed && "pt-[4rem]"}`}>
           <h1
-            className={`leading-[1.15] ${
-              small
-                ? "w-full text-[1.5rem] font-semibold "
-                : "w-[90%] text-[2.5rem] font-bold"
+            className={`font-bold leading-[1.15] sm:w-full sm:text-[1.5rem] ${
+              small ? "w-full text-[1.5rem]" : "w-[90%] text-[2.5rem]"
             }`}
           >
             The Best Accessories for Your New iPhone

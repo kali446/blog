@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const CardArticle7 = () => {
   return (
-    <div className="group relative h-full overflow-hidden rounded-xl bg-white p-4 !pb-[0]">
+    <div className="w-full group relative h-full overflow-hidden rounded-xl bg-white p-4 !pb-[0]">
       <div className="absolute left-[0] top-[0] z-20 h-full w-full bg-light-overlay/40"></div>
       <div className="absolute left-[0] top-[0] h-full w-full">
         <video className="h-full w-full object-cover" autoPlay loop muted>

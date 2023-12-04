@@ -28,7 +28,11 @@ const Header = () => {
 
   return (
     <>
-      <div className="fixed left-[0] top-[0] z-[1000] flex h-header w-full items-center justify-between bg-light-header px-6 dark:bg-dark-header sm:px-4">
+      <div
+        className={`fixed left-[0] top-[0] z-[1000] flex h-header w-full items-center justify-between bg-light-header px-6 dark:bg-dark-header sm:px-4 ${
+          openNavMenu && "bg-transparent dark:bg-dark-site"
+        }`}
+      >
         <div className="relative flex items-center">
           <div
             onClick={() => {
@@ -67,13 +71,24 @@ const Header = () => {
             )}
           </div>
 
-          <Link href={"/"} className="mx-4 block sm:hidden">
-            <img
-              className="h-[1.85rem] w-auto"
-              src="/images/logo.png"
-              alt="blog"
-            />
-          </Link>
+          {openNavMenu ? (
+            <Link href={"/"} className="mx-4 block">
+              <img
+                className="h-[1.85rem] w-auto"
+                src="/images/logo.png"
+                alt="blog"
+              />
+            </Link>
+          ) : (
+            <Link href={"/"} className="mx-4 block sm:hidden">
+              <img
+                className="h-[1.85rem] w-auto"
+                src="/images/logo.png"
+                alt="blog"
+              />
+            </Link>
+          )}
+
           <div className="border-x border-light-contrast-300 px-3 py-1  text-[.75rem] font-medium capitalize text-light-secondary dark:border-dark-contrast-500/40 dark:text-dark-contrast-800 lg:hidden">
             Discover your next gadget review
           </div>
@@ -114,15 +129,17 @@ const Header = () => {
           )}
         </div>
 
-        <div className="hidden sm:block">
-          <Link href={"/"} className="mx-4">
-            <img
-              className="h-[1.85rem] w-auto"
-              src="/images/logo.png"
-              alt="blog"
-            />
-          </Link>
-        </div>
+        {!openNavMenu && (
+          <div className="hidden sm:block">
+            <Link href={"/"} className="mx-4">
+              <img
+                className="h-[1.85rem] w-auto"
+                src="/images/logo.png"
+                alt="blog"
+              />
+            </Link>
+          </div>
+        )}
 
         {!openNavMenu && (
           <>

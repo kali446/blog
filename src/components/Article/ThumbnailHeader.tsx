@@ -1,11 +1,21 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { Article } from "../../../sanity/lib/queries";
+import { urlForImage } from "../../../sanity/lib/image";
 
-const ThumbnailHeader = () => {
+interface Props {
+  data: Article;
+}
+
+const ThumbnailHeader = ({
+  data: { title, excerpt, category, author, thumbnail },
+}: Props) => {
+  console.log(thumbnail, author, " hii");
   return (
     <div className="pt-3">
-      <div className="md:w-[90%] mx-auto w-[60%]">
-        <div className="dark:border-dark-contrast-400/50 dark:text-dark-primary mb-4 flex  cursor-pointer items-center gap-3 border-b border-light-contrast-300 py-4 text-[1rem] font-light capitalize text-black">
+      <div className="mx-auto w-[60%] md:w-[90%]">
+        <div className="mb-4 flex cursor-pointer items-center gap-3 border-b border-light-contrast-300 py-4 text-[1rem] font-light capitalize text-black dark:border-dark-contrast-400/50 dark:text-dark-primary">
           <div className="transition-colors duration-300">Home</div>
           <div>
             <svg
@@ -22,7 +32,7 @@ const ThumbnailHeader = () => {
             </svg>
           </div>
 
-          <div className="transition-colors duration-300">Computer</div>
+          <div className="transition-colors duration-300">{category?.name}</div>
 
           <div>
             <svg
@@ -39,24 +49,22 @@ const ThumbnailHeader = () => {
             </svg>
           </div>
 
-          <span className="dark:text-dark-contrast-700 text-light-secondary transition-colors duration-300">
-            Macbook & Iphones
+          <span className="text-light-secondary transition-colors duration-300 dark:text-dark-contrast-700">
+            {title}
           </span>
         </div>
 
-        <h1 className="dark:text-dark-primary mb-4 text-4xl font-semibold text-light-primary">
-          Bye bye Instagram Guides
+        <h1 className="mb-3 text-4xl font-bold leading-[1.2] text-light-primary dark:text-dark-primary">
+          {title}
         </h1>
 
-        <p className="dark:text-dark-primary mb-6 text-[1.1rem] font-light text-light-primary">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-          architecto odit molestiae accusantium, velit dolorem porro voluptate
-          vero expedita veniam, placeat, a excepturi! Corrupti, aspernatur!
+        <p className="mb-6 text-[1.05rem] font-light leading-[2] text-light-secondary dark:text-dark-primary">
+          {excerpt}
         </p>
 
         <div className="mb-5 flex items-center justify-between">
           <div className="cursor-pointer rounded-full border border-accent bg-accent/20 px-3 py-2 font-semibold capitalize leading-none text-accent">
-            Weekly Brief
+            {category?.name}
           </div>
 
           <div className="flex items-center gap-2">
@@ -64,28 +72,45 @@ const ThumbnailHeader = () => {
               <div className="h-[2.5rem] w-[2.5rem] overflow-hidden rounded-full">
                 <Image
                   className="h-[100%] w-[100%] bg-cover bg-center"
-                  src="/images/card2.jpeg"
+                  src={
+                    author?.avatar?.asset?._ref
+                      ? urlForImage(author?.avatar)
+                          .height(50)
+                          .width(50)
+                          .fit("crop")
+                          .url()
+                      : "https://source.unsplash.com/96x96/?face"
+                  }
                   width={50}
                   height={50}
                   alt="Picture of the author"
                 />
               </div>
 
-              <span className="dark:text-dark-primary text-[1.05rem] font-light capitalize text-light-primary">
-                Alassy B.
+              <span className="text-[1.05rem] font-light capitalize text-light-primary dark:text-dark-primary">
+                {author?.name}
               </span>
             </div>
             <div className="h-[4px] w-[4px] rounded-full bg-light-contrast-500"></div>
-            <div className="dark:text-dark-contrast-700 text-sm font-light text-light-secondary">
+            <div className="text-sm font-light text-light-secondary dark:text-dark-contrast-700">
               November 20, 2024
             </div>
           </div>
         </div>
       </div>
 
-      <div className="aspect-[4/3] w-[100%] overflow-hidden">
+      <div className="aspect-[16/9] w-[100%] overflow-hidden">
         <Image
-          src="/images/card4.jpeg"
+          className="h-full w-full bg-center object-cover"
+          src={
+            thumbnail?.asset?._ref
+              ? urlForImage(thumbnail)
+                  .height(1080)
+                  .width(1920)
+                  .fit("crop")
+                  .url()
+              : "https://source.unsplash.com/96x96/?face"
+          }
           width={1920}
           height={1080}
           alt="Picture of the author"

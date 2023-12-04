@@ -7,7 +7,7 @@ const SmallCategoryArticles = () => {
     <div className="pb-section">
       <SectionHeader />
 
-      <div className="md:gap-4 grid grid-cols-12 gap-x-6 gap-y-5">
+      <div className="md:gap-4 grid grid-cols-12 gap-x-5 gap-y-5">
         {Array.from({ length: 16 }).map((item, i) => (
           <div key={i} className="col-span-3 lg:col-span-6 sm:col-span-12">
             <CardArticle6 />

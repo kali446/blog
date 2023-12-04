@@ -21,3 +21,11 @@ export async function getHeadings(
 }
 
 export const isBrowser = () => typeof window !== "undefined";
+
+export const truncateString = (str: string, num: number) => {
+  if (str.length <= num) {
+    return str;
+  }
+
+  return str.slice(0, num) + "...";
+};

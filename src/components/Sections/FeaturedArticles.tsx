@@ -4,7 +4,7 @@ import CardArticle7 from "../Cards/CardArticle7";
 
 const FeaturedArticles = () => {
   return (
-    <div className="grid min-h-[75vh] cursor-pointer grid-cols-12 grid-rows-4 gap-5 pb-section">
+    <div className="grid min-h-[75vh] w-full cursor-pointer grid-cols-12 gap-5 pb-section sm:gap-y-4 sm:gap-0">
       <div className="col-span-7 row-span-4 sm:col-span-12">
         <CardArticle7 />
       </div>

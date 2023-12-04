@@ -7,16 +7,16 @@ const CategoryArticles = () => {
     <div className="pb-section">
       <SectionHeader />
 
-      <div className="flex items-center gap-[2rem]">
-        <div className="md:w-12/12 lg:w-6/12">
-          <CardArticle4 heightFixed={true} />
+      <div className="grid grid-cols-12 items-start gap-[2rem] lg:gap-3">
+        <div className="col-span-6 lg:col-span-12">
+          <CardArticle4 heightFixed={false} />
         </div>
 
-        <div className="sm:w-12/12 md:w-6/12 lg:w-3/12">
-          <CardArticle4 small={true} heightFixed={true} />
+        <div className="col-span-3 lg:col-span-6 md:col-span-12">
+          <CardArticle4 small={true} heightFixed={false} />
         </div>
-        <div className="sm:w-12/12 md:w-6/12 lg:w-3/12">
-          <CardArticle4 small={true} heightFixed={true} />
+        <div className="col-span-3 lg:col-span-6 md:col-span-12">
+          <CardArticle4 small={true} heightFixed={false} />
         </div>
       </div>
     </div>

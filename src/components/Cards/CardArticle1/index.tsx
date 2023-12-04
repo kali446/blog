@@ -6,6 +6,7 @@ const CardArticle1 = () => {
     <div className="group relative cursor-pointer overflow-hidden rounded-lg bg-white px-3 pt-3 dark:bg-dark-layoutElement">
       <div className="absolute left-[0] top-[0] h-[100%] w-[100%] opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:opacity-100">
         <Image
+          className="h-full w-full bg-center object-cover"
           src="/images/card.jpeg"
           width={500}
           height={500}
@@ -14,7 +15,7 @@ const CardArticle1 = () => {
       </div>
 
       <div className="z-2 relative flex items-start gap-3 pb-3">
-        <div className="flex h-[3rem] w-[3rem] shrink-0 items-center justify-center rounded-xl bg-light-contrast-400 group-hover:bg-light-contrast-400/[.35] dark:bg-dark-contrast-300 md:bg-light-contrast-400/[.35]">
+        <div className="md:dark:bg-light-contrast-400/[.35] flex h-[3rem] w-[3rem] shrink-0 items-center justify-center rounded-xl bg-light-contrast-400 group-hover:bg-light-contrast-400/[.35] dark:bg-dark-contrast-300 md:bg-light-contrast-400/[.35]">
           <span className="text-lg font-semibold text-light-primary group-hover:text-white dark:text-white md:text-white">
             2
           </span>

@@ -4,6 +4,7 @@ import Header from ".";
 import Button from "@/shared/Button/Button";
 import { MEGAMENU, NavItemType } from "@/data/navigation";
 import { GlobalContext } from "@/context/global";
+import { useMediaQuery } from "react-responsive";
 
 const TriggeredNavbar = () => {
   const [selectedMenu, setSelectedMenu] = useState<NavItemType[] | null>(null);
@@ -11,59 +12,84 @@ const TriggeredNavbar = () => {
 
   return (
     <div
-      className={`fixed left-[0] top-[0] z-[1005] flex h-[100vh] w-full flex-col justify-between overflow-y-auto overflow-x-hidden bg-white transition-all duration-500 ${
+      className={`fixed left-[0] top-[0] z-[1005] flex h-[100vh] w-full flex-col justify-between overflow-y-auto overflow-x-hidden bg-white transition-all duration-500 dark:bg-dark-site ${
         openNavMenu ? "visible" : "hidden"
       }`}
     >
-      <div className="absolute right-[-5rem] top-[50%] h-[22.5rem] w-[22.5rem] translate-y-[-50%] rounded-full bg-black bg-gradient-to-t from-[rgb(255,206,236)] to-[rgb(152,150,240)] blur-3xl"></div>
+      <div className="absolute right-[-5rem] top-[50%] h-[22.5rem] w-[22.5rem] translate-y-[-50%] rounded-full bg-black bg-gradient-to-t from-[rgb(255,206,236)] to-[rgb(152,150,240)] blur-3xl dark:hidden lg:h-[15rem] lg:w-[15rem]"></div>
 
       <Header />
-      <div className="mb-5 mt-header grid grid-cols-12 gap-7 px-5 pt-5">
-        <div className="col-span-3">
-          <ul>
-            {MEGAMENU.map((item, i) => (
-              <MenuItem
-                key={i}
-                item={item}
-                hasChildren={item?.children?.length ? true : false}
-                active={i === 0 ? true : false}
-                setMenu={setSelectedMenu}
-              />
-            ))}
-          </ul>
-        </div>
-
-        <div className="col-span-9 grid grid-cols-12">
-          <div className="col-span-3">
-            <ul className="flex flex-col gap-1">
-              {selectedMenu?.map((item, i) => (
-                <li
-                  className={`flex cursor-pointer gap-2 rounded-md p-2 text-sm font-semibold capitalize transition-all duration-300 hover:bg-light-contrast-200 ${
-                    i === 0 ? "bg-light-contrast-200" : ""
-                  }`}
+      <div className="mb-5 mt-header grid grid-cols-12 gap-7 px-5 pt-5 sm:gap-0 sm:gap-y-4">
+        {!selectedMenu?.length ? (
+          <div className="col-span-3 sm:col-span-12">
+            <ul>
+              {MEGAMENU.map((item, i) => (
+                <MenuItem
                   key={i}
-                >
-                  {item?.name}{" "}
-                  {item?.isNew && (
-                    <span className="flex items-center justify-center rounded-md bg-accent px-[.35rem] text-xs uppercase !leading-[0] text-white">
-                      {item.isNew && "new"}
-                    </span>
-                  )}
-                </li>
+                  item={item}
+                  hasChildren={item?.children?.length ? true : false}
+                  active={i === 0 ? true : false}
+                  setMenu={setSelectedMenu}
+                />
               ))}
             </ul>
           </div>
+        ) : (
+          <div className="col-span-9 grid grid-cols-12 sm:col-span-12">
+            <div className="col-span-3 sm:col-span-6 xs:col-span-12">
+              <ul className="flex flex-col gap-1">
+                <div
+                  onClick={() => setSelectedMenu(null)}
+                  className="text-blue mb-[1rem] inline-flex cursor-pointer items-center justify-start gap-1 py-2 text-sm font-semibold uppercase underline"
+                >
+                  <svg
+                    className="rotate-180"
+                    width={15}
+                    height="auto"
+                    viewBox="0 0 512 426"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M503.816 193.107L318.915 8.20165C313.637 2.92351 306.602 0.0263672 299.101 0.0263672C291.592 0.0263672 284.561 2.92768 279.283 8.20165L262.496 24.9934C257.222 30.2633 254.316 37.3022 254.316 44.8073C254.316 52.3082 257.222 59.5844 262.496 64.8542L370.364 172.96H27.6603C12.2088 172.96 0 185.057 0 200.512V224.251C0 239.707 12.2088 253.023 27.6603 253.023H371.588L262.5 361.733C257.226 367.011 254.32 373.858 254.32 381.363C254.32 388.86 257.226 395.807 262.5 401.081L279.287 417.819C284.566 423.097 291.596 425.974 299.105 425.974C306.606 425.974 313.641 423.06 318.919 417.782L503.821 232.88C509.111 227.586 512.021 220.518 512 213.004C512.017 205.466 509.111 198.394 503.816 193.107Z"
+                      fill="currentColor"
+                    />
+                  </svg>
 
-          {/* <div className="col-span-3"></div> */}
-          {/* <div className="col-span-6"></div> */}
-        </div>
+                  <span className="shrink-0">go back</span>
+                </div>
+
+                {selectedMenu.map((item, i) => (
+                  <li
+                    className={`flex cursor-pointer gap-2 rounded-md p-2 text-sm font-semibold capitalize transition-all duration-300 hover:bg-light-contrast-200 dark:hover:bg-dark-contrast-300 ${
+                      i === 0
+                        ? "bg-light-contrast-200 dark:bg-dark-contrast-300"
+                        : ""
+                    }`}
+                    key={i}
+                  >
+                    {item?.name}
+                    {item?.isNew && (
+                      <span className="flex items-center justify-center rounded-md bg-accent px-[.35rem] text-xs uppercase !leading-[0] text-white dark:text-dark-primary">
+                        {item.isNew && "new"}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* <div className="col-span-3"></div> */}
+            {/* <div className="col-span-6"></div> */}
+          </div>
+        )}
       </div>
 
       <div className="max-w-[480px] px-5 pb-5">
-        <span className="cursor-pointer font-semibold text-light-primary transition-colors hover:text-accent">
+        <span className="cursor-pointer font-semibold text-light-primary transition-colors hover:text-accent dark:text-dark-primary">
           manjiljunior@gmail.com
         </span>
-        <p className="mt-2 text-xs font-semibold leading-[1.5] text-light-secondary">
+        <p className="mt-2 text-xs font-semibold leading-[1.5] text-light-secondary dark:text-dark-primary">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
           similique totam vel molestias provident, culpa modi veniam nemo
           distinctio, odit molestiae. Aperiam sed molestiae aspernatur tempora
@@ -144,11 +170,13 @@ interface Props {
 }
 
 const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
-  const { openNavMenu } = useContext(GlobalContext);
+  const mobile480 = useMediaQuery({
+    query: "(max-width: 480px)",
+  });
 
   return (
     <li
-      onMouseEnter={() => {
+      onClick={() => {
         if (hasChildren && setMenu && item?.children) {
           setMenu(item.children);
         }
@@ -157,11 +185,16 @@ const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
           setMenu(null);
         }
       }}
+      onMouseEnter={() => {
+        if (mobile480) {
+          return;
+        }
+      }}
       className={`group flex cursor-pointer items-center justify-between pb-[.5rem] last:pb-[0]`}
     >
       <span
         className={`text-[2.5rem] font-extrabold capitalize tracking-tight group-hover:text-accent ${
-          active ? "text-accent" : "text-light-primary"
+          active ? "text-accent" : "text-light-primary dark:text-dark-primary"
         }`}
       >
         {item?.name}
@@ -170,7 +203,7 @@ const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
       {hasChildren && (
         <div
           className={`group-hover:text-accent ${
-            active ? "text-accent" : "text-light-primary"
+            active ? "text-accent" : "text-light-primary dark:text-dark-primary"
           }`}
         >
           <svg

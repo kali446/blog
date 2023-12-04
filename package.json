@@ -3,21 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "frontend": "next dev",
-    "sanity": "npm run dev --prefix sanity",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dev": "concurrently \"npm run frontend\" \"npm run sanity\""
+    "dev": "next dev"
   },
   "dependencies": {
-    "@sanity/client": "^6.7.0",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.20.2",
+    "axios": "^1.6.2",
+    "formik": "^2.4.5",
     "framer-motion": "^10.16.5",
     "gray-matter": "^4.0.3",
     "groq": "^3.18.1",
     "lodash": "^4.17.21",
     "next": "^13.5.6",
     "next-mdx-remote": "^4.4.1",
+    "next-sanity": "^5.5.11",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-copy-to-clipboard": "^5.1.0",
@@ -27,9 +29,13 @@
     "react-slick": "^0.29.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-youtube": "^10.1.0",
+    "sanity": "^3.20.2",
+    "sanity-plugin-markdown": "^4.1.0",
     "sass": "^1.69.5",
     "slick-carousel": "^1.8.1",
-    "tailwind-merge": "^1.14.0"
+    "styled-components": "5.2",
+    "tailwind-merge": "^1.14.0",
+    "yup": "^1.3.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.202",

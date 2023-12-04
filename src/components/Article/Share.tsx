@@ -1,10 +1,16 @@
 import Social from "@/shared/Social";
 import React from "react";
 
-const Share = () => {
+interface Props {
+  slug: string;
+}
+
+const Share = ({ slug }: Props) => {
+  const url = `${process.env.FRONTEND_URL}/article/${slug}`;
+
   return (
-    <div className="xs:px-0 my-[5rem] flex flex-col items-center gap-4 rounded-xl bg-white px-[2rem] py-4 shadow-lg dark:bg-dark-layoutElement">
-      <h1 className="xs:text-xl text-2xl font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-primary">
+    <div className="my-[5rem] flex flex-col items-center gap-4 rounded-xl bg-white px-[2rem] py-4 shadow-lg dark:bg-dark-layoutElement xs:px-0">
+      <h1 className="text-2xl font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-primary xs:text-xl">
         Share this Article
       </h1>
 
@@ -13,9 +19,9 @@ const Share = () => {
       <div className="flex w-full flex-col items-center">
         <div className="relative mx-auto w-[90%] overflow-hidden rounded-md bg-light-contrast-200/50 py-1 dark:bg-dark-site">
           <input
-            className="xs:text-xs w-[100%] bg-white/0 px-2 text-sm text-light-primary dark:text-dark-contrast-900"
+            className="w-[100%] bg-white/0 px-2 text-sm text-light-primary dark:text-dark-contrast-900 xs:text-xs"
             type="text"
-            value="https://caards.codesupply.co/firmware/2023/02/23/the-coolest-gadgets-from-ces-2023/"
+            value={url}
           />
 
           <div className="group absolute right-[0] top-[0] flex h-[100%] w-[2.75rem] cursor-pointer items-center justify-center bg-light-contrast-200 dark:bg-dark-site">

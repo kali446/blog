@@ -14,7 +14,7 @@ const SliderArticles = () => {
 
       <Slider ref={slider} {...SectionSettings}>
         {Array.from({ length: 10 }).map((item, i) => (
-          <div key={i} className="px-3">
+          <div key={i} className="xs:px-0 px-3">
             <CardArticle5 />
           </div>
         ))}
