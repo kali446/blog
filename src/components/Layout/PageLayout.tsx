@@ -12,9 +12,9 @@ interface Props {
 
 const PageLayout = ({ content, title, children }: Props) => {
   return (
-    <div className="lg:w-[90%] mx-auto grid min-h-screen w-[80%] grid-cols-12 gap-2 py-6">
-      <div className="md:pr-0 md:border-hidden md:col-span-12 col-span-8 border-r border-black/[.1] pr-5 dark:border-white/[.1]">
-        <h1 className="xs:text-[2.25rem] xs:pl-[1rem] mb-[2rem] border-l-[4px] border-accent pl-[1.5rem] text-left text-[2.75rem] font-bold capitalize leading-none text-accent">
+    <div className="mx-auto grid min-h-screen w-[80%] grid-cols-12 gap-2 py-6 lg:w-[90%]">
+      <div className="col-span-8 border-r border-black/[.1] pr-5 dark:border-white/[.1] md:col-span-12 md:border-hidden md:pr-0">
+        <h1 className="mb-[2rem] border-l-[4px] border-accent pl-[1.5rem] text-left text-[2.75rem] font-bold capitalize leading-none text-accent xs:pl-[1rem] xs:text-[2.25rem]">
           {title}
         </h1>
 
@@ -22,7 +22,7 @@ const PageLayout = ({ content, title, children }: Props) => {
         {children}
       </div>
 
-      <div className="md:hidden col-span-4 px-5">
+      <div className="col-span-4 px-5 md:hidden">
         <Button
           pattern="primary"
           layout="full"
@@ -33,7 +33,10 @@ const PageLayout = ({ content, title, children }: Props) => {
 
         <ul className="w-full">
           {SIDEBAR_PAGES.map((item, i) => (
-            <li className="mb-1 border-b border-black/[.2] py-[.75rem] text-sm font-light capitalize text-light-primary drop-shadow-sm first:border-t last:mb-0 dark:border-white/[.2] dark:text-dark-primary">
+            <li
+              key={i}
+              className="mb-1 border-b border-black/[.2] py-[.75rem] text-sm font-light capitalize text-light-primary drop-shadow-sm first:border-t last:mb-0 dark:border-white/[.2] dark:text-dark-primary"
+            >
               <Link
                 className="group transition-all hover:font-semibold hover:text-accent"
                 href={item.href}

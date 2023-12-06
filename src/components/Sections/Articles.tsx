@@ -12,20 +12,17 @@ interface Props {
 const Articles = ({ data }: Props) => {
   return (
     <div className="pb-section">
-      <SectionHeader titleOnly={true} />
+      <SectionHeader
+        data={{
+          name: "Latest Articles",
+        }}
+        titleOnly={true}
+      />
 
       <div className="grid grid-cols-12 gap-5 pb-6 md:gap-4">
         {data.map((item, i) => (
           <div key={i} className="col-span-3 lg:col-span-6 sm:col-span-12">
-            <CardArticle8
-              _id={item._id}
-              slug={item.slug}
-              title={item.title}
-              category={item.category}
-              excerpt={item?.excerpt}
-              tags={item?.tags}
-              thumbnail={item?.thumbnail}
-            />
+            <CardArticle8 item={item} />
           </div>
         ))}
       </div>

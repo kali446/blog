@@ -1,25 +1,44 @@
 import React from "react";
 import Image from "next/image";
+import { Article } from "@/lib/queries";
+import { generateImageUrl, truncateString } from "@/utils";
 
-const CardArticle6 = () => {
+interface Props {
+  item: Article;
+}
+
+const CardArticle6 = ({ item }: Props) => {
+  const thumbnailHeight = 300;
+  const thumbnailWidth = 300;
+  const thumbnailUrl = generateImageUrl({
+    thumbnail: item.thumbnail,
+    size: {
+      height: thumbnailHeight,
+      width: thumbnailWidth,
+    },
+  });
+
   return (
-    <div className="group flex cursor-pointer items-start gap-3 rounded-lg bg-white p-3 shadow-md transition-shadow hover:shadow-lg dark:bg-dark-layoutElement">
-      <div className="lg:h-[8rem] lg:w-[8rem] h-[6rem] w-[6rem] shrink-0 overflow-hidden">
+    <div
+      title={item.title}
+      className="group flex h-[8.5rem] cursor-pointer items-start gap-3 rounded-lg bg-white p-3 shadow-md transition-shadow hover:shadow-lg dark:bg-dark-layoutElement"
+    >
+      <div className="aspect-square h-full shrink-0 overflow-hidden lg:h-[8rem] lg:w-[8rem]">
         <Image
-          className="h-full w-full bg-center object-cover transition-all duration-300 group-hover:scale-110"
-          src="/images/card3.jpeg"
-          width={100}
-          height={100}
-          alt="Picture of the author"
+          className="h-full w-full bg-center object-cover transition-all duration-300 group-hover:scale-125"
+          src={thumbnailUrl}
+          width={thumbnailWidth}
+          height={thumbnailHeight}
+          alt={item.title}
         />
       </div>
 
-      <div>
+      <div className="flex h-full flex-col justify-between">
         <h2 className="pb-3 text-[1.025rem] font-bold leading-[1.15] text-light-primary transition-colors duration-300 hover:text-accent dark:text-white dark:hover:text-accent">
-          The Best Smart Thermostats for Your Home
+          {truncateString(item.title, 40) + "..."}
         </h2>
 
-        <p className="relative h-[1rem] overflow-hidden  text-xs uppercase text-light-secondary dark:text-dark-contrast-600">
+        <p className="relative h-[1rem] overflow-hidden text-xs  font-medium uppercase text-light-secondary dark:text-dark-contrast-600">
           <p className="flex gap-3 transition-all group-hover:translate-y-[-100%]">
             <span>2 min read</span>
             <span>1.1k views</span>

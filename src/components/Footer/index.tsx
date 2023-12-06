@@ -1,23 +1,31 @@
+import { FOOTER_PAGES_1, FOOTER_PAGES_2 } from "@/data/global";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
   return (
     <div className="bg-light-footer dark:bg-dark-footer">
-      <div className="xs:w-full mx-auto flex w-[60%] flex-col items-center gap-4 py-7 text-center md:w-[80%]">
+      <div className="mx-auto flex w-[60%] flex-col items-center gap-4 py-7 text-center md:w-[80%] xs:w-full">
         <div>
-          <img
+          <Image
+            height={100}
+            width={250}
             className="h-[1.75rem] w-auto"
             src="/images/logo.png"
             alt="blog"
           />
         </div>
-        <ul className="flex cursor-pointer items-center gap-4 text-sm font-medium capitalize dark:text-dark-contrast-900">
-          <li className="hover:text-accent">Blog</li>
-          <li className="hover:text-accent">Contacts</li>
-          <li className="hover:text-accent">Privacy Policy</li>
-          <li className="hover:text-accent">Buy Now</li>
+        <ul className="flex cursor-pointer flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-medium capitalize dark:text-dark-contrast-900">
+          {FOOTER_PAGES_1.map((item, i) => (
+            <Link key={i} href={item.href}>
+              <li className="relative capitalize before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-0 before:origin-right before:bg-accent before:opacity-0 before:transition-all before:duration-300 hover:text-accent hover:before:w-full hover:before:opacity-100">
+                {item.name}
+              </li>
+            </Link>
+          ))}
         </ul>
-        <p className="xs:px-2 text-[.78rem] font-medium leading-relaxed text-light-secondary dark:text-dark-contrast-600">
+        <p className="text-[.78rem] font-medium leading-relaxed text-light-secondary dark:text-dark-contrast-600 xs:px-2">
           Welcome to our gadgets blog, your go-to source for the latest tech
           news, product reviews, and insights. From smartphones to laptops,
           earbuds to wearables, we cover it all. Stay informed, discover new
@@ -26,12 +34,15 @@ const Footer = () => {
         </p>
       </div>
 
-      <div className="xs:pr-0 mx-auto flex w-[95%] items-center justify-between border-t border-light-contrast-200 py-4 pr-[3rem] dark:border-dark-contrast-200 md:flex-col md:gap-4">
-        <ul className="flex cursor-pointer items-center gap-4 text-sm font-medium capitalize dark:text-dark-contrast-900">
-          <li className="hover:text-accent">Blog</li>
-          <li className="hover:text-accent">Contacts</li>
-          <li className="hover:text-accent">Privacy Policy</li>
-          <li className="hover:text-accent">Buy Now</li>
+      <div className="mx-auto flex w-[95%] items-center justify-between border-t border-light-contrast-200 py-4 pr-[3rem] dark:border-dark-contrast-200 md:flex-col md:gap-4 xs:pr-0">
+        <ul className="flex cursor-pointer flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-medium capitalize dark:text-dark-contrast-900">
+          {FOOTER_PAGES_2.map((item, i) => (
+            <Link key={i} href={item.href}>
+              <li className="relative capitalize before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-0 before:origin-right before:bg-accent before:opacity-0 before:transition-all before:duration-300 hover:text-accent hover:before:w-full hover:before:opacity-100">
+                {item.name}
+              </li>
+            </Link>
+          ))}
         </ul>
         <ul className="flex cursor-pointer items-center gap-4 text-xs font-medium uppercase text-light-primary">
           <li

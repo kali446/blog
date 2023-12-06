@@ -10,6 +10,10 @@ const TriggeredNavbar = () => {
   const [selectedMenu, setSelectedMenu] = useState<NavItemType[] | null>(null);
   const { openNavMenu } = useContext(GlobalContext);
 
+  const mobile480 = useMediaQuery({
+    query: "(max-width: 480px)",
+  });
+
   return (
     <div
       className={`fixed left-[0] top-[0] z-[1005] flex h-[100vh] w-full flex-col justify-between overflow-y-auto overflow-x-hidden bg-white transition-all duration-500 dark:bg-dark-site ${
@@ -20,7 +24,7 @@ const TriggeredNavbar = () => {
 
       <Header />
       <div className="mb-5 mt-header grid grid-cols-12 gap-7 px-5 pt-5 sm:gap-0 sm:gap-y-4">
-        {!selectedMenu?.length ? (
+        {!mobile480 && (
           <div className="col-span-3 sm:col-span-12">
             <ul>
               {MEGAMENU.map((item, i) => (
@@ -34,13 +38,15 @@ const TriggeredNavbar = () => {
               ))}
             </ul>
           </div>
-        ) : (
-          <div className="col-span-9 grid grid-cols-12 sm:col-span-12">
-            <div className="col-span-3 sm:col-span-6 xs:col-span-12">
-              <ul className="flex flex-col gap-1">
+        )}
+
+        <div className="col-span-9 grid grid-cols-12 sm:col-span-12">
+          <div className="col-span-3 sm:col-span-6 xs:col-span-12">
+            <ul className="flex flex-col gap-1">
+              {mobile480 && (
                 <div
                   onClick={() => setSelectedMenu(null)}
-                  className="text-blue mb-[1rem] inline-flex cursor-pointer items-center justify-start gap-1 py-2 text-sm font-semibold uppercase underline"
+                  className="text-blue-600 mb-[1rem] inline-flex cursor-pointer items-center justify-start gap-1 py-2 text-sm font-semibold uppercase underline"
                 >
                   <svg
                     className="rotate-180"
@@ -58,31 +64,31 @@ const TriggeredNavbar = () => {
 
                   <span className="shrink-0">go back</span>
                 </div>
+              )}
 
-                {selectedMenu.map((item, i) => (
-                  <li
-                    className={`flex cursor-pointer gap-2 rounded-md p-2 text-sm font-semibold capitalize transition-all duration-300 hover:bg-light-contrast-200 dark:hover:bg-dark-contrast-300 ${
-                      i === 0
-                        ? "bg-light-contrast-200 dark:bg-dark-contrast-300"
-                        : ""
-                    }`}
-                    key={i}
-                  >
-                    {item?.name}
-                    {item?.isNew && (
-                      <span className="flex items-center justify-center rounded-md bg-accent px-[.35rem] text-xs uppercase !leading-[0] text-white dark:text-dark-primary">
-                        {item.isNew && "new"}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* <div className="col-span-3"></div> */}
-            {/* <div className="col-span-6"></div> */}
+              {selectedMenu?.map((item, i) => (
+                <li
+                  className={`flex cursor-pointer gap-2 rounded-md p-2 text-sm font-semibold capitalize transition-all duration-300 hover:bg-light-contrast-200 dark:hover:bg-dark-contrast-300 ${
+                    i === 0
+                      ? "bg-light-contrast-200 dark:bg-dark-contrast-300"
+                      : ""
+                  }`}
+                  key={i}
+                >
+                  {item?.name}
+                  {item?.isNew && (
+                    <span className="flex items-center justify-center rounded-md bg-accent px-[.35rem] text-xs uppercase !leading-[0] text-white dark:text-dark-primary">
+                      {item.isNew && "new"}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
+
+          {/* <div className="col-span-3"></div> */}
+          {/* <div className="col-span-6"></div> */}
+        </div>
       </div>
 
       <div className="max-w-[480px] px-5 pb-5">
@@ -177,6 +183,10 @@ const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
   return (
     <li
       onClick={() => {
+        if (!mobile480) {
+          return;
+        }
+
         if (hasChildren && setMenu && item?.children) {
           setMenu(item.children);
         }
@@ -188,6 +198,14 @@ const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
       onMouseEnter={() => {
         if (mobile480) {
           return;
+        }
+
+        if (hasChildren && setMenu && item?.children) {
+          setMenu(item.children);
+        }
+
+        if (setMenu && !item?.children?.length) {
+          setMenu(null);
         }
       }}
       className={`group flex cursor-pointer items-center justify-between pb-[.5rem] last:pb-[0]`}

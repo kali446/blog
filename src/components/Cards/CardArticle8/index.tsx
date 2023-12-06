@@ -1,43 +1,47 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Article } from "../../../../sanity/lib/queries";
-import { urlForImage } from "../../../../sanity/lib/image";
-import { truncateString } from "@/utils";
+import Date from "@/shared/Date";
+import { Article } from "@/lib/queries";
+import { generateImageUrl, truncateString } from "@/utils";
 
-const CardArticle8 = ({ _id, slug, title, excerpt, thumbnail }: Article) => {
-  console.log(thumbnail, "fdsa");
+interface Props {
+  item: Article;
+}
+
+const CardArticle8 = ({ item }: Props) => {
+  const thumbnailHeight = 500;
+  const thumbnailWidth = 500;
+  const thumbnailUrl = generateImageUrl({
+    thumbnail: item.thumbnail,
+    size: {
+      height: thumbnailHeight,
+      width: thumbnailWidth,
+    },
+  });
 
   return (
-    <Link href={`/article/${slug}`}>
+    <Link href={`/article/${item.slug}`}>
       <div className="group cursor-pointer rounded-lg bg-white p-4 !pb-[0] shadow-sm transition-shadow hover:shadow-lg dark:bg-dark-layoutElement">
         <h2 className="pb-1 text-[1.55rem] font-semibold leading-[1.15] tracking-normal text-light-primary transition-colors duration-300 hover:text-accent dark:text-dark-primary">
-          {title}
+          {item.title}
         </h2>
 
         <span className="text-xs capitalize text-light-contrast-600 dark:text-dark-primary">
-          February 18, 2023
+          <Date date={item.publishedAt ? item.publishedAt : item._createdAt} />
         </span>
 
         <p className="mb-6 pt-2 text-sm font-extralight text-light-primary dark:text-dark-contrast-900">
-          {truncateString(excerpt ? excerpt : "", 120)}
+          {truncateString(item.excerpt ? item.excerpt : "", 120)}
         </p>
 
         <div className="mb-5 h-[9.5rem] w-full overflow-hidden">
           <Image
             className="h-full w-full bg-center object-cover transition-all duration-300 group-hover:scale-110"
-            src={
-              thumbnail?.asset?._ref
-                ? urlForImage(thumbnail)
-                    .height(1920)
-                    .width(1080)
-                    .fit("crop")
-                    .url()
-                : "https://source.unsplash.com/96x96/?face"
-            }
-            width={200}
-            height={100}
-            alt={title}
+            src={thumbnailUrl}
+            width={thumbnailWidth}
+            height={thumbnailHeight}
+            alt={item.title}
           />
         </div>
 

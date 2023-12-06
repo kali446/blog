@@ -5,6 +5,8 @@ interface GlobalContextProps {
   setOpenNavMenu: (val: boolean) => void;
   popupNewsletter: boolean;
   setPopupNewsletter: (val: boolean) => void;
+  searchText: string;
+  setSearchText: (val: string) => void;
 }
 
 export const GlobalContext = createContext<GlobalContextProps>(
@@ -18,6 +20,7 @@ interface GlobalProviderProps {
 export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [openNavMenu, setOpenNavMenu] = useState(false);
   const [popupNewsletter, setPopupNewsletter] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   return (
     <GlobalContext.Provider
@@ -26,6 +29,8 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         setOpenNavMenu,
         popupNewsletter,
         setPopupNewsletter,
+        searchText,
+        setSearchText,
       }}
     >
       {children}

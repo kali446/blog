@@ -1,61 +1,74 @@
 @tailwind base;
 
 html {
-   scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 @tailwind components;
 @tailwind utilities;
 
-
 .sidebarCard {
-   @apply rounded-lg shadow-md bg-white px-[1.25rem] py-3;
+  @apply rounded-lg bg-white px-[1.25rem] py-3 shadow-md;
 }
 
 .markdownContent {
-   p {
-      @apply dark:text-dark-primary text-[1.135rem] leading-[2] py-3 text-light-primary/80 font-light;
-   }
+  p {
+    @apply py-3 text-[1.135rem] font-light leading-[2] text-light-primary/80 dark:text-dark-primary;
+  }
 
-   h2 {
-      @apply dark:text-dark-primary text-4xl text-light-primary pt-4 pb-1 font-bold;
-   }
+  h2 {
+    @apply pb-1 pt-4 text-4xl font-bold text-light-primary dark:text-dark-primary;
+  }
 
-   h3 {
-      @apply dark:text-dark-primary text-3xl text-light-primary pt-4 pb-[0] font-bold;
-   }
+  h3 {
+    @apply pb-[0] pt-4 text-3xl font-bold text-light-primary dark:text-dark-primary;
+  }
 
-   ul {
-      @apply py-2;
+  ul {
+    @apply py-2;
 
-      li {
-         @apply text-[1.1rem] font-light pb-3 pl-3 leading-8 relative before:absolute before:h-[6px] before:w-[6px] before:bg-accent before:top-[.65rem] before:left-[0rem];
-      }
-   }
+    li {
+      @apply relative pb-3 pl-3 text-[1.1rem] font-light leading-8 before:absolute before:left-[0rem] before:top-[.65rem] before:h-[6px] before:w-[6px] before:bg-accent;
+    }
+  }
 
-   ol {
-      @apply py-2 pl-3 list-decimal;
+  ol {
+    @apply list-decimal py-2 pl-3;
 
-      li {
-         @apply dark:text-dark-primary text-[1.1rem] leading-8 pb-3 last:pb-[0] text-light-primary font-light;
-      }
-   }
+    li {
+      @apply pb-3 text-[1.1rem] font-light leading-8 text-light-primary last:pb-[0] dark:text-dark-primary;
+    }
+  }
 
-   a {
-      @apply dark:text-dark-primary dark:before:bg-accent text-black font-semibold relative before:absolute before:content-normal before:bottom-[0] before:left-[0] before:w-full before:h-[1.5px] before:bg-accent/30 hover:before:bg-accent px-[.1rem] mx-[.1rem];
-   }
+  a {
+    @apply relative mx-[.1rem] px-[.1rem] font-semibold text-black before:absolute before:bottom-[0] before:left-[0] before:h-[1.5px] before:w-full before:content-normal before:bg-accent/30 hover:before:bg-accent dark:text-dark-primary dark:before:bg-accent;
+  }
 
-   strong {
-      @apply capitalize font-extrabold;
-   }
+  strong {
+    @apply font-extrabold capitalize;
+  }
 
-   ol, ul {
-      code {
-         @apply dark:bg-dark-layoutElement dark:border-dark-contrast-200 bg-white shadow-sm border-[1px] border-light-contrast-300 rounded-[.275rem] px-[.4rem] text-sm py-[.225rem] font-semibold tracking-tight
-      }
-   }
+  ol,
+  ul {
+    code {
+      @apply rounded-[.275rem] border-[1px] border-light-contrast-300 bg-white px-[.4rem] py-[.225rem] text-sm font-semibold tracking-tight shadow-sm dark:border-dark-contrast-200 dark:bg-dark-layoutElement;
+    }
+  }
 
-   img {
-      @apply w-full h-auto rounded-md
-   }
+  img {
+    @apply h-auto w-full rounded-md;
+  }
+}
+
+// gradients
+.PrimaryGradient {
+  background-image: linear-gradient(
+    to right,
+    #b8cbb8 0%,
+    #b8cbb8 0%,
+    #b465da 0%,
+    #cf6cc9 33%,
+    #ee609c 66%,
+    #ee609c 100%
+  );
 }

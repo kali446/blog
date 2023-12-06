@@ -4,6 +4,18 @@ export default {
   title: 'Article',
   fields: [
     {
+      name: 'title',
+      type: 'string',
+      title: 'Title',
+    },
+
+    {
+      title: 'Published At',
+      name: 'publishedAt',
+      type: 'date',
+    },
+
+    {
       title: 'Slug',
       name: 'slug',
       type: 'slug',
@@ -12,11 +24,6 @@ export default {
         maxLength: 200, // will be ignored if slugify is set
         slugify: (input: string) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
       },
-    },
-    {
-      name: 'title',
-      type: 'string',
-      title: 'Title',
     },
 
     {

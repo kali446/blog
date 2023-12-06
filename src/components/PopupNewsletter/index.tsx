@@ -35,8 +35,10 @@ const PopupNewsletter = () => {
                   }`}
                   key={i}
                 >
-                  <img
-                    className="sm:invert h-full w-full dark:invert"
+                  <Image
+                    height={40}
+                    width={40}
+                    className="h-full w-full dark:invert sm:invert"
                     src={item.icon}
                     alt={item.name}
                   />

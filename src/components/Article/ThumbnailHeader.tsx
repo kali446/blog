@@ -1,8 +1,8 @@
-"use client";
 import React from "react";
 import Image from "next/image";
-import { Article } from "../../../sanity/lib/queries";
-import { urlForImage } from "../../../sanity/lib/image";
+import Link from "next/link";
+import { Article } from "@/lib/queries";
+import { generateImageUrl } from "@/utils";
 
 interface Props {
   data: Article;
@@ -11,7 +11,26 @@ interface Props {
 const ThumbnailHeader = ({
   data: { title, excerpt, category, author, thumbnail },
 }: Props) => {
-  console.log(thumbnail, author, " hii");
+  const authorImageHeight = 100;
+  const authorImageWidth = 100;
+  const authorImageUrl = generateImageUrl({
+    thumbnail: author?.avatar,
+    size: {
+      height: authorImageHeight,
+      width: authorImageWidth,
+    },
+  });
+
+  const thumbnailHeight = 1080;
+  const thumbnailWidth = 1920;
+  const thumbnailUrl = generateImageUrl({
+    thumbnail: thumbnail,
+    size: {
+      height: thumbnailHeight,
+      width: thumbnailWidth,
+    },
+  });
+
   return (
     <div className="pt-3">
       <div className="mx-auto w-[60%] md:w-[90%]">
@@ -32,7 +51,9 @@ const ThumbnailHeader = ({
             </svg>
           </div>
 
-          <div className="transition-colors duration-300">{category?.name}</div>
+          <div className="transition-colors duration-300">
+            <Link href={`/category/${category?.slug}`}>{category?.name}</Link>
+          </div>
 
           <div>
             <svg
@@ -63,34 +84,30 @@ const ThumbnailHeader = ({
         </p>
 
         <div className="mb-5 flex items-center justify-between">
-          <div className="cursor-pointer rounded-full border border-accent bg-accent/20 px-3 py-2 font-semibold capitalize leading-none text-accent">
-            {category?.name}
-          </div>
+          <Link href={`/category/${category.slug}`}>
+            <div className="cursor-pointer rounded-full border border-accent bg-accent/20 px-3 py-2 font-semibold capitalize leading-none text-accent hover:underline">
+              {category?.name}
+            </div>
+          </Link>
 
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-3">
-              <div className="h-[2.5rem] w-[2.5rem] overflow-hidden rounded-full">
-                <Image
-                  className="h-[100%] w-[100%] bg-cover bg-center"
-                  src={
-                    author?.avatar?.asset?._ref
-                      ? urlForImage(author?.avatar)
-                          .height(50)
-                          .width(50)
-                          .fit("crop")
-                          .url()
-                      : "https://source.unsplash.com/96x96/?face"
-                  }
-                  width={50}
-                  height={50}
-                  alt="Picture of the author"
-                />
-              </div>
+            <Link href={`/author/${author.slug}`}>
+              <div className="group flex items-center gap-3">
+                <div className="h-[2.5rem] w-[2.5rem] overflow-hidden rounded-full">
+                  <Image
+                    className="h-[100%] w-[100%] bg-cover bg-center"
+                    src={authorImageUrl}
+                    width={authorImageWidth}
+                    height={authorImageHeight}
+                    alt={author.name || ""}
+                  />
+                </div>
 
-              <span className="text-[1.05rem] font-light capitalize text-light-primary dark:text-dark-primary">
-                {author?.name}
-              </span>
-            </div>
+                <span className="group-hover:underline text-[1rem] font-medium capitalize text-light-primary dark:text-dark-primary">
+                  {author?.name}
+                </span>
+              </div>
+            </Link>
             <div className="h-[4px] w-[4px] rounded-full bg-light-contrast-500"></div>
             <div className="text-sm font-light text-light-secondary dark:text-dark-contrast-700">
               November 20, 2024
@@ -102,18 +119,10 @@ const ThumbnailHeader = ({
       <div className="aspect-[16/9] w-[100%] overflow-hidden">
         <Image
           className="h-full w-full bg-center object-cover"
-          src={
-            thumbnail?.asset?._ref
-              ? urlForImage(thumbnail)
-                  .height(1080)
-                  .width(1920)
-                  .fit("crop")
-                  .url()
-              : "https://source.unsplash.com/96x96/?face"
-          }
-          width={1920}
-          height={1080}
-          alt="Picture of the author"
+          src={thumbnailUrl}
+          width={thumbnailWidth}
+          height={thumbnailHeight}
+          alt={title}
         />
       </div>
     </div>

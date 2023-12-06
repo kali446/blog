@@ -37,7 +37,6 @@ const config: Config = {
         white: "#ffffff",
         black: "#000000",
         accent: "#c00eae",
-        blue: "#5FBDFF",
         light: {
           site: "#f5f7f8",
           header: "#ffffff",

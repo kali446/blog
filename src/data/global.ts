@@ -53,7 +53,57 @@ export const SIDEBAR_PAGES: pageItemType[] = [
     href: "/disclaimer",
   },
   {
+    name: "Terms & Conditions",
+    href: "/terms",
+  },
+  {
     name: "advertise",
     href: "#!",
+  },
+];
+
+export const FOOTER_PAGES_1: pageItemType[] = [
+  {
+    name: "Privacy Policy",
+    href: "/privacy-policy",
+  },
+  {
+    name: "terms",
+    href: "/terms",
+  },
+  {
+    name: "disclaimer",
+    href: "/disclaimer",
+  },
+  {
+    name: "contact us",
+    href: "/contact-us",
+  },
+  {
+    name: "about us",
+    href: "/about-us",
+  },
+];
+
+export const FOOTER_PAGES_2: pageItemType[] = [
+  {
+    name: "Home",
+    href: "/privacy-policy",
+  },
+  {
+    name: "categories",
+    href: "/terms",
+  },
+  {
+    name: "authors",
+    href: "/disclaimer",
+  },
+  {
+    name: "popular",
+    href: "/contact-us",
+  },
+  {
+    name: "latest",
+    href: "/about-us",
   },
 ];

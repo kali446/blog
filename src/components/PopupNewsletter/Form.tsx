@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Checkbox from "@/shared/Checkbox";
 import { useFormik, FormikProvider } from "formik";
 import { NewsletterYupSchema } from "../Newsletter";
 
@@ -43,8 +42,6 @@ const Form = () => {
 
         const data = await response.json();
 
-        console.log(data);
-
         if (data?.status === 400) {
           setLoading(false);
           setError("Email is realready used, Use another one!");
@@ -69,7 +66,7 @@ const Form = () => {
       >
         <div className="relative col-span-8 sm:col-span-12">
           <input
-            className={`sm:dark:placeholder:text-light-primary h-[2.5rem] w-full rounded-md bg-light-contrast-200 px-3 text-xs font-medium outline-none placeholder:text-light-primary dark:bg-dark-input dark:placeholder:text-white sm:dark:bg-light-contrast-200 ${
+            className={`h-[2.5rem] w-full rounded-md bg-light-contrast-200 px-3 text-xs font-medium outline-none placeholder:text-light-primary dark:bg-dark-input dark:placeholder:text-white sm:dark:bg-light-contrast-200 sm:dark:placeholder:text-light-primary ${
               formik.errors.email &&
               formik.touched.email &&
               "border border-red-600"
@@ -103,8 +100,8 @@ const Form = () => {
             error
               ? "text-red-600"
               : success
-              ? "text-green-600"
-              : "text-light-primary"
+                ? "text-green-600"
+                : "text-light-primary"
           } translate-y-[-8px] text-xs font-semibold lowercase first-letter:capitalize`}
         >
           {error ? error : "Thank you for joining our newsletter."}

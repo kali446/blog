@@ -49,8 +49,6 @@ const Newsletter = () => {
 
         const data = await response.json();
 
-        console.log(data);
-
         if (data?.status === 400) {
           setLoading(false);
           setError(
@@ -137,8 +135,8 @@ const Newsletter = () => {
                   error
                     ? "text-red-600"
                     : success
-                    ? "text-green-600"
-                    : "text-light-primary"
+                      ? "text-green-600"
+                      : "text-light-primary"
                 } translate-y-[-8px] text-xs font-semibold lowercase first-letter:capitalize`}
               >
                 {error ? error : "Thank you for joining our newsletter."}
