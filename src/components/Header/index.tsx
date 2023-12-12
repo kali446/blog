@@ -6,8 +6,8 @@ import Link from "next/link";
 import Featured from "./Featured";
 import { useTheme } from "next-themes";
 import { GlobalContext } from "@/context/global";
-import { getArticlesByCategory, getClient } from "@/lib/client";
-import { Article } from "@/lib/queries";
+import { getArticlesByCategory, getClient } from "@/sanity/client";
+import { Article } from "@/sanity/queries";
 import Image from "next/image";
 
 const Header = () => {

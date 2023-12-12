@@ -4,7 +4,7 @@ import SectionHeader from "./SectionHeader";
 import Slider from "react-slick";
 import CardArticle5 from "../Cards/CardArticle5";
 import { SectionSettings } from "@/utils/slider";
-import { Article, Category } from "@/lib/queries";
+import { Article, Category } from "@/sanity/queries";
 
 interface Props {
   data: {

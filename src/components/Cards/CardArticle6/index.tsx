@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Article } from "@/lib/queries";
+import { Article } from "@/sanity/queries";
 import { generateImageUrl, truncateString } from "@/utils";
 
 interface Props {

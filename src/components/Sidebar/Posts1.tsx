@@ -2,7 +2,7 @@ import React from "react";
 import CardTitle from "@/shared/CardTitle";
 import Date from "@/shared/Date";
 import Link from "next/link";
-import { Article } from "@/lib/queries";
+import { Article } from "@/sanity/queries";
 import { truncateString } from "@/utils";
 
 interface Props {

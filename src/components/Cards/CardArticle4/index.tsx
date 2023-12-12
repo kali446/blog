@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Date from "@/shared/Date";
-import { Article } from "@/lib/queries";
+import { Article } from "@/sanity/queries";
 import { truncateString } from "@/utils";
 import { generateImageUrl } from "@/utils";
 

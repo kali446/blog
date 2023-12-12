@@ -10,7 +10,7 @@ import {
   getAllArticles,
   getHomeSectionArticles,
   getArticlesByCategory,
-} from "@/lib/client";
+} from "@/sanity/client";
 
 export const revalidate = 60;
 

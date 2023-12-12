@@ -10,9 +10,8 @@ import {
   getClient,
   getArticlesByCategory,
   getSidebarSectionArticles,
-} from "@/lib/client";
+} from "@/sanity/client";
 import { CATEGORY_RESULTS_LIMIT } from "@/utils";
-
 
 export type PageProps = {
   params: { slug: string; [key: string]: string | string[] | undefined };
@@ -68,7 +67,7 @@ export default async function CategoryPage({
         </div>
 
         {data?.articles?.length ? (
-          <div className="sm:mt-[2rem] mt-[4rem] text-center">
+          <div className="mt-[4rem] text-center sm:mt-[2rem]">
             <Pagination
               path={`/category/${data.category.slug}`}
               page={pageNumber}

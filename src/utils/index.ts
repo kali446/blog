@@ -1,4 +1,4 @@
-import { urlForImage } from "@/lib/image";
+import { urlForImage } from "@/sanity/image";
 
 export async function getHeadings(
   source: string,

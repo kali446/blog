@@ -1,5 +1,5 @@
 import React from "react";
-import { Article } from "@/lib/queries";
+import { Article } from "@/sanity/queries";
 import { generateImageUrl, truncateString } from "@/utils";
 import Image from "next/image";
 import Date from "@/shared/Date";
@@ -23,7 +23,7 @@ const CardArticle9 = ({ item, index }: Props) => {
 
   return (
     <div
-      className={`xs:w-full xs:px-2 sm:mx-auto grid grid-cols-12 gap-4 border-b border-black/20 py-4 dark:border-white/10 sm:w-[90%] ${
+      className={`grid grid-cols-12 gap-4 border-b border-black/20 py-4 dark:border-white/10 sm:mx-auto sm:w-[90%] xs:w-full xs:px-2 ${
         index === 0 && "border-t"
       }`}
     >

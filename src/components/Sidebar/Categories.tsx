@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Category } from "@/lib/queries";
+import { Category } from "@/sanity/queries";
 import { generateImageUrl, truncateString } from "@/utils";
 import Link from "next/link";
 

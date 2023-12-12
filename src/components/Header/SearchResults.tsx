@@ -3,8 +3,8 @@ import Loader from "@/shared/Loader";
 import debounce from "lodash/debounce";
 import CardArticle10 from "../Cards/CardArticle10";
 import { GlobalContext } from "@/context/global";
-import { getClient, getSearchedArticles } from "../../../sanity/lib/client";
-import { Article } from "@/lib/queries";
+import { getClient, getSearchedArticles } from "@/sanity/client";
+import { Article } from "@/sanity/queries";
 import { SEARCH_RESUTS_LIMIT } from "@/utils";
 
 interface Props {

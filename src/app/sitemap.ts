@@ -3,7 +3,7 @@ import {
   getAllAuthorsForSitemap,
   getAllCategoriesForSitemap,
   getClient,
-} from "@/lib/client";
+} from "@/sanity/client";
 
 export default async function sitemap() {
   const baseUrl = process.env.FRONTEND_URL;

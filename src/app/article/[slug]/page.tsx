@@ -16,7 +16,7 @@ import {
   getArticleBySlug,
   getPrevNextArticle,
   getSidebarSectionArticles,
-} from "@/lib/client";
+} from "@/sanity/client";
 import { shareURL } from "@/utils";
 
 interface Props {
