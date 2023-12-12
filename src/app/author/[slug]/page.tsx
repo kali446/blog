@@ -20,7 +20,7 @@ export type PageProps = {
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-export const revalidate = 10;
+export const revalidate = 60;
 
 export default async function CategoryPage({
   params: { slug },
