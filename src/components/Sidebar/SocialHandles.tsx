@@ -4,7 +4,7 @@ import React from "react";
 const SocialHandles = () => {
   return (
     <div className="sidebarCard dark:bg-dark-layoutElement">
-      <CardTitle>Let's get social</CardTitle>
+      <CardTitle>Let&apos;s get social</CardTitle>
 
       {Array.from({ length: 4 }).map((item, i) => (
         <div

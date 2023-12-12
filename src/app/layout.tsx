@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`relative bg-light-site pt-header dark:bg-dark-site ${manrope.className}`}
+        className={`sm:select-none relative bg-light-site pt-header dark:bg-dark-site ${manrope.className}`}
       >
         <Providers>
           <Header />

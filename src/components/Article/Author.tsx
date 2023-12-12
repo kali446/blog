@@ -1,31 +1,31 @@
 import React from "react";
 import Image from "next/image";
-import { Author } from "../../../sanity/lib/queries";
-import { urlForImage } from "../../../sanity/lib/image";
 import Link from "next/link";
+import { Author } from "@/lib/queries";
+import { generateImageUrl } from "@/utils";
 
 interface Props {
   data?: Author;
 }
 
 const Author = ({ data }: Props) => {
+  const authorImageUrl = generateImageUrl({
+    thumbnail: data?.avatar,
+    size: {
+      height: 250,
+      width: 250,
+    },
+  });
+
   return (
     <div className="mb-[5rem] flex flex-col items-center gap-4 border-b border-light-contrast-300 px-[4rem] pb-5 dark:border-dark-contrast-300/50 sm:px-[2rem] xs:px-0">
       <div className="h-[6rem] w-[6rem] overflow-hidden rounded-full">
         <Image
           className="h-[100%] w-[100%] bg-cover bg-center object-cover"
-          src={
-            data?.avatar?.asset?._ref
-              ? urlForImage(data?.avatar)
-                  .height(100)
-                  .width(100)
-                  .fit("crop")
-                  .url()
-              : "https://source.unsplash.com/100x100/?face"
-          }
-          width={100}
-          height={100}
-          alt="Picture of the author"
+          src={authorImageUrl}
+          width={250}
+          height={250}
+          alt={data?.name || ""}
         />
       </div>
 
@@ -34,9 +34,11 @@ const Author = ({ data }: Props) => {
           {data?.sociallinks.map((item, i) => {
             if (item.name.toLowerCase() === "facebook") {
               return (
-                <li>
+                <li key={i}>
                   <Link href={item.url} target="_blank">
-                    <img
+                    <Image
+                      width={40}
+                      height={40}
                       className="h-[auto] w-[1rem] transition-all duration-150 hover:translate-y-[-3px]"
                       src="/icons/facebook.svg"
                       alt=""
@@ -48,7 +50,7 @@ const Author = ({ data }: Props) => {
 
             if (item.name.toLowerCase() === "website") {
               return (
-                <li>
+                <li key={i}>
                   <Link href={item.url} target="_blank">
                     <div className="text-black transition-all  duration-150 hover:translate-y-[-3px] dark:text-white">
                       <svg
@@ -79,9 +81,11 @@ const Author = ({ data }: Props) => {
 
             if (item.name.toLowerCase() === "instagram") {
               return (
-                <li>
+                <li key={i}>
                   <Link href={item.url} target="_blank">
-                    <img
+                    <Image
+                      height={40}
+                      width={40}
                       className="h-[auto] w-[1rem] transition-all duration-150 hover:translate-y-[-3px]"
                       src="/icons/instagram.svg"
                       alt=""
@@ -93,7 +97,7 @@ const Author = ({ data }: Props) => {
 
             if (item.name.toLowerCase() === "x" || "twitter") {
               return (
-                <li>
+                <li key={i}>
                   <Link href={item.url} target="_blank">
                     <div className="text-black transition-all  duration-150 hover:translate-y-[-3px] dark:text-white">
                       <svg
@@ -127,9 +131,11 @@ const Author = ({ data }: Props) => {
 
             if (item.name.toLowerCase() === "pinterest") {
               return (
-                <li>
+                <li key={i}>
                   <Link href={item.url} target="_blank">
-                    <img
+                    <Image
+                      height={40}
+                      width={40}
                       className="h-[auto] w-[1rem] transition-all duration-150 hover:translate-y-[-3px]"
                       src="/icons/pinterest.svg"
                       alt=""

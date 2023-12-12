@@ -2,9 +2,10 @@ import React from "react";
 
 interface Props {
   error?: boolean;
+  errorMsg?: string;
 }
 
-const Loader = ({ error = false }: Props) => {
+const Loader = ({ error = false, errorMsg }: Props) => {
   return (
     <div className="flex flex-col items-center gap-4">
       {error ? (
@@ -33,7 +34,7 @@ const Loader = ({ error = false }: Props) => {
       )}
 
       <span className="text-sm font-medium uppercase italic text-light-secondary">
-        {error ? "No results found!" : "Please wait..."}
+        {error ? (errorMsg ? errorMsg : "No results found!") : "Please wait..."}
       </span>
     </div>
   );

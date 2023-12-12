@@ -1,12 +1,18 @@
 import React from "react";
 import FeaturedCard from "@/components/Cards/CardArticle3";
+import { Article } from "@/lib/queries";
 
 interface Props {
+  data: Article[] | null;
   show: string;
   setShow: (val: string) => void;
 }
 
-const Featured = ({ show, setShow }: Props) => {
+const Featured = ({ show, setShow, data }: Props) => {
+  if (!data) {
+    return null;
+  }
+
   return (
     <div
       onMouseLeave={() => {
@@ -27,9 +33,9 @@ const Featured = ({ show, setShow }: Props) => {
       </div>
 
       <div className="mt-3 grid grid-cols-12 gap-4">
-        {Array.from({ length: 4 }).map((item, i) => (
+        {data?.map((item, i) => (
           <div key={i} className="col-span-3 lg:col-span-6">
-            <FeaturedCard />
+            <FeaturedCard item={item} />
           </div>
         ))}
       </div>

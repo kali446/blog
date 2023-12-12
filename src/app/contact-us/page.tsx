@@ -1,41 +1,52 @@
-import PageLayout from "@/components/Layout/PageLayout";
-import Button from "@/shared/Button/Button";
 import React from "react";
+import Image from "next/image";
+import supabase from "@/utils/supabase";
+import Form from "./Form";
+
+const CONTACT_OPTIONS = [
+  {
+    name: "mail",
+    value: "contact@gmail.com",
+  },
+
+  {
+    name: "telephone",
+    value: "+977 9821991011",
+  },
+
+  {
+    name: "address",
+    value: "07 Typanglaphat, kathmandu - Nepal",
+  },
+];
 
 const ContactUs = () => {
   return (
-    <PageLayout title="Get in touch">
-      <form>
-        <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-6 h-[3.25rem] overflow-hidden">
-            <input
-              className="h-full w-full rounded-md bg-white px-3 text-light-primary drop-shadow-sm placeholder:text-sm placeholder:font-semibold placeholder:capitalize placeholder:text-light-secondary focus:outline-none dark:bg-dark-layoutElement dark:text-dark-primary dark:placeholder:text-dark-secondary/70"
-              type="text"
-              placeholder="full name"
-            />
-          </div>
+    <div className="mx-auto w-[80%] pt-5 lg:w-[90%]">
+      <h1 className="mb-[5rem] flex flex-col text-[6.5rem] font-thin leading-[1.35] lg:text-[5.5rem] md:mb-[2.5rem] md:text-[4rem] sm:text-[3rem] xs:text-[2.5rem]">
+        <div className="self-start">What if we met?</div>
+        <div className="self-center">We are excited</div>
+        <div className="self-end">to discover yourself.</div>
+      </h1>
 
-          <div className="col-span-6 h-[3.25rem] overflow-hidden">
-            <input
-              className="h-full w-full rounded-md bg-white px-3 text-light-primary drop-shadow-sm placeholder:text-sm placeholder:font-semibold placeholder:capitalize placeholder:text-light-secondary focus:outline-none dark:bg-dark-layoutElement dark:text-dark-primary dark:placeholder:text-dark-secondary/70"
-              type="text"
-              placeholder="your email"
-            />
-          </div>
+      <ul className="mb-[5rem] md:mb-[2.5rem]">
+        {CONTACT_OPTIONS.map((item, i) => (
+          <li
+            key={i}
+            className="flex cursor-pointer items-center justify-between border-b border-black/40 py-4 first:border-t dark:border-white/40"
+          >
+            <div className="text-3xl font-light capitalize text-black dark:text-white sm:text-2xl">
+              {item.name}
+            </div>
+            <div className="text-md font-bold uppercase text-light-primary dark:text-dark-secondary sm:text-xs">
+              {item.value}
+            </div>
+          </li>
+        ))}
+      </ul>
 
-          <div className="col-span-12">
-            <textarea
-              className="h-[10rem] w-full rounded-xl bg-white p-3 text-light-primary drop-shadow-sm placeholder:text-sm placeholder:font-semibold placeholder:capitalize placeholder:text-light-secondary focus:outline-none dark:bg-dark-layoutElement dark:text-dark-primary dark:placeholder:text-dark-secondary/70"
-              placeholder="your message"
-            />
-          </div>
-        </div>
-
-        <button className="dark:bg-accent mt-5 rounded-md bg-black px-5 py-2 text-sm font-medium uppercase tracking-normal text-white transition-all hover:bg-accent hover:text-white">
-          send message
-        </button>
-      </form>
-    </PageLayout>
+      <Form />
+    </div>
   );
 };
 

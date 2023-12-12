@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import matter from "gray-matter";
+import fs from "fs";
+import path from "path";
+import PageLayout from "@/components/Layout/PageLayout";
 
 const AboutUs = () => {
-  return (
-    <div>AboutUs</div>
-  )
-}
+  const source = fs.readFileSync(
+    path.join("src", "data", "pages", "about-us.mdx" as string),
+    "utf8",
+  );
+  const { data, content } = matter(source);
 
-export default AboutUs
+  return <PageLayout content={content} title={data.title}></PageLayout>;
+};
+
+export default AboutUs;

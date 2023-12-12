@@ -49,7 +49,7 @@ const Tableofcontents = () => {
   return (
     <div className="w-full overflow-hidden rounded-lg bg-white py-2 shadow-md dark:bg-dark-layoutElement">
       <div className="px-4">
-      <CardTitle>Table of contents</CardTitle>
+        <CardTitle>Table of contents</CardTitle>
       </div>
 
       <ul className="mt-3">
@@ -58,6 +58,7 @@ const Tableofcontents = () => {
 
           return (
             <Item
+              key={i}
               num={i + 1}
               active={activeId === item?.id ? true : false}
               id={id}

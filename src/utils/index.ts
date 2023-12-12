@@ -1,3 +1,5 @@
+import { urlForImage } from "@/lib/image";
+
 export async function getHeadings(
   source: string,
 ): Promise<{ text: string; level: number }[]> {
@@ -27,5 +29,47 @@ export const truncateString = (str: string, num: number) => {
     return str;
   }
 
-  return str.slice(0, num) + "...";
+  return str.slice(0, num);
 };
+
+interface GenerateImageProps {
+  thumbnail: any | null;
+  alternativeImage?: string;
+  size: {
+    height: number;
+    width: number;
+  };
+}
+
+export const generateImageUrl = ({
+  thumbnail,
+  alternativeImage,
+  size: { height, width },
+}: GenerateImageProps) => {
+  if (thumbnail.asset?._ref) {
+    return urlForImage(thumbnail).height(height).width(width).fit("crop").url();
+  } else {
+    return alternativeImage ? alternativeImage : "";
+  }
+};
+
+export const shareURL = ({
+  slug,
+  type = "ARTICLE",
+}: {
+  slug: string;
+  type?: "ARTICLE" | "CATEGORY";
+}) => {
+  switch (type) {
+    case "ARTICLE":
+      return `${process.env.FRONTEND_URL}/article/${slug}`;
+    default:
+      return "";
+  }
+};
+
+export const DATE_FORMAT = "LL";
+
+export const SEARCH_RESUTS_LIMIT = 1;
+export const CATEGORY_RESULTS_LIMIT = 2;
+export const AUTHOR_RESULTS_LIMIT = 2;

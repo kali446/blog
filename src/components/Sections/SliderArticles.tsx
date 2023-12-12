@@ -4,20 +4,28 @@ import SectionHeader from "./SectionHeader";
 import Slider from "react-slick";
 import CardArticle5 from "../Cards/CardArticle5";
 import { SectionSettings } from "@/utils/slider";
+import { Article, Category } from "@/lib/queries";
 
-const SliderArticles = () => {
+interface Props {
+  data: {
+    category: Category;
+    articles?: Article[];
+  };
+}
+const SliderArticles = ({ data: { category, articles } }: Props) => {
   const slider = useRef<Slider>(null);
 
   return (
     <div className="pb-section">
-      <SectionHeader />
+      <SectionHeader data={category} />
 
       <Slider ref={slider} {...SectionSettings}>
-        {Array.from({ length: 10 }).map((item, i) => (
-          <div key={i} className="xs:px-0 px-3">
-            <CardArticle5 />
-          </div>
-        ))}
+        {articles &&
+          [...articles, ...articles, ...articles].map((item, i) => (
+            <div key={i} className="px-3 xs:px-0">
+              <CardArticle5 item={item} />
+            </div>
+          ))}
       </Slider>
 
       <div className="flex items-center justify-between pt-4">

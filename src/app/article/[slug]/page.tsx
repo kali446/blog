@@ -6,13 +6,18 @@ import Newsletter from "@/components/Sidebar/Newsletter";
 import Categories from "@/components/Sidebar/Categories";
 import FeaturedPosts from "@/components/Sidebar/Posts1";
 import WeeklyTop from "@/components/Sidebar/Posts2";
-import SocialHandles from "@/components/Sidebar/SocialHandles";
 import Share from "@/components/Article/Share";
 import Author from "@/components/Article/Author";
 import Content from "@/components/Article/Content";
 import Share2 from "@/components/Article/Share2";
 import ThumbnailHeader from "@/components/Article/ThumbnailHeader";
-import { getClient, getArticleBySlug } from "../../../../sanity/lib/client";
+import {
+  getClient,
+  getArticleBySlug,
+  getPrevNextArticle,
+  getSidebarSectionArticles,
+} from "@/lib/client";
+import { shareURL } from "@/utils";
 
 interface Props {
   slug: string;
@@ -27,18 +32,22 @@ export default async function ArticlePage({
 }) {
   const client = getClient();
   const data = await getArticleBySlug(client, slug);
+  const sidebarArticles = await getSidebarSectionArticles(client);
+  const prevNextArticles: any = await getPrevNextArticle(client, slug);
+
+  const shareUrl = shareURL({ slug: data.slug });
 
   return (
-    <div className="w-full">
+    <div className="w-full pb-section">
       <ProgressBar />
       <ThumbnailHeader data={data} />
 
       <div className="relative mx-auto grid w-[95%] grid-cols-12 items-start gap-5 pt-6 sm:gap-3">
-        <div className="sticky top-[7rem] col-span-2 flex flex-col items-end gap-5 lg:order-last lg:col-span-4 lg:items-start md:static md:col-span-6 sm:col-span-12 ">
+        <div className="sticky top-[7rem] col-span-2 flex flex-col items-end gap-4 lg:order-last lg:col-span-4 lg:items-start md:static md:col-span-6 sm:col-span-12 ">
           <Tableofcontents />
 
           <div className="inline-block md:hidden">
-            <Share2 />
+            <Share2 url={shareUrl} />
           </div>
         </div>
 
@@ -46,16 +55,22 @@ export default async function ArticlePage({
           <Content data={data?.content} />
           <Share slug={data?.slug} />
           <Author data={data?.author} />
-          <PrevNext />
+          <PrevNext data={prevNextArticles} />
         </div>
 
-        <div className="col-span-3 lg:hidden">
+        <div className="sticky top-[7rem] col-span-3 lg:hidden">
           <div className="flex flex-col gap-5">
             <Newsletter />
-            <FeaturedPosts />
-            <WeeklyTop />
-            <Categories />
-            <SocialHandles />
+
+            {sidebarArticles?.sectionOne?.length && (
+              <FeaturedPosts data={sidebarArticles.sectionOne} />
+            )}
+            {sidebarArticles?.sectionTwo?.length && (
+              <WeeklyTop data={sidebarArticles.sectionTwo} />
+            )}
+            {sidebarArticles?.sectionThree?.length && (
+              <Categories data={sidebarArticles.sectionThree} />
+            )}
           </div>
         </div>
       </div>

@@ -10,6 +10,10 @@ const TriggeredNavbar = () => {
   const [selectedMenu, setSelectedMenu] = useState<NavItemType[] | null>(null);
   const { openNavMenu } = useContext(GlobalContext);
 
+  const mobile480 = useMediaQuery({
+    query: "(max-width: 480px)",
+  });
+
   return (
     <div
       className={`fixed left-[0] top-[0] z-[1005] flex h-[100vh] w-full flex-col justify-between overflow-y-auto overflow-x-hidden bg-white transition-all duration-500 dark:bg-dark-site ${
@@ -20,7 +24,7 @@ const TriggeredNavbar = () => {
 
       <Header />
       <div className="mb-5 mt-header grid grid-cols-12 gap-7 px-5 pt-5 sm:gap-0 sm:gap-y-4">
-        {!selectedMenu?.length ? (
+        {!selectedMenu?.length && (
           <div className="col-span-3 sm:col-span-12">
             <ul>
               {MEGAMENU.map((item, i) => (
@@ -34,55 +38,59 @@ const TriggeredNavbar = () => {
               ))}
             </ul>
           </div>
-        ) : (
-          <div className="col-span-9 grid grid-cols-12 sm:col-span-12">
-            <div className="col-span-3 sm:col-span-6 xs:col-span-12">
-              <ul className="flex flex-col gap-1">
-                <div
-                  onClick={() => setSelectedMenu(null)}
-                  className="text-blue mb-[1rem] inline-flex cursor-pointer items-center justify-start gap-1 py-2 text-sm font-semibold uppercase underline"
-                >
-                  <svg
-                    className="rotate-180"
-                    width={15}
-                    height="auto"
-                    viewBox="0 0 512 426"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M503.816 193.107L318.915 8.20165C313.637 2.92351 306.602 0.0263672 299.101 0.0263672C291.592 0.0263672 284.561 2.92768 279.283 8.20165L262.496 24.9934C257.222 30.2633 254.316 37.3022 254.316 44.8073C254.316 52.3082 257.222 59.5844 262.496 64.8542L370.364 172.96H27.6603C12.2088 172.96 0 185.057 0 200.512V224.251C0 239.707 12.2088 253.023 27.6603 253.023H371.588L262.5 361.733C257.226 367.011 254.32 373.858 254.32 381.363C254.32 388.86 257.226 395.807 262.5 401.081L279.287 417.819C284.566 423.097 291.596 425.974 299.105 425.974C306.606 425.974 313.641 423.06 318.919 417.782L503.821 232.88C509.111 227.586 512.021 220.518 512 213.004C512.017 205.466 509.111 198.394 503.816 193.107Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-
-                  <span className="shrink-0">go back</span>
-                </div>
-
-                {selectedMenu.map((item, i) => (
-                  <li
-                    className={`flex cursor-pointer gap-2 rounded-md p-2 text-sm font-semibold capitalize transition-all duration-300 hover:bg-light-contrast-200 dark:hover:bg-dark-contrast-300 ${
-                      i === 0
-                        ? "bg-light-contrast-200 dark:bg-dark-contrast-300"
-                        : ""
-                    }`}
-                    key={i}
-                  >
-                    {item?.name}
-                    {item?.isNew && (
-                      <span className="flex items-center justify-center rounded-md bg-accent px-[.35rem] text-xs uppercase !leading-[0] text-white dark:text-dark-primary">
-                        {item.isNew && "new"}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* <div className="col-span-3"></div> */}
-            {/* <div className="col-span-6"></div> */}
-          </div>
         )}
+
+        <div className="col-span-9 grid grid-cols-12 sm:col-span-12">
+          <div className="col-span-3 sm:col-span-6 xs:col-span-12">
+            <ul className="flex flex-col gap-1">
+              {selectedMenu?.length && mobile480 && (
+                <>
+                  <div
+                    onClick={() => setSelectedMenu(null)}
+                    className="mb-[1rem] inline-flex cursor-pointer items-center justify-start gap-1 py-2 text-sm font-semibold uppercase text-blue-600 underline"
+                  >
+                    <svg
+                      className="rotate-180"
+                      width={15}
+                      height="auto"
+                      viewBox="0 0 512 426"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M503.816 193.107L318.915 8.20165C313.637 2.92351 306.602 0.0263672 299.101 0.0263672C291.592 0.0263672 284.561 2.92768 279.283 8.20165L262.496 24.9934C257.222 30.2633 254.316 37.3022 254.316 44.8073C254.316 52.3082 257.222 59.5844 262.496 64.8542L370.364 172.96H27.6603C12.2088 172.96 0 185.057 0 200.512V224.251C0 239.707 12.2088 253.023 27.6603 253.023H371.588L262.5 361.733C257.226 367.011 254.32 373.858 254.32 381.363C254.32 388.86 257.226 395.807 262.5 401.081L279.287 417.819C284.566 423.097 291.596 425.974 299.105 425.974C306.606 425.974 313.641 423.06 318.919 417.782L503.821 232.88C509.111 227.586 512.021 220.518 512 213.004C512.017 205.466 509.111 198.394 503.816 193.107Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+
+                    <span className="shrink-0">go back</span>
+                  </div>
+                </>
+              )}
+
+              {selectedMenu?.map((item, i) => (
+                <li
+                  className={`flex cursor-pointer gap-2 rounded-md p-2 text-sm font-semibold capitalize transition-all duration-300 hover:bg-light-contrast-200 dark:hover:bg-dark-contrast-300 ${
+                    i === 0
+                      ? "bg-light-contrast-200 dark:bg-dark-contrast-300"
+                      : ""
+                  }`}
+                  key={i}
+                >
+                  {item?.name}
+                  {item?.isNew && (
+                    <span className="flex items-center justify-center rounded-md bg-accent px-[.35rem] text-xs uppercase !leading-[0] text-white dark:text-dark-primary">
+                      {item.isNew && "new"}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* <div className="col-span-3"></div> */}
+          {/* <div className="col-span-6"></div> */}
+        </div>
       </div>
 
       <div className="max-w-[480px] px-5 pb-5">
@@ -177,6 +185,10 @@ const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
   return (
     <li
       onClick={() => {
+        if (!mobile480) {
+          return;
+        }
+
         if (hasChildren && setMenu && item?.children) {
           setMenu(item.children);
         }
@@ -188,6 +200,14 @@ const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
       onMouseEnter={() => {
         if (mobile480) {
           return;
+        }
+
+        if (hasChildren && setMenu && item?.children) {
+          setMenu(item.children);
+        }
+
+        if (setMenu && !item?.children?.length) {
+          setMenu(null);
         }
       }}
       className={`group flex cursor-pointer items-center justify-between pb-[.5rem] last:pb-[0]`}
