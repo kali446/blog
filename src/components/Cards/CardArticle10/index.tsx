@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Article } from "@/lib/queries";
+import { Article } from "@/sanity/queries";
 
 interface Props {
   item: Article;
@@ -11,7 +11,7 @@ const CardArticle10 = ({ item }: Props) => {
   return (
     <div
       title={""}
-      className="dark:border-white/30 group grid grid-cols-12 border-x border-b border-black/30 p-3 pb-0 first:border-t"
+      className="group grid grid-cols-12 border-x border-b border-black/30 p-3 pb-0 first:border-t dark:border-white/30"
     >
       <div className="col-span-2 h-[5rem] overflow-hidden">
         <Link href={"/article"}>
@@ -27,14 +27,14 @@ const CardArticle10 = ({ item }: Props) => {
 
       <div className="col-span-10 pl-3">
         <Link href={`/article/`}>
-          <h2 className="xs:text-[.95rem] dark:text-dark-primary text-[1.15rem] font-semibold text-light-primary transition-colors hover:text-accent">
+          <h2 className="text-[1.15rem] font-semibold text-light-primary transition-colors hover:text-accent dark:text-dark-primary xs:text-[.95rem]">
             Advancements in Artificial Intelligence Ethical Considerations
           </h2>
         </Link>
 
-        <p className="dark:text-white/50 pb-3 font-medium capitalize text-light-primary">
+        <p className="pb-3 font-medium capitalize text-light-primary dark:text-white/50">
           <Link href={`/author/`}>
-            <span className="dark:border-white/50 border-r-[1.5px] border-light-primary pr-[.65rem] text-xs tracking-wide underline transition-colors duration-300 hover:text-accent">
+            <span className="border-r-[1.5px] border-light-primary pr-[.65rem] text-xs tracking-wide underline transition-colors duration-300 hover:text-accent dark:border-white/50">
               Ravi Gajurel
             </span>
           </Link>

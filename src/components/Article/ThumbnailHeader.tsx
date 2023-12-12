@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Article } from "@/lib/queries";
+import { Article } from "@/sanity/queries";
 import { generateImageUrl } from "@/utils";
 
 interface Props {
@@ -103,7 +103,7 @@ const ThumbnailHeader = ({
                   />
                 </div>
 
-                <span className="group-hover:underline text-[1rem] font-medium capitalize text-light-primary dark:text-dark-primary">
+                <span className="text-[1rem] font-medium capitalize text-light-primary group-hover:underline dark:text-dark-primary">
                   {author?.name}
                 </span>
               </div>

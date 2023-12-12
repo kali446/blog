@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Author } from "@/lib/queries";
+import { Author } from "@/sanity/queries";
 import { generateImageUrl } from "@/utils";
 
 interface Props {

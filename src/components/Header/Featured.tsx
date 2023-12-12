@@ -1,6 +1,6 @@
 import React from "react";
 import FeaturedCard from "@/components/Cards/CardArticle3";
-import { Article } from "@/lib/queries";
+import { Article } from "@/sanity/queries";
 
 interface Props {
   data: Article[] | null;
