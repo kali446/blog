@@ -53,6 +53,21 @@ export const generateImageUrl = ({
   }
 };
 
+export const shareURL = ({
+  slug,
+  type = "ARTICLE",
+}: {
+  slug: string;
+  type?: "ARTICLE" | "CATEGORY";
+}) => {
+  switch (type) {
+    case "ARTICLE":
+      return `${process.env.FRONTEND_URL}/article/${slug}`;
+    default:
+      return "";
+  }
+};
+
 export const DATE_FORMAT = "LL";
 
 export const SEARCH_RESUTS_LIMIT = 1;

@@ -174,3 +174,35 @@ export const getSidebarSectionArticlesQuery = groq`
   }
 }
 `
+
+// SITEMAP
+
+const articleFieldsForSitemap = groq`
+  _updatedAt,
+  "slug": slug.current
+`
+
+const categoryFieldsForSitemap = groq`
+  _updatedAt,
+  "slug": slug.current
+`
+
+const authorFieldsForSitemap = groq`
+  _updatedAt,
+  "slug": slug.current
+`
+
+export const getAllArticlesForSitemapQuery = groq`
+*[_type == "article"] | order(date desc, _updatedAt desc) {
+  ${articleFieldsForSitemap}
+}`
+
+export const getAllCategoriesForSitemapQuery = groq`
+*[_type == "category"] | order(date desc, _updatedAt desc) {
+  ${categoryFieldsForSitemap}
+}`
+
+export const getAllAuthorsForSitemapQuery = groq`
+*[_type == "category"] | order(date desc, _updatedAt desc) {
+  ${authorFieldsForSitemap}
+}`

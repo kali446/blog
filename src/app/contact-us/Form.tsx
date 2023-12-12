@@ -76,15 +76,15 @@ const Form = () => {
     <FormikProvider value={formik}>
       <form
         onSubmit={formik.handleSubmit}
-        className="mx-auto mb-[5rem] w-[70%] rounded-3xl bg-white p-6 drop-shadow-sm dark:bg-dark-layoutElement md:w-full sm:rounded-2xl sm:px-4 sm:py-5"
+        className="mx-auto mb-[5rem] w-[70%] rounded-3xl bg-white p-6 drop-shadow-sm dark:bg-dark-layoutElement md:w-full sm:rounded-lg sm:px-4 sm:py-5"
       >
         <div className="grid grid-cols-12 gap-4 sm:gap-0 sm:gap-y-4">
           <div className="relative col-span-6 xs:col-span-12">
-            <div className="font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-secondary">
+            <div className="font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-secondary sm:text-sm">
               your fullname*
             </div>
             <input
-              className={`mt-[3px] h-[4rem] w-full  rounded-md border border-black/30 px-3 text-light-primary drop-shadow-sm focus:outline-none dark:border-white/0 dark:bg-dark-input dark:text-dark-primary xs:h-[3.5rem] ${
+              className={`mt-[3px] h-[4rem] w-full  rounded-md border border-black/30 px-3 text-light-primary drop-shadow-sm focus:outline-none dark:border-white/0 dark:bg-dark-input dark:text-dark-primary xs:h-[3rem] ${
                 formik.errors.name &&
                 formik.touched.name &&
                 "border border-red-600"
@@ -105,11 +105,11 @@ const Form = () => {
           </div>
 
           <div className="relative col-span-6 xs:col-span-12">
-            <div className="font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-secondary">
+            <div className="font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-secondary sm:text-sm">
               your email*
             </div>
             <input
-              className={`mt-[3px] h-[4rem] w-full  rounded-md border border-black/30 px-3 text-light-primary drop-shadow-sm focus:outline-none dark:border-white/0 dark:bg-dark-input dark:text-dark-primary xs:h-[3.5rem] ${
+              className={`mt-[3px] h-[4rem] w-full  rounded-md border border-black/30 px-3 text-light-primary drop-shadow-sm focus:outline-none dark:border-white/0 dark:bg-dark-input dark:text-dark-primary xs:h-[3rem] ${
                 formik.errors.email &&
                 formik.touched.email &&
                 "border border-red-600"
@@ -130,7 +130,7 @@ const Form = () => {
           </div>
 
           <div className="relative col-span-12">
-            <div className="font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-secondary">
+            <div className="sm:text-sm font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-secondary">
               your message*
             </div>
             <textarea

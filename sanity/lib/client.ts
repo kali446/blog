@@ -12,6 +12,9 @@ import {
   getArticlesByAuthorQuery,
   getSearchedArticlesQuery,
   getSidebarSectionArticlesQuery,
+  getAllArticlesForSitemapQuery,
+  getAllCategoriesForSitemapQuery,
+  getAllAuthorsForSitemapQuery,
 } from './queries'
 
 export function getClient(preview?: {token: string}): SanityClient {
@@ -145,4 +148,17 @@ export async function getSidebarSectionArticles(
   return (
     (await client.fetch(getSidebarSectionArticlesQuery)) || ({} as SidebarSectionArticlesResponse)
   )
+}
+
+// SITEMAP
+export async function getAllArticlesForSitemap(client: SanityClient): Promise<Article[]> {
+  return (await client.fetch(getAllArticlesForSitemapQuery)) || []
+}
+
+export async function getAllCategoriesForSitemap(client: SanityClient): Promise<Article[]> {
+  return (await client.fetch(getAllCategoriesForSitemapQuery)) || []
+}
+
+export async function getAllAuthorsForSitemap(client: SanityClient): Promise<Article[]> {
+  return (await client.fetch(getAllAuthorsForSitemapQuery)) || []
 }
