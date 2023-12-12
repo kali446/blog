@@ -12,6 +12,10 @@ import {
   getArticlesByAuthorQuery,
   getSearchedArticlesQuery,
   getSidebarSectionArticlesQuery,
+  getCategoryQuery,
+  getAllCategoriesQuery,
+  getAuthorQuery,
+  getAllAuthorsQuery,
   getAllArticlesForSitemapQuery,
   getAllCategoriesForSitemapQuery,
   getAllAuthorsForSitemapQuery,
@@ -78,6 +82,30 @@ interface SearchedArticlesResponse {
 
 export async function getAllArticles(client: SanityClient): Promise<Article[]> {
   return (await client.fetch(getAllArticlesQuery)) || [];
+}
+
+export async function getAllCategories(
+  client: SanityClient,
+): Promise<Category[]> {
+  return (await client.fetch(getAllCategoriesQuery)) || [];
+}
+
+export async function getAuthor(
+  client: SanityClient,
+  slug: string,
+): Promise<Author> {
+  return (await client.fetch(getAuthorQuery, { slug })) || ({} as any);
+}
+
+export async function getAllAuthors(client: SanityClient): Promise<Author[]> {
+  return (await client.fetch(getAllAuthorsQuery)) || [];
+}
+
+export async function getCategory(
+  client: SanityClient,
+  slug: string,
+): Promise<Category> {
+  return (await client.fetch(getCategoryQuery, { slug })) || ({} as any);
 }
 
 export async function getArticleBySlug(

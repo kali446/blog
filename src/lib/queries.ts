@@ -1,42 +1,42 @@
-import {groq} from 'next-sanity'
+import { groq } from "next-sanity";
 
 export interface Tag {
-  name: string
+  name: string;
 }
 
 export interface Author {
-  name: string
-  slug: string
-  avatar: any
-  bio: string
+  name: string;
+  slug: string;
+  avatar: any;
+  bio: string;
   sociallinks: [
     {
-      name: string
-      url: string
+      name: string;
+      url: string;
     },
-  ]
+  ];
 }
 
 export interface Category {
-  slug: string
-  name: string
-  description?: string
-  thumbnail?: any
-  total?: number
+  slug: string;
+  name: string;
+  description?: string;
+  thumbnail?: any;
+  total?: number;
 }
 
 export interface Article {
-  _id: string
-  _createdAt: Date
-  title: string
-  slug: string
-  publishedAt: Date
-  category: Category
-  tags: Tag[]
-  excerpt: string
-  thumbnail: any
-  author: Author
-  content?: any
+  _id: string;
+  _createdAt: Date;
+  title: string;
+  slug: string;
+  publishedAt: Date;
+  category: Category;
+  tags: Tag[];
+  excerpt: string;
+  thumbnail: any;
+  author: Author;
+  content?: any;
 }
 
 const articleFields = groq`
@@ -61,7 +61,7 @@ const articleFields = groq`
     sociallinks,
     "slug": slug.current,
   },
-`
+`;
 
 const categoryFields = groq`
   _id,
@@ -69,7 +69,7 @@ const categoryFields = groq`
   description,
   thumbnail,
   "slug": slug.current,
-`
+`;
 
 const authorFields = groq`
   name, 
@@ -77,18 +77,38 @@ const authorFields = groq`
   bio, 
   sociallinks,
   "slug": slug.current,
-`
+`;
 
 export const getAllArticlesQuery = groq`
 *[_type == "article"] | order(date desc, _updatedAt desc) {
   ${articleFields}
-}`
+}`;
+
+export const getAllCategoriesQuery = groq`
+*[_type == "category"] | order(date desc, _updatedAt desc) {
+  ${articleFields}
+}`;
+
+export const getCategoryQuery = groq`
+*[_type == "category" && slug.current == $slug][0] {
+  ${categoryFields}
+}`;
+
+export const getAllAuthorsQuery = groq`
+*[_type == "author"] | order(date desc, _updatedAt desc) {
+  ${authorFields}
+}`;
+
+export const getAuthorQuery = groq`
+*[_type == "author" && slug.current == $slug][0] {
+  ${authorFields}
+}`;
 
 export const getArticleBySlugQuery = groq`
 *[_type == "article" && slug.current == $slug][0] {
   ${articleFields}
 }
-`
+`;
 
 export const getPrevNextArticleQuery = groq`
 *[_type == "article" && slug.current == $slug][0] {
@@ -100,10 +120,13 @@ export const getPrevNextArticleQuery = groq`
     ${articleFields}
   }
 }
-`
+`;
 
-export const getArticlesByCategoryQuery = (pageNumber: number, pageSize: number) => {
-  const offset = (pageNumber - 1) * pageSize
+export const getArticlesByCategoryQuery = (
+  pageNumber: number,
+  pageSize: number,
+) => {
+  const offset = (pageNumber - 1) * pageSize;
 
   return groq`
     *[ _type == "category" && slug.current == $slug][0] { 
@@ -115,11 +138,14 @@ export const getArticlesByCategoryQuery = (pageNumber: number, pageSize: number)
       },
       "total": count(*[_type == "article" && category._ref == ^._id])
   }
-`
-}
+`;
+};
 
-export const getArticlesByAuthorQuery = (pageNumber: number, pageSize: number) => {
-  const offset = (pageNumber - 1) * pageSize
+export const getArticlesByAuthorQuery = (
+  pageNumber: number,
+  pageSize: number,
+) => {
+  const offset = (pageNumber - 1) * pageSize;
 
   return groq`
     *[ _type == "author" && slug.current == $slug][0] { 
@@ -131,8 +157,8 @@ export const getArticlesByAuthorQuery = (pageNumber: number, pageSize: number) =
       },
       "total": count(*[_type == "article" && author._ref == ^._id])
   }
-`
-}
+`;
+};
 
 export const getHomeSectionArticlesQuery = groq`
 *[ _type == "homeSectionArticle"][0] { 
@@ -143,10 +169,13 @@ export const getHomeSectionArticlesQuery = groq`
     ${articleFields}
   }
 }
-`
+`;
 
-export const getSearchedArticlesQuery = (pageNumber: number, pageSize: number) => {
-  const offset = (pageNumber - 1) * pageSize
+export const getSearchedArticlesQuery = (
+  pageNumber: number,
+  pageSize: number,
+) => {
+  const offset = (pageNumber - 1) * pageSize;
 
   return groq`
   *[ _type == "article"][0] { 
@@ -156,8 +185,8 @@ export const getSearchedArticlesQuery = (pageNumber: number, pageSize: number) =
         
     "total": count(*[_type == "article" && [title, content, excerpt] match [$query]])
   }
-`
-}
+`;
+};
 
 export const getSidebarSectionArticlesQuery = groq`
 *[ _type == "sidebarSectionArticle"][0] { 
@@ -173,36 +202,36 @@ export const getSidebarSectionArticlesQuery = groq`
     "total": count(*[_type == "article" && category._ref == ^._id])
   }
 }
-`
+`;
 
 // SITEMAP
 
 const articleFieldsForSitemap = groq`
   _updatedAt,
   "slug": slug.current
-`
+`;
 
 const categoryFieldsForSitemap = groq`
   _updatedAt,
   "slug": slug.current
-`
+`;
 
 const authorFieldsForSitemap = groq`
   _updatedAt,
   "slug": slug.current
-`
+`;
 
 export const getAllArticlesForSitemapQuery = groq`
 *[_type == "article"] | order(date desc, _updatedAt desc) {
   ${articleFieldsForSitemap}
-}`
+}`;
 
 export const getAllCategoriesForSitemapQuery = groq`
 *[_type == "category"] | order(date desc, _updatedAt desc) {
   ${categoryFieldsForSitemap}
-}`
+}`;
 
 export const getAllAuthorsForSitemapQuery = groq`
 *[_type == "category"] | order(date desc, _updatedAt desc) {
   ${authorFieldsForSitemap}
-}`
+}`;

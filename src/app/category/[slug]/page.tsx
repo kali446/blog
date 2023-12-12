@@ -10,6 +10,8 @@ import {
   getClient,
   getArticlesByCategory,
   getSidebarSectionArticles,
+  getCategory,
+  getAllCategories,
 } from "@/lib/client";
 import { CATEGORY_RESULTS_LIMIT } from "@/utils";
 
@@ -19,6 +21,49 @@ export type PageProps = {
 };
 
 export const revalidate = 60;
+
+const client = getClient();
+
+export async function generateMetadata({
+  params: { slug },
+  searchParams,
+}: PageProps) {
+  const data = await getCategory(client, slug);
+
+  try {
+    if (!data)
+      return {
+        title: "Not Found",
+        description: "The page you are looking for does not exist.",
+      };
+
+    return {
+      title: data.name,
+      description: data.description,
+      robots: {
+        index: false,
+        follow: true,
+        nocache: true,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      title: "Not Found",
+      description: "The page you are looking for does not exist.",
+    };
+  }
+}
+
+export async function generateStaticParams() {
+  const categories = await getAllCategories(client);
+
+  if (!categories.length) return [];
+
+  return categories.map((category) => ({
+    slug: category.slug,
+  }));
+}
 
 export default async function CategoryPage({
   params: { slug },

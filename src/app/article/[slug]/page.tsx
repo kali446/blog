@@ -16,6 +16,7 @@ import {
   getArticleBySlug,
   getPrevNextArticle,
   getSidebarSectionArticles,
+  getAllArticles,
 } from "@/lib/client";
 import { shareURL } from "@/utils";
 
@@ -23,14 +24,55 @@ interface Props {
   slug: string;
 }
 
-export const revalidate = 60;
+const client = getClient();
+
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: Props;
+}) {
+  const data = await getArticleBySlug(client, slug);
+
+  try {
+    if (!data)
+      return {
+        title: "Not Found",
+        description: "The page you are looking for does not exist.",
+      };
+
+    return {
+      title: data.title,
+      description: data.excerpt,
+      alternates: {
+        canonical: `/article/${data.slug}`,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      title: "Not Found",
+      description: "The page you are looking for does not exist.",
+    };
+  }
+}
+
+export async function generateStaticParams() {
+  const articles = await getAllArticles(client);
+
+  if (!articles.length) return [];
+
+  return articles.map((article) => ({
+    slug: article.slug,
+  }));
+}
+
+// export const revalidate = 60;
 
 export default async function ArticlePage({
   params: { slug },
 }: {
   params: Props;
 }) {
-  const client = getClient();
   const data = await getArticleBySlug(client, slug);
   const sidebarArticles = await getSidebarSectionArticles(client);
   const prevNextArticles: any = await getPrevNextArticle(client, slug);

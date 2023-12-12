@@ -12,6 +12,8 @@ import {
   getClient,
   getArticlesByAuthor,
   getSidebarSectionArticles,
+  getAuthor,
+  getAllAuthors,
 } from "@/lib/client";
 import { AUTHOR_RESULTS_LIMIT, generateImageUrl } from "@/utils";
 
@@ -21,6 +23,49 @@ export type PageProps = {
 };
 
 export const revalidate = 60;
+
+const client = getClient();
+
+export async function generateMetadata({
+  params: { slug },
+  searchParams,
+}: PageProps) {
+  const data = await getAuthor(client, slug);
+
+  try {
+    if (!data)
+      return {
+        title: "Not Found",
+        description: "The page you are looking for does not exist.",
+      };
+
+    return {
+      title: data.name,
+      description: data.bio,
+      robots: {
+        index: false,
+        follow: true,
+        nocache: true,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      title: "Not Found",
+      description: "The page you are looking for does not exist.",
+    };
+  }
+}
+
+export async function generateStaticParams() {
+  const authors = await getAllAuthors(client);
+
+  if (!authors.length) return [];
+
+  return authors.map((author) => ({
+    slug: author.slug,
+  }));
+}
 
 export default async function CategoryPage({
   params: { slug },
