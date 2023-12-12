@@ -1,4 +1,5 @@
 import { Manrope } from "next/font/google";
+import type { Metadata } from "next";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@/styles/globals.scss";
@@ -9,12 +10,19 @@ import Providers from "./Providers";
 import ScrollToTop from "@/components/ScrollToTop";
 import TriggeredNavbar from "@/components/Header/TriggeredNavbar";
 import ModalsWrapper from "@/components/ModalsWrapper";
+import { GlobalSEO } from "@/data/seo";
 
 //👇 Configure our font object
 const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  title: GlobalSEO.title,
+  description: GlobalSEO.description,
+  applicationName: GlobalSEO.sitename,
+};
 
 export default function RootLayout({
   children,
@@ -23,8 +31,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <link rel="canonical" href={`${process.env.FRONTEND_URL}`} />
+
       <body
-        className={`sm:select-none relative bg-light-site pt-header dark:bg-dark-site ${manrope.className}`}
+        className={`relative bg-light-site pt-header dark:bg-dark-site sm:select-none ${manrope.className}`}
       >
         <Providers>
           <Header />

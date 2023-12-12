@@ -5,14 +5,35 @@ import FeaturedArticles from "@/components/Sections/FeaturedArticles";
 import LatestArticles from "@/components/Sections/LatestArticles";
 import SliderArticles from "@/components/Sections/SliderArticles";
 import SmallCategoryArticles from "@/components/Sections/SmallCategoryArticles";
+import { HomeSEO } from "@/data/seo";
 import {
   getClient,
   getAllArticles,
   getHomeSectionArticles,
   getArticlesByCategory,
 } from "@/lib/client";
+import type { Metadata } from "next";
 
-export const revalidate = 60;
+export const metadata: Metadata = {
+  title: HomeSEO.title,
+  description: HomeSEO.description,
+  applicationName: HomeSEO.sitename,
+  openGraph: {
+    images: [`${HomeSEO.ogImage}`],
+    locale: "en_US",
+    type: "website",
+    title: HomeSEO.title,
+    description: HomeSEO.description,
+    url: `${process.env.FRONTEND_URL}/`,
+    siteName: HomeSEO.sitename,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const revalidate = 1800;
 
 export default async function Home() {
   const client = getClient();
