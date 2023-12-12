@@ -34,7 +34,7 @@ const CardArticle9 = ({ item, index }: Props) => {
           </span>
         </Link>
 
-        <Link title={item.title} href={`/article/${item.title}`}>
+        <Link title={item.title} href={`/article/${item.slug}`}>
           <h1 className="w-[90%] pt-1 text-[1.5rem] font-light leading-[1.25] text-light-primary transition-colors hover:text-accent dark:text-dark-primary">
             {item.title}
           </h1>

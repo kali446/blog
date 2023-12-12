@@ -1,12 +1,10 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
 import Loader from "@/shared/Loader";
 import debounce from "lodash/debounce";
-import { GlobalContext } from "@/context/global";
-import { getClient, getSearchedArticles } from "@/lib/client";
-import { Article } from "@/lib/queries";
-import Image from "next/image";
-import Link from "next/link";
 import CardArticle10 from "../Cards/CardArticle10";
+import { GlobalContext } from "@/context/global";
+import { getClient, getSearchedArticles } from "../../../sanity/lib/client";
+import { Article } from "@/lib/queries";
 import { SEARCH_RESUTS_LIMIT } from "@/utils";
 
 interface Props {

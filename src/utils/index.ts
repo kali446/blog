@@ -46,7 +46,7 @@ export const generateImageUrl = ({
   alternativeImage,
   size: { height, width },
 }: GenerateImageProps) => {
-  if (thumbnail.asset?._ref) {
+  if (thumbnail?.asset?._ref) {
     return urlForImage(thumbnail).height(height).width(width).fit("crop").url();
   } else {
     return alternativeImage ? alternativeImage : "";
