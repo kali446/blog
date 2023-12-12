@@ -1,4 +1,6 @@
+import readingTime from "reading-time";
 import { urlForImage } from "@/lib/image";
+import { DateTime } from "luxon";
 
 export async function getHeadings(
   source: string,
@@ -68,8 +70,15 @@ export const shareURL = ({
   }
 };
 
-export const DATE_FORMAT = "LL";
+export const getReadingTime = (text: string) => {
+  return readingTime(text).text;
+};
 
+export const getRelativeDate = (date: string) => {
+  return DateTime.fromISO(date).toRelative();
+};
+
+export const DATE_FORMAT = "LL";
 export const SEARCH_RESUTS_LIMIT = 1;
 export const CATEGORY_RESULTS_LIMIT = 2;
 export const AUTHOR_RESULTS_LIMIT = 2;
