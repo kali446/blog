@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import CardArticle1 from "../Cards/CardArticle1";
-import { Article } from "../../../sanity/lib/queries";
+import { Article } from "@/lib/queries";
 
 interface Props {
   data?: Article[];

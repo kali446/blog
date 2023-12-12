@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import CardTitle from "@/shared/CardTitle";
 import Link from "next/link";
-import { Article } from "@/sanity/queries";
+import { Article } from "@/lib/queries";
 import { generateImageUrl, truncateString } from "@/utils";
 
 interface Props {

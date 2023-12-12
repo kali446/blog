@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Article } from "../../../sanity/lib/queries";
+import { Article } from "@/lib/queries";
 import Link from "next/link";
 
 interface Props {

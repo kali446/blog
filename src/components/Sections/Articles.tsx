@@ -3,7 +3,7 @@ import React from "react";
 import CardArticle8 from "../Cards/CardArticle8";
 import LoadMore from "@/shared/Button/LoadMore";
 import SectionHeader from "./SectionHeader";
-import { Article } from "../../../sanity/lib/queries";
+import { Article } from "@/lib/queries";
 
 interface Props {
   data: Article[];

@@ -1,7 +1,7 @@
 import React from "react";
 import CardArticle4 from "../Cards/CardArticle4";
 import SectionHeader from "./SectionHeader";
-import { Article, Category } from "@/sanity/queries";
+import { Article, Category } from "@/lib/queries";
 
 interface Props {
   data: {

@@ -1,7 +1,7 @@
 import React from "react";
 import CardArticle4 from "../Cards/CardArticle4";
 import CardArticle7 from "../Cards/CardArticle7";
-import { Article } from "../../../sanity/lib/queries";
+import { Article } from "@/lib/queries";
 
 interface Props {
   data: Article[];
@@ -21,7 +21,12 @@ const FeaturedArticles = ({ data }: Props) => {
 
         return (
           <div key={i} className="col-span-5 row-span-2 sm:col-span-12">
-            <CardArticle4 titleSize={200} item={item} small={true} showExcerpt={false} />
+            <CardArticle4
+              titleSize={200}
+              item={item}
+              small={true}
+              showExcerpt={false}
+            />
           </div>
         );
       })}

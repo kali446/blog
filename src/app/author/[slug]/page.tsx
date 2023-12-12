@@ -12,7 +12,7 @@ import {
   getClient,
   getArticlesByAuthor,
   getSidebarSectionArticles,
-} from "@/sanity/client";
+} from "@/lib/client";
 import { AUTHOR_RESULTS_LIMIT, generateImageUrl } from "@/utils";
 
 export type PageProps = {

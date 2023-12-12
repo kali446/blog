@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Article } from "@/sanity/queries";
+import { Article } from "@/lib/queries";
 import { truncateString } from "@/utils";
 import { generateImageUrl } from "@/utils";
 

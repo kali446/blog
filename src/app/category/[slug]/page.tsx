@@ -10,7 +10,7 @@ import {
   getClient,
   getArticlesByCategory,
   getSidebarSectionArticles,
-} from "@/sanity/client";
+} from "@/lib/client";
 import { CATEGORY_RESULTS_LIMIT } from "@/utils";
 
 export type PageProps = {

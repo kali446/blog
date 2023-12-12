@@ -1,5 +1,5 @@
 import React from "react";
-import { Article } from "@/sanity/queries";
+import { Article } from "@/lib/queries";
 import { generateImageUrl, truncateString } from "@/utils";
 import Image from "next/image";
 import Date from "@/shared/Date";
