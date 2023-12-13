@@ -57,16 +57,14 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const articles = await getAllArticles(client);
+  const data = await getAllArticles(client);
 
-  if (!articles.length) return [];
+  if (!data?.articles?.length) return [];
 
-  return articles.map((article) => ({
+  return data.articles.map((article) => ({
     slug: article.slug,
   }));
 }
-
-// export const revalidate = 60;
 
 export default async function ArticlePage({
   params: { slug },
