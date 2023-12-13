@@ -8,7 +8,6 @@ import SmallCategoryArticles from "@/components/Sections/SmallCategoryArticles";
 import { HomeSEO } from "@/data/seo";
 import {
   getClient,
-  getAllArticles,
   getHomeSectionArticles,
   getArticlesByCategory,
 } from "@/lib/client";
@@ -37,7 +36,6 @@ export const revalidate = 1800;
 
 export default async function Home() {
   const client = getClient();
-  const data = await getAllArticles(client);
   const sectionArticles = await getHomeSectionArticles(client);
   const categoryArticles1 = await getArticlesByCategory(
     client,
@@ -66,7 +64,7 @@ export default async function Home() {
       <SliderArticles data={categoryArticles2} />
       <SmallCategoryArticles data={categoryArticles1} />
       <Newsletter />
-      <Articles data={data} />
+      <Articles />
     </div>
   );
 }

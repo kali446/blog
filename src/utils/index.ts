@@ -82,3 +82,4 @@ export const DATE_FORMAT = "LL";
 export const SEARCH_RESUTS_LIMIT = 1;
 export const CATEGORY_RESULTS_LIMIT = 2;
 export const AUTHOR_RESULTS_LIMIT = 2;
+export const HOME_ARTICLES_RESULTS_LIMIT = 1;

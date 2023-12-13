@@ -1,13 +1,15 @@
-export default {
+import {defineField, defineType} from 'sanity'
+
+export default defineType({
   name: 'article',
   type: 'document',
   title: 'Article',
   fields: [
-    {
+    defineField({
       name: 'title',
-      type: 'string',
       title: 'Title',
-    },
+      type: 'string',
+    }),
 
     {
       title: 'Published At',
@@ -81,11 +83,11 @@ export default {
       validation: (Rule: any) => Rule.required().error('Article must be linked to a author'),
     },
 
-    {
+    defineField({
       title: 'Content',
       name: 'content',
       type: 'markdown',
       description: 'MDX content for your Article.',
-    },
+    }),
   ],
-}
+})

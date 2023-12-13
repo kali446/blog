@@ -80,8 +80,26 @@ interface SearchedArticlesResponse {
   total: number;
 }
 
-export async function getAllArticles(client: SanityClient): Promise<Article[]> {
-  return (await client.fetch(getAllArticlesQuery)) || [];
+interface AllArticlesResponse {
+  articles?: Article[];
+  total: number;
+}
+
+export async function getAllArticles(
+  client: SanityClient,
+  pageNumber?: number,
+  pageSize?: number,
+  fields?: "LONG" | "SHORT",
+): Promise<AllArticlesResponse> {
+  const defaultPageNumber = pageNumber ?? 1;
+  const defaultPageSize = pageSize ?? 100;
+  const defaultFields = fields ?? "SHORT";
+
+  return (
+    (await client.fetch(
+      getAllArticlesQuery(defaultPageNumber, defaultPageSize, defaultFields),
+    )) || ({} as AllArticlesResponse)
+  );
 }
 
 export async function getAllCategories(

@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Article } from "@/lib/queries";
 import { generateImageUrl, truncateString } from "@/utils";
+import Link from "next/link";
 
 interface Props {
   item: Article;
@@ -34,13 +35,17 @@ const CardArticle6 = ({ item }: Props) => {
       </div>
 
       <div className="flex h-full flex-col justify-between">
-        <h2 className="pb-3 text-[1.025rem] font-bold leading-[1.15] text-light-primary transition-colors duration-300 hover:text-accent dark:text-white dark:hover:text-accent">
-          {truncateString(item.title, 40) + "..."}
+        <h2 className="ArticleTitle pb-3 text-[1.025rem] font-bold leading-[1.15] text-light-primary transition-colors duration-300 hover:text-accent dark:text-white dark:hover:text-accent">
+          <Link href={`/article/${item.slug}`}>
+            {truncateString(item.title, 40) + "..."}
+          </Link>
         </h2>
 
         <p className="relative h-[1rem] overflow-hidden text-xs  font-medium uppercase text-light-secondary dark:text-dark-contrast-600">
           <p className="flex gap-3 transition-all group-hover:translate-y-[-100%]">
-            <span>2 min read</span>
+            {item.estimatedReadingTime > 0 && (
+              <span>{item.estimatedReadingTime} min read</span>
+            )}
             <span>1.1k views</span>
           </p>
 

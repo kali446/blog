@@ -1,11 +1,19 @@
 import React from "react";
 
-interface Props {}
+interface Props {
+  onClick: () => void;
+  loading: boolean;
+}
 
-const LoadMore = () => {
+const LoadMore = ({ onClick, loading }: Props) => {
   return (
-    <div className="group inline-flex cursor-pointer items-center gap-2">
-      <span className="text-md font-semibold capitalize text-accent">load more</span>
+    <div
+      onClick={onClick}
+      className="group inline-flex cursor-pointer items-center gap-2"
+    >
+      <span className="text-md font-semibold capitalize text-accent">
+        {loading ? "loading..." : "load more"}
+      </span>
 
       <div className="flex h-[2.15rem] w-[2.15rem] items-center justify-center rounded-full bg-white text-accent shadow-sm group-hover:bg-accent group-hover:text-white">
         <svg

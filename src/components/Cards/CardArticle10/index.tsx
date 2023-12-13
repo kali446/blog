@@ -48,7 +48,9 @@ const CardArticle10 = ({ item }: Props) => {
           <div className="relative h-full w-full text-[.7rem] font-medium uppercase tracking-wide text-light-secondary transition-all group-hover:text-light-primary dark:border-dark-contrast-200/60 dark:text-dark-secondary dark:group-hover:text-dark-primary">
             <div className="flex h-[100%] items-center justify-between transition-all group-hover:translate-y-[-100%]">
               <div className="flex gap-3">
-                <span>2 min read</span>
+                {item.estimatedReadingTime > 0 && (
+                  <span>{item.estimatedReadingTime} min read</span>
+                )}
                 <span>334 views</span>
               </div>
 

@@ -36,11 +36,13 @@ export interface Article {
   excerpt: string;
   thumbnail: any;
   author: Author;
+  numberOfCharacters: number;
+  estimatedWordCount: number;
+  estimatedReadingTime: number;
   content?: any;
 }
 
 const articleFields = groq`
-  _id,
   _createdAt,
   title,
   publishedAt,
@@ -61,6 +63,32 @@ const articleFields = groq`
     sociallinks,
     "slug": slug.current,
   },
+  "numberOfCharacters": length(content),
+  "estimatedWordCount": round(length(content) / 5),
+  "estimatedReadingTime": round(length(content) / 5 / 180 )
+`;
+
+const articleFieldsShort = groq`
+  _createdAt,
+  title,
+  publishedAt,
+  excerpt,
+  thumbnail,
+  "slug": slug.current,
+  "tags": tag->{name},
+  "category": category->{
+    name, 
+    "slug": slug.current
+  },
+  "author": author->{ 
+    name, 
+    avatar, 
+    sociallinks,
+    "slug": slug.current,
+  },
+  "numberOfCharacters": length(content),
+  "estimatedWordCount": round(length(content) / 5),
+  "estimatedReadingTime": round(length(content) / 5 / 180 )
 `;
 
 const categoryFields = groq`
@@ -79,10 +107,22 @@ const authorFields = groq`
   "slug": slug.current,
 `;
 
-export const getAllArticlesQuery = groq`
-*[_type == "article"] | order(date desc, _updatedAt desc) {
-  ${articleFields}
-}`;
+export const getAllArticlesQuery = (
+  pageNumber: number,
+  pageSize: number,
+  fields: "SHORT" | "LONG",
+) => {
+  const offset = (pageNumber - 1) * pageSize;
+
+  return groq`
+  *[ _type == "article"][0] { 
+    "articles": *[_type=="article"] {
+      ${fields === "LONG" ? articleFields : articleFieldsShort}
+    }[${offset}...${offset + pageSize}],
+    "total": count(*[_type == "article"])
+}
+`;
+};
 
 export const getAllCategoriesQuery = groq`
 *[_type == "category"] | order(date desc, _updatedAt desc) {

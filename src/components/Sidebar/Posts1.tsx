@@ -34,13 +34,17 @@ const Posts1 = ({ data }: Props) => {
             </span>
           </p>
 
-          <Link href={`/article/${item.slug}`} title={item.title}>
-            <h2 className="pt-1 text-base font-semibold text-light-primary transition-colors duration-300 hover:text-accent dark:text-white">
+          <h2 className="ArticleTitle pt-1 text-base font-semibold text-light-primary hover:text-accent dark:text-white">
+            <Link
+              className=""
+              href={`/article/${item.slug}`}
+              title={item.title}
+            >
               {item.title.length > 70
                 ? truncateString(item.title, 70) + "..."
                 : item.title}
-            </h2>
-          </Link>
+            </Link>
+          </h2>
         </div>
       ))}
     </div>
