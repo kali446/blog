@@ -86,6 +86,8 @@ const SearchResults = ({ show }: Props) => {
     }
   };
 
+  console.log(results, 'hey')
+
   return (
     <div className="absolute left-[50%] top-[100%] z-[1000] max-h-[85vh] w-[95%] translate-x-[-50%] overflow-y-auto rounded-b-[.75rem] bg-white p-5 drop-shadow-sm dark:bg-dark-layoutElement md:fixed md:top-header md:w-[100vw] xs:p-3">
       {!results?.length && searchText.length ? (
