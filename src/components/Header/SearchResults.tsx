@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import Loader from "@/shared/Loader";
 import debounce from "lodash/debounce";
 import CardArticle10 from "../Cards/CardArticle10";
@@ -15,14 +21,14 @@ const SearchResults = ({ show }: Props) => {
   const client = getClient();
   const { searchText } = useContext(GlobalContext);
   const [results, setResults] = useState<Article[] | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [total, setTotal] = useState<number>(0);
   const [showLoadMore, setShowLoadMore] = useState<boolean>(false);
 
   useEffect(() => {
-    if (show) {
+    if (show && loading) {
       searchHandler(searchText);
     }
   }, [searchText]);
@@ -39,11 +45,11 @@ const SearchResults = ({ show }: Props) => {
     }
   }, [results]);
 
-  const searchHandler = useCallback(
-    debounce(async (query) => {
+  const searchHandler = useMemo(() => {
+    return debounce(async (query) => {
       try {
         setLoading(true);
-        const data = await getSearchedArticles(client, query);
+        const data = await getSearchedArticles(client, `${query}*`);
 
         if (data?.articles?.length) {
           setResults(data.articles);
@@ -57,9 +63,8 @@ const SearchResults = ({ show }: Props) => {
         setLoading(false);
         setError(`No resutls found for this query: ${query}`);
       }
-    }, 600),
-    [],
-  );
+    }, 600);
+  }, []);
 
   const loadMoreHandler = async () => {
     setLoading(true);
@@ -69,7 +74,7 @@ const SearchResults = ({ show }: Props) => {
     if (page < pageSize) {
       const data = await getSearchedArticles(
         client,
-        searchText,
+        `${searchText}*`,
         page + 1,
         SEARCH_RESUTS_LIMIT,
       );
@@ -85,8 +90,6 @@ const SearchResults = ({ show }: Props) => {
       setLoading(false);
     }
   };
-
-  console.log(results, 'hey')
 
   return (
     <div className="absolute left-[50%] top-[100%] z-[1000] max-h-[85vh] w-[95%] translate-x-[-50%] overflow-y-auto rounded-b-[.75rem] bg-white p-5 drop-shadow-sm dark:bg-dark-layoutElement md:fixed md:top-header md:w-[100vw] xs:p-3">

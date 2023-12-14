@@ -11,8 +11,8 @@ interface Props {
 }
 
 const CardArticle10 = ({ item }: Props) => {
-  const thumbnailHeight = 200;
-  const thumbnailWidth = 100;
+  const thumbnailHeight = 150;
+  const thumbnailWidth = 200;
   const thumbnailUrl = generateImageUrl({
     thumbnail: item.thumbnail,
     size: {
@@ -71,7 +71,7 @@ const CardArticle10 = ({ item }: Props) => {
             <div className="absolute left-[0] top-[0] flex h-[100%] w-[100%] translate-y-[100%] items-center justify-between transition-all group-hover:translate-y-[0%]">
               <span>Read more</span>
 
-              <CardShareIcons color="black" />
+              <CardShareIcons color="black" darkInvert={true} />
             </div>
           </div>
         </div>

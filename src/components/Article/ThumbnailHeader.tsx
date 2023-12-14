@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Article } from "@/lib/queries";
-import { generateImageUrl } from "@/utils";
+import { generateImageUrl, truncateString } from "@/utils";
 
 interface Props {
   data: Article;
@@ -33,11 +33,12 @@ const ThumbnailHeader = ({
 
   return (
     <div className="pt-3">
-      <div className="mx-auto w-[60%] md:w-[90%]">
-        <div className="mb-4 flex cursor-pointer items-center gap-3 border-b border-light-contrast-300 py-4 text-[1rem] font-light capitalize text-black dark:border-dark-contrast-400/50 dark:text-dark-primary">
+      <div className="mx-auto w-[60%] lg:w-[80%] md:w-[90%]">
+        <div className="mb-4 flex cursor-pointer items-center gap-3 border-b border-light-contrast-300 py-4 text-[1rem] font-light capitalize text-black dark:border-dark-contrast-400/50 dark:text-dark-primary lg:text-[.95rem] sm:flex-col sm:gap-1 sm:text-[.85rem] sm:py-3">
           <div className="transition-colors duration-300">Home</div>
           <div>
             <svg
+              className="sm:rotate-90"
               width={6}
               height="auto"
               viewBox="0 0 302 512"
@@ -57,6 +58,7 @@ const ThumbnailHeader = ({
 
           <div>
             <svg
+              className="sm:rotate-90"
               width={6}
               height="auto"
               viewBox="0 0 302 512"
@@ -71,7 +73,7 @@ const ThumbnailHeader = ({
           </div>
 
           <span className="text-light-secondary transition-colors duration-300 dark:text-dark-contrast-700">
-            {title}
+            {title.length > 45 ? truncateString(title, 45) + "..." : title}
           </span>
         </div>
 
@@ -83,7 +85,7 @@ const ThumbnailHeader = ({
           {excerpt}
         </p>
 
-        <div className="mb-5 flex items-center justify-between">
+        <div className="sm:flex-col-reverse sm:gap-y-3 mb-5 flex items-center justify-between">
           <Link href={`/category/${category.slug}`}>
             <div className="cursor-pointer rounded-full border border-accent bg-accent/20 px-3 py-2 font-semibold capitalize leading-none text-accent hover:underline">
               {category?.name}

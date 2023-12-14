@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface Props {
@@ -29,7 +30,7 @@ const Loader = ({ error = false, errorMsg }: Props) => {
         </div>
       ) : (
         <div className="h-[5rem] w-[5rem]">
-          <img src="/icons/loader.gif" alt="" />
+          <Image height={80} width={80} src="/icons/loader.gif" alt="" />
         </div>
       )}
 
