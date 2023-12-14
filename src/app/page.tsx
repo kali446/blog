@@ -26,6 +26,13 @@ export const metadata: Metadata = {
     url: `${process.env.FRONTEND_URL}/`,
     siteName: HomeSEO.sitename,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: HomeSEO.title,
+    description: HomeSEO.description,
+    creator: "@manziljunior",
+    images: [`${HomeSEO.ogImage}`],
+  },
   robots: {
     index: true,
     follow: true,

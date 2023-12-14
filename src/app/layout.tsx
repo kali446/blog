@@ -22,6 +22,10 @@ export const metadata: Metadata = {
   title: GlobalSEO.title,
   description: GlobalSEO.description,
   applicationName: GlobalSEO.sitename,
+  metadataBase: new URL(`${process.env.FRONTEND_URL}/`),
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
@@ -31,8 +35,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <link rel="canonical" href={`${process.env.FRONTEND_URL}`} />
-
       <body
         className={`relative bg-light-site pt-header dark:bg-dark-site sm:select-none ${manrope.className}`}
       >
