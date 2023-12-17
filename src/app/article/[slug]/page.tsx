@@ -19,6 +19,7 @@ import {
   getAllArticles,
 } from "@/lib/client";
 import { generateImageUrl, shareURL } from "@/utils";
+import { HomeSEO } from "@/data/seo";
 
 interface Props {
   slug: string;
@@ -52,6 +53,7 @@ export async function generateMetadata({
     return {
       title: data.title,
       description: data.excerpt,
+      keywords: "tag, goes, here",
       alternates: {
         canonical: `/article/${data.slug}`,
       },
@@ -60,6 +62,13 @@ export async function generateMetadata({
         site: "@clonedverse",
         title: "Cloned Verse",
         description: data.excerpt,
+        images: [`${getThumbnailUrl}`],
+      },
+      openGraph: {
+        type: "article",
+        url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${data.slug}`,
+        description: data.excerpt,
+        siteName: HomeSEO.title,
         images: [`${getThumbnailUrl}`],
       },
     };
