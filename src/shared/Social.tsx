@@ -22,7 +22,7 @@ const Social = ({ url, title }: Props) => {
       {SOCIAL_SHARE.map((item, i) => {
         if (item.name === "facebook") {
           return (
-            <FacebookShareButton key={i} url={url}>
+            <FacebookShareButton key={i} url={url} title="">
               <li>
                 <Link href={url} target="_blank">
                   <Image

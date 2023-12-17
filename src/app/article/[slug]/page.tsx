@@ -113,13 +113,17 @@ export default async function ArticlePage({
           <Tableofcontents />
 
           <div className="inline-block md:hidden">
-            <Share2 url={shareUrl} title={title} />
+            <Share2
+              url={shareUrl}
+              title={data.title}
+              author={data.author.name}
+            />
           </div>
         </div>
 
         <div className="col-span-7 lg:col-span-8 md:order-last md:col-span-12">
           <Content data={data?.content} />
-          <Share url={shareUrl} title={title} />
+          <Share url={shareUrl} title={data.title} />
           <Author data={data?.author} />
           <PrevNext data={prevNextArticles} />
         </div>
