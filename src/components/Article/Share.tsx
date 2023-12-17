@@ -5,11 +5,11 @@ import Image from "next/image";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 interface Props {
-  slug: string;
+  url: string;
+  title: string;
 }
 
-const Share = ({ slug }: Props) => {
-  const url = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${slug}`;
+const Share = ({ title, url }: Props) => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -18,15 +18,13 @@ const Share = ({ slug }: Props) => {
     }, 2000);
   }, [copied]);
 
-  console.log(url, "fas");
-
   return (
     <div className="my-[5rem] flex flex-col items-center gap-4 rounded-xl bg-white px-[2rem] py-4 shadow-lg dark:bg-dark-layoutElement xs:px-0">
       <h1 className="text-2xl font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-primary xs:text-xl">
         Share this Article
       </h1>
 
-      <Social url={url} />
+      <Social url={url} title={title} />
 
       <div className="flex w-full flex-col items-center">
         <CopyToClipboard text={url} onCopy={() => setCopied(true)}>

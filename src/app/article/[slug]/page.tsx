@@ -20,6 +20,7 @@ import {
 } from "@/lib/client";
 import { generateImageUrl, shareURL } from "@/utils";
 import { HomeSEO } from "@/data/seo";
+import { title } from "process";
 
 interface Props {
   slug: string;
@@ -112,13 +113,13 @@ export default async function ArticlePage({
           <Tableofcontents />
 
           <div className="inline-block md:hidden">
-            <Share2 url={shareUrl} />
+            <Share2 url={shareUrl} title={title} />
           </div>
         </div>
 
         <div className="col-span-7 lg:col-span-8 md:order-last md:col-span-12">
           <Content data={data?.content} />
-          <Share slug={data?.slug} />
+          <Share url={shareUrl} title={title} />
           <Author data={data?.author} />
           <PrevNext data={prevNextArticles} />
         </div>

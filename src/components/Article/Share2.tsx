@@ -9,9 +9,10 @@ import {
 
 interface Props {
   url: string;
+  title: string;
 }
 
-const Share2 = ({ url }: Props) => {
+const Share2 = ({ url, title }: Props) => {
   const itemClasses = `dark:text-dark-secondary dark:border-dark-contrast-300 group relative flex h-[2.75rem] w-[2.75rem] cursor-pointer items-center justify-center overflow-hidden rounded-full border border-light-contrast-400 text-light-secondary hover:border-none`;
 
   const itemIcon1Classes = `relative z-20 transition-all delay-75 duration-200 group-hover:translate-x-[200%]`;
@@ -106,7 +107,10 @@ const Share2 = ({ url }: Props) => {
       </InstapaperShareButton>
 
       {/* twitter */}
-      <TwitterShareButton url={url}>
+      <TwitterShareButton
+        url={url}
+        title={`"${title}" by @manjiljunior #clonedverse ${url}`}
+      >
         <div className={itemClasses}>
           <div className={itemIcon1Classes}>
             <svg
