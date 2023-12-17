@@ -27,7 +27,7 @@ const PopupNewsletter = () => {
           <div className="mt-6 md:mt-5">
             <Form />
             <div className="flex items-center justify-center">
-              <Social />
+              <Social url={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/`} />
             </div>
           </div>
         </div>
