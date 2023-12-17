@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import {
   FacebookShareButton,
@@ -107,9 +108,9 @@ const Share2 = ({ url, title }: Props) => {
       </InstapaperShareButton>
 
       {/* twitter */}
-      <TwitterShareButton
-        url={url}
-        title={`"${title}" by @manjiljunior #clonedverse ${url}`}
+      <Link
+        href={`https://twitter.com/intent/tweet?text="${title}" by @manziljunior #ClonedVerse ${url}`}
+        target="_blank"
       >
         <div className={itemClasses}>
           <div className={itemIcon1Classes}>
@@ -144,7 +145,7 @@ const Share2 = ({ url, title }: Props) => {
 
           <div className="absolute left-[0] top-[0] z-10 h-full w-full scale-0 rounded-full bg-black transition-all duration-300 group-hover:scale-100"></div>
         </div>
-      </TwitterShareButton>
+      </Link>
 
       <WhatsappShareButton url={url}>
         <div className={itemClasses}>
@@ -241,3 +242,5 @@ const Share2 = ({ url, title }: Props) => {
 };
 
 export default Share2;
+
+// https://twitter.com/intent/tweet?text=%22ECMAScript%202023%3A%20Fresh%20Goodies%20for%20JavaScript%20Developers%22%20by%20Navdeep%20Mishra%20%23DEVCommunity%20https%3A%2F%2Fdev.to%2Fnavdeepm20%2Fdive-into-ecmascript-2023-fresh-goodies-for-javascript-developers-1dda
