@@ -26,9 +26,9 @@ const SectionHeader = ({ titleOnly = false, data }: Props) => {
   }, []);
 
   return (
-    <div className="mb-5 grid grid-cols-2 items-center">
-      <div className="flex flex-col gap-2">
-        <h2 className="text-[2.25rem] font-bold tracking-normal text-light-primary dark:text-white md:text-[2.25rem] sm:text-[1.75rem]">
+    <div className="mb-5 grid grid-cols-12 items-center">
+      <div className="xs:col-span-10 col-span-8 flex flex-col gap-2">
+        <h2 className="mobile414:text-[1.5rem] text-[2.25rem] font-bold tracking-normal text-light-primary dark:text-white md:text-[2.25rem] sm:text-[1.75rem]">
           {data?.name}
         </h2>
 
@@ -61,14 +61,14 @@ const SectionHeader = ({ titleOnly = false, data }: Props) => {
       </div>
 
       {!titleOnly && (
-        <div className="ml-auto inline-block">
+        <div className="xs:col-span-2 col-span-4 ml-auto inline-block">
           <Link href={`/category/${data?.slug}`}>
             <div className="group inline-flex cursor-pointer items-center gap-2">
               <span className="shrink-0 text-sm font-medium capitalize text-accent xs:hidden">
                 See more {data?.name}
               </span>
 
-              <div className="flex h-[2.15rem] w-[2.15rem] items-center justify-center rounded-full bg-white text-accent shadow-sm group-hover:bg-accent group-hover:text-white">
+              <div className="mobile414:h-[1.95rem] mobile414:w-[1.95rem] flex h-[2.15rem] w-[2.15rem] items-center justify-center rounded-full bg-white text-accent shadow-sm group-hover:bg-accent group-hover:text-white">
                 <svg
                   className="rotate-[270deg] transition-all duration-200 group-hover:translate-x-[3px]"
                   width={13}

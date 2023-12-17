@@ -22,9 +22,9 @@ const CardArticle6 = ({ item }: Props) => {
   return (
     <div
       title={item.title}
-      className="group flex h-[8.5rem] cursor-pointer items-start gap-3 rounded-lg bg-white p-3 shadow-md transition-shadow hover:shadow-lg dark:bg-dark-layoutElement"
+      className="group flex h-[8.5rem] cursor-pointer items-start gap-3 rounded-lg bg-white p-3 shadow-md transition-shadow hover:shadow-lg dark:bg-dark-layoutElement overflow-hidden"
     >
-      <div className="aspect-square h-full shrink-0 overflow-hidden lg:h-[8rem] lg:w-[8rem]">
+      <div className="aspect-square h-full shrink-0 overflow-hidden lg:w-[8rem]">
         <Image
           className="h-full w-full bg-center object-cover transition-all duration-300 group-hover:scale-125"
           src={thumbnailUrl}

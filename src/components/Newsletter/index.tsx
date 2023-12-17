@@ -69,7 +69,7 @@ const Newsletter = () => {
 
   return (
     <FormikProvider value={formik}>
-      <div className="mb-section flex items-center rounded-xl  bg-white px-[4rem] py-[6rem] dark:bg-dark-layoutElement lg:flex-col lg:p-[4rem] sm:p-[2.5rem]">
+      <div className="mobile414:py-[2rem] mobile414:px-[1.5rem] mb-section flex items-center rounded-xl  bg-white px-[4rem] py-[6rem] dark:bg-dark-layoutElement lg:flex-col lg:p-[4rem] sm:p-[2.5rem]">
         <div className="flex w-[50%] flex-col gap-5 pr-5 lg:mb-6  lg:w-full lg:pr-0">
           <h1 className="text-6xl font-extrabold leading-[3.5rem] text-light-primary dark:text-white sm:text-5xl xs:text-4xl">
             <div className="mb-5 text-accent xs:mb-4">
@@ -99,7 +99,7 @@ const Newsletter = () => {
               onSubmit={formik.handleSubmit}
               className="grid grid-cols-12 items-center gap-2 pb-2 sm:flex-col"
             >
-              <div className="relative col-span-9">
+              <div className="mobile414:col-span-12 relative col-span-9">
                 <input
                   className={` h-[2.5rem] w-full rounded-md bg-light-contrast-200 px-3 text-xs font-medium outline-none placeholder:text-light-primary dark:bg-dark-input dark:placeholder:text-white ${
                     formik.errors.email &&
@@ -122,7 +122,7 @@ const Newsletter = () => {
               </div>
 
               <button
-                className="hover:buttonHoverContrast col-span-3 flex h-[2.5rem] items-center justify-center rounded-md bg-button px-4 text-xs font-medium text-buttonContrast hover:bg-buttonHover"
+                className="mobile414:col-span-6 mobile375:col-span-12 hover:buttonHoverContrast col-span-3 flex h-[2.5rem] items-center justify-center rounded-md bg-button px-4 text-xs font-medium text-buttonContrast hover:bg-buttonHover"
                 type="submit"
               >
                 {loading ? "Please wait..." : "Subscribe"}
@@ -154,7 +154,7 @@ const Newsletter = () => {
             <div key={i} className="flex items-start gap-3">
               <div className="pt-1 text-light-primary dark:text-white">
                 <svg
-                  className="h-auto w-[28px] xs:w-[24px]"
+                  className="mobile414:w-[20px] h-auto w-[28px] xs:w-[24px]"
                   width={28}
                   height={28}
                   viewBox="0 0 512 512"
@@ -168,7 +168,7 @@ const Newsletter = () => {
                 </svg>
               </div>
 
-              <p className="text-2xl font-semibold xs:text-[1.25rem] xs:leading-[1.2]">
+              <p className="mobile414:text-[1rem] text-2xl font-semibold xs:text-[1.25rem] xs:leading-[1.2]">
                 <span className="pr-1 text-light-primary dark:text-dark-contrast-900">
                   Stay Up-to-Date.
                 </span>

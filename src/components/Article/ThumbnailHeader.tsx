@@ -81,13 +81,13 @@ const ThumbnailHeader = ({
           {title}
         </h1>
 
-        <p className="mb-6 text-[1.05rem] font-light leading-[2] text-light-secondary dark:text-dark-primary">
+        <p className="xs:mb-4 mb-6 text-[1.05rem] font-light leading-[2] text-light-secondary dark:text-dark-primary">
           {excerpt}
         </p>
 
         <div className="sm:flex-col-reverse sm:gap-y-3 mb-5 flex items-center justify-between">
           <Link href={`/category/${category.slug}`}>
-            <div className="cursor-pointer rounded-full border border-accent bg-accent/20 px-3 py-2 font-semibold capitalize leading-none text-accent hover:underline">
+            <div className="xs:text-xs xs:py-1 cursor-pointer rounded-full border border-accent bg-accent/20 px-3 py-2 font-semibold capitalize leading-none text-accent hover:underline">
               {category?.name}
             </div>
           </Link>

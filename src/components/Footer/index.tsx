@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <div className="bg-light-footer dark:bg-dark-footer">
-      <div className="mx-auto flex w-[60%] flex-col items-center gap-4 py-7 text-center md:w-[80%] xs:w-full">
+      <div className="mx-auto flex w-[60%] flex-col items-center gap-4 py-7 text-center md:w-[80%] xs:w-full xs:px-2">
         <div>
           <Image
             height={100}
@@ -18,7 +18,7 @@ const Footer = () => {
             alt="blog"
           />
         </div>
-        <ul className="flex cursor-pointer flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-medium capitalize dark:text-dark-contrast-900">
+        <ul className="mobile414:text-xs flex cursor-pointer flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm font-medium capitalize dark:text-dark-contrast-900">
           {FOOTER_PAGES_1.map((item, i) => (
             <Link key={i} href={item.href}>
               <li className="relative capitalize before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-0 before:origin-right before:bg-accent before:opacity-0 before:transition-all before:duration-300 hover:text-accent hover:before:w-full hover:before:opacity-100">
@@ -37,7 +37,7 @@ const Footer = () => {
       </div>
 
       <div className="flex justify-center border-t border-light-contrast-200 py-3 dark:border-dark-contrast-200">
-        <p className="text-sm text-light-secondary dark:text-dark-secondary">
+        <p className="xs:text-xs mobile414:text-[.7rem] mobile375:text-[.6rem] text-sm text-light-secondary dark:text-dark-secondary">
           Copyright © {year} ClonedVerse. All Rights Reserved.
         </p>
       </div>

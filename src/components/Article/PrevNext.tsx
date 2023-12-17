@@ -15,7 +15,7 @@ const PrevNext = ({ data }: Props) => {
   const cardClass = `group flex cursor-pointer items-end gap-3 sm:w-full sm:items-center md:w-6/12`;
 
   return (
-    <div className="mb-[5rem] flex items-center justify-center gap-3 border-b border-light-contrast-300 pb-[5rem] dark:border-dark-contrast-300/50 sm:flex-col sm:gap-6">
+    <div className="mb-[5rem] flex items-center justify-center gap-3 border-b border-light-contrast-300 pb-[5rem] dark:border-dark-contrast-300/50 sm:flex-col sm:gap-x-0 sm:gap-y-7">
       {data?.prev && (
         <Link href={`/article/${data.prev.slug}`}>
           <div className={cardClass}>
@@ -30,7 +30,7 @@ const PrevNext = ({ data }: Props) => {
             </div>
 
             <div className="sm:relative">
-              <span className="text-xs font-medium uppercase  text-light-primary drop-shadow-sm dark:text-dark-primary sm:absolute sm:left-0 sm:top-[-150%]">
+              <span className="text-xs font-medium uppercase  text-light-primary drop-shadow-sm dark:text-dark-primary sm:absolute sm:left-0 sm:top-[-100%]">
                 prev post
               </span>
 
@@ -56,7 +56,7 @@ const PrevNext = ({ data }: Props) => {
             </div>
 
             <div className="flex flex-col items-end sm:relative">
-              <span className="text-xs font-medium uppercase text-light-primary drop-shadow-sm dark:text-dark-primary sm:absolute sm:right-0 sm:top-[-150%]">
+              <span className="text-xs font-medium uppercase text-light-primary drop-shadow-sm dark:text-dark-primary sm:absolute sm:right-0 sm:top-[-100%]">
                 next post
               </span>
 

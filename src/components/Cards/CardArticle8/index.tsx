@@ -25,10 +25,10 @@ const CardArticle8 = ({ item }: Props) => {
     <Link href={`/article/${item.slug}`}>
       <div className="group cursor-pointer rounded-lg bg-white p-4 !pb-[0] shadow-sm transition-shadow hover:shadow-lg dark:bg-dark-layoutElement">
         <div className="h-[17rem]">
-          <h2 className="ArticleTitle pb-1 text-[1.55rem] font-semibold leading-[1.15] tracking-normal text-light-primary transition-colors duration-300 hover:text-accent dark:text-dark-primary">
+          <h2 className="ArticleTitle pb-1 text-[1.5rem] font-semibold leading-[0] text-light-primary transition-colors duration-300 hover:text-accent dark:text-dark-primary">
             <Link href={`/article/${item.slug}`}>
-              {item.title.length > 40
-                ? truncateString(item.title, 40) + "..."
+              {item.title.length > 75
+                ? truncateString(item.title, 75)
                 : item.title}
             </Link>
           </h2>

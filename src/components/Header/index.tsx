@@ -61,7 +61,7 @@ const Header = () => {
   return (
     <>
       <div
-        className={`fixed left-[0] top-[0] z-[1000] flex h-header w-full items-center justify-between bg-light-header px-6 dark:bg-dark-header sm:px-4 ${
+        className={`mobile414:px-2 fixed left-[0] top-[0] z-[1000] flex h-header w-full items-center justify-between bg-light-header px-6 dark:bg-dark-header sm:px-4 ${
           openNavMenu && "bg-transparent dark:bg-dark-site"
         }`}
       >
@@ -157,7 +157,7 @@ const Header = () => {
               <Image
                 height={logoHeight}
                 width={logoWidth}
-                className="h-[1.85rem] w-auto"
+                className="mobile414:h-[1.6rem] h-[1.85rem] w-auto"
                 src="/images/logo.png"
                 alt="blog"
               />
@@ -167,7 +167,7 @@ const Header = () => {
 
         {!openNavMenu && (
           <>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 xs:gap-2">
               <div
                 onClick={() => setPopupNewsletter(true)}
                 className="mr-2 flex cursor-pointer items-center gap-1 text-[.875rem] font-bold uppercase text-light-secondary transition-colors duration-200 hover:text-accent dark:text-white dark:hover:text-accent sm:hidden"
@@ -198,7 +198,7 @@ const Header = () => {
                 className={"cursor-pointer text-light-primary dark:text-white"}
               >
                 <Image
-                  className="dark:invert"
+                  className="mobile414:w-[1.15rem] mobile414:h-auto dark:invert"
                   height={22}
                   width={22}
                   src="/icons/search.svg"
@@ -215,11 +215,11 @@ const Header = () => {
                   }
                 }}
                 className={
-                  "flex h-[2.5rem] w-[2.5rem] cursor-pointer items-center justify-center rounded-[.4rem] bg-light-contrast-200 shadow-sm transition-all hover:bg-light-contrast-300 dark:bg-dark-contrast-100 dark:text-dark-contrast-900"
+                  "mobile414:h-[2.2rem] mobile414:w-[2.2rem] mobile414:rounded-md flex h-[2.5rem] w-[2.5rem] cursor-pointer items-center justify-center rounded-[.4rem] bg-light-contrast-200 shadow-sm transition-all hover:bg-light-contrast-300 dark:bg-dark-contrast-100 dark:text-dark-contrast-900"
                 }
               >
                 <Image
-                  className="dark:invert"
+                  className="mobile414:w-[1.15rem] mobile414:h-auto dark:invert"
                   height={22}
                   width={22}
                   src="/icons/dark-mode.svg"

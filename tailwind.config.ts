@@ -25,6 +25,9 @@ const config: Config = {
       // => @media (max-width: 639px) { ... }
 
       xs: { max: "480px" },
+
+      mobile414: { max: "414px" },
+      mobile375: { max: "375px" },
     },
 
     extend: {

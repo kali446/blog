@@ -78,7 +78,7 @@ export default async function ArticlePage({
   const shareUrl = shareURL({ slug: data.slug });
 
   return (
-    <div className="w-full pb-section">
+    <div className="w-full pb-section sm:pb-0">
       <ProgressBar />
       <ThumbnailHeader data={data} />
 
