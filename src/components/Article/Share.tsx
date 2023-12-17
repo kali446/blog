@@ -80,8 +80,12 @@ const Share = ({ slug }: Props) => {
           </div>
         </CopyToClipboard>
 
-        <span className="py-1 text-xs font-medium text-light-secondary dark:text-dark-secondary">
-          Shareable URL
+        <span
+          className={`${
+            copied && "!text-green-600"
+          } py-1 text-xs font-medium text-light-secondary dark:text-dark-secondary`}
+        >
+          {copied ? "Link copied" : "Shareable URL"}
         </span>
       </div>
     </div>

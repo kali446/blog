@@ -41,8 +41,8 @@ export const SOCIAL_SHARE = [
     },
   },
   {
-    name: "discord",
-    icon: "/icons/share/discord.svg",
+    name: "linkedin",
+    icon: "/icons/share/linkedin.svg",
     size: {
       width: 18,
       height: 18,
