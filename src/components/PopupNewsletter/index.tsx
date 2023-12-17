@@ -3,6 +3,7 @@ import Image from "next/image";
 import CloseButton from "./CloseButton";
 import Form from "./Form";
 import Social from "@/shared/Social";
+import { HomeSEO } from "@/data/seo";
 
 const PopupNewsletter = () => {
   return (
@@ -27,7 +28,10 @@ const PopupNewsletter = () => {
           <div className="mt-6 md:mt-5">
             <Form />
             <div className="flex items-center justify-center">
-              <Social url={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/`} />
+              <Social
+                url={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/`}
+                title={HomeSEO.sitename}
+              />
             </div>
           </div>
         </div>
