@@ -1,5 +1,5 @@
 export const HomeSEO = {
-  url: `${process.env.FRONTEND_URL}`,
+  url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}`,
   sitename: "Cloned Verse",
   title: "Cloned Verse where readers belong",
   description:

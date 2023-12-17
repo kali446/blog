@@ -121,18 +121,10 @@ export default async function CategoryPage({
                         <Image
                           height={40}
                           width={40}
-                          className={`h-auto w-[.9rem] opacity-60 transition-opacity hover:opacity-100 dark:invert  ${
+                          className={`h-auto w-[.9rem] opacity-60 invert transition-opacity hover:opacity-100 dark:invert-0  ${
                             item.name.toLowerCase() === "x" ? "w-[.6rem]" : ""
                           }`}
-                          src={`${
-                            item.name.toLowerCase() === "x"
-                              ? "/icons/x-b.svg"
-                              : item.name.toLowerCase() === "facebook"
-                                ? "/icons/facebook-b.svg"
-                                : item.name.toLowerCase() === "instagram"
-                                  ? "/icons/instagram-b.svg"
-                                  : ""
-                          }`}
+                          src={`/icons/share/${item.name}.svg`}
                           alt="x.com"
                         />
                       </li>
@@ -176,7 +168,7 @@ export default async function CategoryPage({
           )}
         </div>
 
-        {data?.articles?.length ? (
+        {data?.articles?.length && hasNextPage ? (
           <div className="mt-[4rem] text-center sm:mt-[2rem]">
             <Pagination
               path={`/author/${data.author.slug}`}
@@ -185,7 +177,11 @@ export default async function CategoryPage({
               hasNextPage={hasNextPage}
             />
           </div>
-        ) : null}
+        ) : (
+          <div className="mt-[2.5rem] text-center text-xs uppercase text-light-primary underline drop-shadow-sm dark:text-light-secondary">
+            you reached the end!
+          </div>
+        )}
       </div>
 
       <div className="col-span-3 lg:hidden">

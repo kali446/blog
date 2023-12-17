@@ -8,6 +8,10 @@ export const NewsletterYupSchema = Yup.object().shape({
   email: Yup.string()
     .email("Please provide valid email address!")
     .required("Email is required!"),
+  checkbox: Yup.boolean().oneOf(
+    [true],
+    "You must agree to our terms and conditions.",
+  ),
 });
 
 const Newsletter = () => {
@@ -20,7 +24,7 @@ const Newsletter = () => {
       setTimeout(() => {
         setSuccess(false);
         setError(null);
-        formik.resetForm();
+        formik.setFieldValue("email", "");
       }, 4000);
     }
   }, [success, error]);
@@ -28,6 +32,7 @@ const Newsletter = () => {
   const formik = useFormik({
     initialValues: {
       email: "",
+      checkbox: false,
     },
     validationSchema: NewsletterYupSchema,
     onSubmit: async (values) => {
@@ -54,6 +59,11 @@ const Newsletter = () => {
           setError(
             "This email is already subscribed to our newsletter. Please use another one!",
           );
+        }
+
+        if (data?.status === 401) {
+          setLoading(false);
+          setError(data.detail);
         }
 
         if (data?.status === "subscribed") {
@@ -122,7 +132,7 @@ const Newsletter = () => {
               </div>
 
               <button
-                className="mobile414:col-span-6 mobile375:col-span-12 hover:buttonHoverContrast col-span-3 flex h-[2.5rem] items-center justify-center rounded-md bg-button px-4 text-xs font-medium text-buttonContrast hover:bg-buttonHover"
+                className="mobile414:col-span-6 mobile375:col-span-12 hover:buttonHoverContrast col-span-3 flex h-[2.5rem] items-center justify-center rounded-md bg-button px-4 text-sm font-medium text-buttonContrast hover:bg-buttonHover"
                 type="submit"
               >
                 {loading ? "Please wait..." : "Subscribe"}
@@ -144,7 +154,16 @@ const Newsletter = () => {
             )}
 
             <div className="w-[90%]">
-              <Checkbox />
+              <Checkbox
+                label="By checking this box, you confirm that you have read and are agreeing to
+                  our terms of use regarding the storage of the data submitted through
+                  this form."
+                id="checkbox"
+                name="checkbox"
+                value={formik.values.checkbox}
+                onChange={formik.handleChange}
+                error={formik.errors.checkbox || ""}
+              />
             </div>
           </div>
         </div>

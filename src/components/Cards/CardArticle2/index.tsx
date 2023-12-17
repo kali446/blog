@@ -35,11 +35,13 @@ const CardArticle2 = ({ data }: Props) => {
 
         <div className="p-4 pb-[0]">
           <span className="text-xs font-light uppercase text-light-primary transition-colors duration-200 hover:text-accent dark:text-white">
-            {data?.category?.name}
+            <Link href={`/category/${data.category.slug}`}>
+              {data?.category?.name}
+            </Link>
           </span>
 
-          <h1 className="py-2 text-4xl font-semibold text-light-primary transition-colors duration-200 hover:text-accent dark:text-white">
-            {data?.title}
+          <h1 className="ArticleTitle py-2 text-4xl font-semibold text-light-primary transition-colors duration-200 hover:text-accent dark:text-white">
+            <Link href={`/article/${data.slug}`}>{data?.title}</Link>
           </h1>
 
           <div className="font-base relative mt-3 h-[3rem] overflow-hidden border-t border-light-contrast-200 text-[.725rem] uppercase text-light-secondary transition-all group-hover:text-light-primary dark:border-dark-contrast-300/40 dark:text-dark-contrast-900 dark:group-hover:text-white">

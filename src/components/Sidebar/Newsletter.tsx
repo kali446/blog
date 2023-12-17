@@ -16,7 +16,7 @@ const Newsletter = () => {
       setTimeout(() => {
         setSuccess(false);
         setError(null);
-        formik.resetForm();
+        formik.setFieldValue("email", "");
       }, 4000);
     }
   }, [success, error]);
@@ -24,6 +24,7 @@ const Newsletter = () => {
   const formik = useFormik({
     initialValues: {
       email: "",
+      checkbox: false,
     },
     validationSchema: NewsletterYupSchema,
     onSubmit: async (values) => {
@@ -50,6 +51,11 @@ const Newsletter = () => {
           setError(
             "This email is already subscribed to our newsletter. Please use another one!",
           );
+        }
+
+        if (data?.status === 401) {
+          setLoading(false);
+          setError(data.detail);
         }
 
         if (data?.status === "subscribed") {
@@ -124,7 +130,16 @@ const Newsletter = () => {
         </form>
 
         <div className="mt-1 pb-3">
-          <Checkbox />
+          <Checkbox
+            label="By checking this box, you confirm that you have read and are agreeing to
+        our terms of use regarding the storage of the data submitted through
+        this form."
+            id="checkbox"
+            name="checkbox"
+            value={formik.values.checkbox}
+            onChange={formik.handleChange}
+            error={formik.errors.checkbox || ""}
+          />
         </div>
       </div>
     </FormikProvider>

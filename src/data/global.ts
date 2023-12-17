@@ -1,32 +1,60 @@
 export interface SoicalHandleItemType {
   icon: string;
   name: string;
+  size?: {
+    width: number;
+    height: number;
+  };
 }
 
-export const SOCIAL_HANDLES: SoicalHandleItemType[] = [
+export const SOCIAL_SHARE = [
   {
-    icon: "/icons/facebook-b.svg",
     name: "facebook",
+    icon: "/icons/share/facebook.svg",
+    size: {
+      width: 15,
+      height: 15,
+    },
   },
-
   {
-    icon: "/icons/x-b.svg",
-    name: "x",
-  },
-
-  {
-    icon: "/icons/instagram-b.svg",
     name: "instagram",
+    icon: "/icons/share/instagram.svg",
+    size: {
+      width: 15,
+      height: 15,
+    },
   },
-
   {
-    icon: "/icons/pinterest-b.svg",
-    name: "pinterest",
+    name: "twitter",
+    icon: "/icons/share/x.svg",
+    size: {
+      width: 13,
+      height: 13,
+    },
   },
-
   {
-    icon: "/icons/youtube-b.svg",
-    name: "youtube",
+    name: "whatsapp",
+    icon: "/icons/share/whatsapp.svg",
+    size: {
+      width: 15,
+      height: 15,
+    },
+  },
+  {
+    name: "discord",
+    icon: "/icons/share/discord.svg",
+    size: {
+      width: 18,
+      height: 18,
+    },
+  },
+  {
+    name: "reddit",
+    icon: "/icons/share/reddit.svg",
+    size: {
+      width: 17,
+      height: 17,
+    },
   },
 ];
 

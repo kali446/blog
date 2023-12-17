@@ -111,7 +111,7 @@ export default async function CategoryPage({
           )}
         </div>
 
-        {data?.articles?.length ? (
+        {data?.articles?.length && hasNextPage ? (
           <div className="mt-[4rem] text-center sm:mt-[2rem]">
             <Pagination
               path={`/category/${data.category.slug}`}
@@ -120,7 +120,11 @@ export default async function CategoryPage({
               hasNextPage={hasNextPage}
             />
           </div>
-        ) : null}
+        ) : (
+          <div className="mt-[2.5rem] text-center text-xs drop-shadow-sm underline text-light-primary dark:text-light-secondary uppercase">
+            you reached the end!
+          </div>
+        )}
       </div>
 
       <div className="col-span-3 lg:hidden">

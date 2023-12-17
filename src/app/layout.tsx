@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: GlobalSEO.title,
   description: GlobalSEO.description,
   applicationName: GlobalSEO.sitename,
-  metadataBase: new URL(`${process.env.FRONTEND_URL}/`),
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/`),
   alternates: {
     canonical: "/",
   },

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import CloseButton from "./CloseButton";
 import Form from "./Form";
-import { SOCIAL_HANDLES } from "@/data/global";
+import Social from "@/shared/Social";
 
 const PopupNewsletter = () => {
   return (
@@ -26,25 +26,9 @@ const PopupNewsletter = () => {
 
           <div className="mt-6 md:mt-5">
             <Form />
-
-            <ul className="flex items-center justify-center gap-5">
-              {SOCIAL_HANDLES.map((item, i) => (
-                <li
-                  className={`h-[.925rem] w-auto overflow-hidden ${
-                    item.name === "youtube" && "h-[.85rem]"
-                  }`}
-                  key={i}
-                >
-                  <Image
-                    height={40}
-                    width={40}
-                    className="h-full w-full dark:invert sm:invert"
-                    src={item.icon}
-                    alt={item.name}
-                  />
-                </li>
-              ))}
-            </ul>
+            <div className="flex items-center justify-center">
+              <Social />
+            </div>
           </div>
         </div>
       </div>

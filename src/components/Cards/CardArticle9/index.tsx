@@ -28,17 +28,17 @@ const CardArticle9 = ({ item, index }: Props) => {
       }`}
     >
       <div className="col-span-8 sm:order-last sm:col-span-12">
-        <Link href={`/category/${item.category.slug}`}>
-          <span className="text-xs font-medium uppercase tracking-[.5px] text-light-secondary transition-colors hover:text-accent dark:text-dark-secondary">
+        <span className="text-xs font-medium uppercase tracking-[.5px] text-light-secondary transition-colors hover:text-accent dark:text-dark-secondary">
+          <Link href={`/category/${item.category.slug}`}>
             {item.category.name}
-          </span>
-        </Link>
+          </Link>
+        </span>
 
-        <Link title={item.title} href={`/article/${item.slug}`}>
-          <h1 className="w-[90%] pt-1 text-[1.5rem] font-light leading-[1.25] text-light-primary transition-colors hover:text-accent dark:text-dark-primary">
+        <h1 className="ArticleTitle w-[90%] pt-1 text-[1.5rem] font-light leading-[1.25] text-light-primary transition-colors hover:text-accent dark:text-dark-primary">
+          <Link title={item.title} href={`/article/${item.slug}`}>
             {item.title}
-          </h1>
-        </Link>
+          </Link>
+        </h1>
 
         <span className="text-xs font-medium text-light-secondary dark:text-dark-contrast-600">
           <Date date={item.publishedAt ? item.publishedAt : item._createdAt} />

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useFormik, FormikProvider } from "formik";
 import { NewsletterYupSchema } from "../Newsletter";
+import Checkbox from "@/shared/Checkbox";
 
 const Form = () => {
   const [error, setError] = useState<string | null>(null);
@@ -13,7 +14,7 @@ const Form = () => {
       setTimeout(() => {
         setSuccess(false);
         setError(null);
-        formik.resetForm();
+        formik.setFieldValue("email", "");
       }, 4000);
     }
   }, [success, error]);
@@ -21,6 +22,7 @@ const Form = () => {
   const formik = useFormik({
     initialValues: {
       email: "",
+      checkbox: false,
     },
     validationSchema: NewsletterYupSchema,
     onSubmit: async (values) => {
@@ -45,6 +47,11 @@ const Form = () => {
         if (data?.status === 400) {
           setLoading(false);
           setError("Email is realready used, Use another one!");
+        }
+
+        if (data?.status === 401) {
+          setLoading(false);
+          setError(data.detail);
         }
 
         if (data?.status === "subscribed") {
@@ -109,22 +116,16 @@ const Form = () => {
       )}
 
       <div className="mb-[5rem] w-[90%] md:mb-[4rem]">
-        <div className="flex cursor-pointer select-none items-center gap-2">
-          <input
-            id="checkbox"
-            type="checkbox"
-            value=""
-            className="h-[1.8rem] w-[1.8rem] rounded outline-none"
-          />
-          <label
-            htmlFor="checkbox"
-            className="text-xs font-medium leading-4 text-light-secondary dark:text-dark-contrast-800/80 sm:text-dark-contrast-700"
-          >
-            By checking this box, you confirm that you have read and are
-            agreeing to our terms of use regarding the storage of the data
-            submitted through this form.
-          </label>
-        </div>
+        <Checkbox
+          label="By checking this box, you confirm that you have read and are agreeing to
+                  our terms of use regarding the storage of the data submitted through
+                  this form."
+          id="popUpcheckbox"
+          name="popUpcheckbox"
+          value={formik.values.checkbox}
+          onChange={formik.handleChange}
+          error={formik.errors.checkbox || ""}
+        />
       </div>
     </FormikProvider>
   );

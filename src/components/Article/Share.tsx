@@ -1,12 +1,24 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import Social from "@/shared/Social";
-import React from "react";
+import Image from "next/image";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 interface Props {
   slug: string;
 }
 
 const Share = ({ slug }: Props) => {
-  const url = `${process.env.FRONTEND_URL}/article/${slug}`;
+  const url = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${slug}`;
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  }, [copied]);
+
+  console.log(url, "fas");
 
   return (
     <div className="my-[5rem] flex flex-col items-center gap-4 rounded-xl bg-white px-[2rem] py-4 shadow-lg dark:bg-dark-layoutElement xs:px-0">
@@ -14,33 +26,59 @@ const Share = ({ slug }: Props) => {
         Share this Article
       </h1>
 
-      <Social />
+      <Social url={url} />
 
       <div className="flex w-full flex-col items-center">
-        <div className="relative mx-auto w-[90%] overflow-hidden rounded-md bg-light-contrast-200/50 py-1 dark:bg-dark-site">
-          <input
-            className="w-[100%] bg-white/0 px-2 text-sm text-light-primary dark:text-dark-contrast-900 xs:text-xs"
-            type="text"
-            value={url}
-          />
+        <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
+          <div className="group relative mx-auto w-[90%] overflow-hidden rounded-md border bg-light-contrast-200/50 py-1 hover:border-green-500/50 dark:bg-dark-site">
+            <input
+              className="w-[100%] bg-white/0 px-2 text-sm text-light-primary dark:text-dark-contrast-900 xs:text-xs"
+              type="text"
+              value={url}
+            />
 
-          <div className="group absolute right-[0] top-[0] flex h-[100%] w-[2.75rem] cursor-pointer items-center justify-center bg-light-contrast-200 dark:bg-dark-site">
-            <div className="text-light-secondary group-hover:text-light-primary dark:text-dark-contrast-900 dark:group-hover:text-white">
-              <svg
-                width={15}
-                height="auto"
-                viewBox="0 0 512 376"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M509.91 56.2288L192.455 373.683C191.791 374.348 191.003 374.875 190.135 375.235C189.268 375.594 188.338 375.779 187.398 375.779C186.459 375.779 185.529 375.594 184.661 375.235C183.794 374.875 183.005 374.348 182.342 373.683L2.09071 193.426C0.750632 192.086 -0.00219727 190.268 -0.00219727 188.372C-0.00219727 186.477 0.750632 184.659 2.09071 183.319L45.8893 139.52C47.2307 138.18 49.0495 137.427 50.946 137.427C52.8424 137.427 54.6612 138.18 56.0026 139.52L187.405 270.916L456.004 2.31686C457.346 0.976376 459.164 0.223389 461.061 0.223389C462.957 0.223389 464.776 0.976376 466.117 2.31686L509.91 46.1154C510.574 46.7792 511.101 47.5675 511.461 48.4351C511.821 49.3028 512.006 50.2328 512.006 51.1721C512.006 52.1114 511.821 53.0414 511.461 53.9091C511.101 54.7767 510.574 55.565 509.91 56.2288Z"
-                  fill="currentColor"
-                />
-              </svg>
+            <div className="group absolute right-[0] top-[0] flex h-[100%] w-[2.75rem] cursor-pointer items-center justify-center bg-light-contrast-200 dark:bg-dark-site">
+              <div className="text-light-secondary group-hover:text-green-600 dark:text-dark-contrast-900 dark:group-hover:text-white">
+                {!copied ? (
+                  <svg
+                    width={15}
+                    height={15}
+                    viewBox="0 0 225 225"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <mask
+                      id="mask0_5_10"
+                      style={{
+                        maskType: "luminance",
+                      }}
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="225"
+                      height="225"
+                    >
+                      <path d="M0 0H225V225H0V0Z" fill="white" />
+                    </mask>
+                    <g mask="url(#mask0_5_10)">
+                      <path
+                        d="M140.625 9.375H37.5C27.1875 9.375 18.75 17.8125 18.75 28.125V150C18.75 155.156 22.9687 159.375 28.125 159.375C33.2813 159.375 37.5 155.156 37.5 150V37.5C37.5 32.3437 41.7187 28.125 46.875 28.125H140.625C145.781 28.125 150 23.9063 150 18.75C150 13.5937 145.781 9.375 140.625 9.375ZM178.125 46.875H75C64.6875 46.875 56.25 55.3125 56.25 65.625V196.875C56.25 207.188 64.6875 215.625 75 215.625H178.125C188.438 215.625 196.875 207.188 196.875 196.875V65.625C196.875 55.3125 188.438 46.875 178.125 46.875ZM168.75 196.875H84.375C79.2187 196.875 75 192.656 75 187.5V75C75 69.8437 79.2187 65.625 84.375 65.625H168.75C173.906 65.625 178.125 69.8437 178.125 75V187.5C178.125 192.656 173.906 196.875 168.75 196.875Z"
+                        fill="currentColor"
+                      />
+                    </g>
+                  </svg>
+                ) : (
+                  <Image
+                    height={15}
+                    width={15}
+                    src={"/icons/tick.svg"}
+                    alt="copy article url"
+                  />
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </CopyToClipboard>
 
         <span className="py-1 text-xs font-medium text-light-secondary dark:text-dark-secondary">
           Shareable URL

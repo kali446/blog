@@ -64,7 +64,7 @@ export const shareURL = ({
 }) => {
   switch (type) {
     case "ARTICLE":
-      return `${process.env.FRONTEND_URL}/article/${slug}`;
+      return `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${slug}`;
     default:
       return "";
   }

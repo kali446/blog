@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "website",
     title: HomeSEO.title,
     description: HomeSEO.description,
-    url: `${process.env.FRONTEND_URL}/`,
+    url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/`,
     siteName: HomeSEO.sitename,
   },
   twitter: {

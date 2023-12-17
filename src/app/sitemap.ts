@@ -6,7 +6,7 @@ import {
 } from "@/lib/client";
 
 export default async function sitemap() {
-  const baseUrl = process.env.FRONTEND_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const client = getClient();
 
   // get all articles
