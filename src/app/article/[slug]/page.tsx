@@ -18,7 +18,7 @@ import {
   getSidebarSectionArticles,
   getAllArticles,
 } from "@/lib/client";
-import { shareURL } from "@/utils";
+import { generateImageUrl, shareURL } from "@/utils";
 
 interface Props {
   slug: string;
@@ -32,6 +32,15 @@ export async function generateMetadata({
   params: Props;
 }) {
   const data = await getArticleBySlug(client, slug);
+  const thumbnailHeight = 540;
+  const thumbnailWidth = 1440;
+  const getThumbnailUrl = generateImageUrl({
+    thumbnail: data.thumbnail,
+    size: {
+      height: thumbnailHeight,
+      width: thumbnailWidth,
+    },
+  });
 
   try {
     if (!data)
@@ -45,6 +54,13 @@ export async function generateMetadata({
       description: data.excerpt,
       alternates: {
         canonical: `/article/${data.slug}`,
+      },
+      twitter: {
+        card: "summary_large_image",
+        site: "@clonedverse",
+        title: "Cloned Verse",
+        description: data.excerpt,
+        images: [`${getThumbnailUrl}`],
       },
     };
   } catch (error) {

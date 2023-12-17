@@ -3,13 +3,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { Article } from "@/lib/queries";
 import { generateImageUrl, truncateString } from "@/utils";
+import Date from "@/shared/Date";
 
 interface Props {
   data: Article;
 }
 
 const ThumbnailHeader = ({
-  data: { title, excerpt, category, author, thumbnail },
+  data: {
+    title,
+    excerpt,
+    category,
+    author,
+    thumbnail,
+    _createdAt,
+    publishedAt,
+  },
 }: Props) => {
   const authorImageHeight = 100;
   const authorImageWidth = 100;
@@ -21,8 +30,8 @@ const ThumbnailHeader = ({
     },
   });
 
-  const thumbnailHeight = 1080;
-  const thumbnailWidth = 1920;
+  const thumbnailHeight = 540;
+  const thumbnailWidth = 1440;
   const thumbnailUrl = generateImageUrl({
     thumbnail: thumbnail,
     size: {
@@ -34,7 +43,7 @@ const ThumbnailHeader = ({
   return (
     <div className="pt-3">
       <div className="mx-auto w-[60%] lg:w-[80%] md:w-[90%]">
-        <div className="mb-4 flex cursor-pointer items-center gap-3 border-b border-light-contrast-300 py-4 text-[1rem] font-light capitalize text-black dark:border-dark-contrast-400/50 dark:text-dark-primary lg:text-[.95rem] sm:flex-col sm:gap-1 sm:text-[.85rem] sm:py-3">
+        <div className="mb-4 flex cursor-pointer items-center gap-3 border-b border-light-contrast-300 py-4 text-[1rem] font-light capitalize text-black dark:border-dark-contrast-400/50 dark:text-dark-primary lg:text-[.95rem] sm:flex-col sm:gap-1 sm:py-3 sm:text-[.85rem]">
           <div className="transition-colors duration-300">Home</div>
           <div>
             <svg
@@ -81,13 +90,13 @@ const ThumbnailHeader = ({
           {title}
         </h1>
 
-        <p className="xs:mb-4 mb-6 text-[1.05rem] font-light leading-[2] text-light-secondary dark:text-dark-primary">
+        <p className="mb-6 text-[1.05rem] font-light leading-[2] text-light-secondary dark:text-dark-primary xs:mb-4">
           {excerpt}
         </p>
 
-        <div className="sm:flex-col-reverse sm:gap-y-3 mb-5 flex items-center justify-between">
+        <div className="mb-5 flex items-center justify-between sm:flex-col-reverse sm:gap-y-3">
           <Link href={`/category/${category.slug}`}>
-            <div className="xs:text-xs xs:py-1 cursor-pointer rounded-full border border-accent bg-accent/20 px-3 py-2 font-semibold capitalize leading-none text-accent hover:underline">
+            <div className="cursor-pointer rounded-full border border-accent bg-accent/20 px-3 py-2 font-semibold capitalize leading-none text-accent hover:underline xs:py-1 xs:text-xs">
               {category?.name}
             </div>
           </Link>
@@ -112,13 +121,13 @@ const ThumbnailHeader = ({
             </Link>
             <div className="h-[4px] w-[4px] rounded-full bg-light-contrast-500"></div>
             <div className="text-sm font-light text-light-secondary dark:text-dark-contrast-700">
-              November 20, 2024
+              <Date date={publishedAt ? publishedAt : _createdAt} />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="aspect-[16/9] w-[100%] overflow-hidden">
+      <div className="h-auto w-[100%] overflow-hidden">
         <Image
           className="h-full w-full bg-center object-cover"
           src={thumbnailUrl}
