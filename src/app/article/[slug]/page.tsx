@@ -69,6 +69,7 @@ export async function generateMetadata({
         url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${data.slug}`,
         description: data.excerpt,
         siteName: HomeSEO.title,
+        images: [`${getThumbnailUrl}`],
       },
     };
   } catch (error) {
