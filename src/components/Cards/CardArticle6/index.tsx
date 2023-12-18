@@ -22,7 +22,7 @@ const CardArticle6 = ({ item }: Props) => {
   return (
     <div
       title={item.title}
-      className="group flex h-[8.5rem] cursor-pointer items-start gap-3 rounded-lg bg-white p-3 shadow-md transition-shadow hover:shadow-lg dark:bg-dark-layoutElement overflow-hidden"
+      className="group flex h-[8.5rem] cursor-pointer items-start gap-3 overflow-hidden rounded-lg bg-white p-3 shadow-md transition-shadow hover:shadow-lg dark:bg-dark-layoutElement"
     >
       <div className="aspect-square h-full shrink-0 overflow-hidden lg:w-[8rem]">
         <Image
@@ -43,10 +43,7 @@ const CardArticle6 = ({ item }: Props) => {
 
         <p className="relative h-[1rem] overflow-hidden text-xs  font-medium uppercase text-light-secondary dark:text-dark-contrast-600">
           <p className="flex gap-3 transition-all group-hover:translate-y-[-100%]">
-            {item.estimatedReadingTime > 0 && (
-              <span>{item.estimatedReadingTime} min read</span>
-            )}
-            <span>1.1k views</span>
+            <span>{item.estimatedReadingTime || 1} min read</span>
           </p>
 
           <span className="absolute left-[0] top-full transition-all group-hover:top-[0]">

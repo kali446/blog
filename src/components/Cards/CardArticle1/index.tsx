@@ -5,6 +5,7 @@ import CardShareIcons from "@/shared/CardShareIcons";
 import { generateImageUrl } from "@/utils";
 import { Article } from "@/lib/queries";
 import { truncateString } from "@/utils";
+import CardFooterV1 from "@/shared/CardFooterV1";
 
 interface Props {
   item: Article;
@@ -53,24 +54,7 @@ const CardArticle1 = ({ item, index }: Props) => {
           </h1>
         </div>
 
-        <div className="relative h-[2.75rem]  overflow-hidden border-t border-light-contrast-200 text-[.735rem] font-medium uppercase text-light-secondary transition-all group-hover:border-light-contrast-300/[.25] group-hover:text-white dark:border-dark-contrast-200 dark:text-dark-contrast-900 md:border-light-contrast-300/[.25] md:text-white">
-          <div className="flex h-[100%] items-center justify-between transition-all group-hover:translate-y-[-100%] md:translate-y-[-100%]">
-            <div className="flex gap-3">
-              {item.estimatedReadingTime > 0 && (
-                <span>{item.estimatedReadingTime} min read</span>
-              )}
-              <span>334 views</span>
-            </div>
-
-            <div>shares 934</div>
-          </div>
-
-          <div className="absolute left-[0] top-[0] flex h-[100%] w-[100%] translate-y-[100%] items-center justify-between transition-all group-hover:translate-y-[0%] md:translate-y-[0%]">
-            <span>Read more</span>
-
-            <CardShareIcons color="white" />
-          </div>
-        </div>
+        <CardFooterV1 estimatedReadingTime={item.estimatedReadingTime} />
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ const SliderArticles = ({ data: { category, articles } }: Props) => {
       <Slider ref={slider} {...SectionSettings}>
         {articles &&
           [...articles, ...articles, ...articles].map((item, i) => (
-            <div key={i} className="px-3 xs:px-0">
+            <div key={i} className="px-2 xs:px-0">
               <CardArticle5 item={item} />
             </div>
           ))}

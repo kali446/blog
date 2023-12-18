@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Date from "@/shared/Date";
+import CardFooterV3 from "@/shared/CardFooterV3";
 import { Article } from "@/lib/queries";
 import { generateImageUrl, truncateString } from "@/utils";
-import CardShareIcons from "@/shared/CardShareIcons";
 
 interface Props {
   item: Article;
@@ -113,25 +113,7 @@ const CardArticle7 = ({ item }: Props) => {
             </p>
           </Link>
 
-          <div className="h-[2.75rem] w-full overflow-hidden">
-            <div className="relative h-full w-full border-t border-light-contrast-300/30 text-[.725rem] uppercase tracking-wide text-white/90 transition-all group-hover:text-white">
-              <div className="flex h-[100%] items-center justify-between transition-all group-hover:translate-y-[-100%]">
-                <div className="flex gap-3">
-                  {item.estimatedReadingTime > 0 && (
-                    <span>{item.estimatedReadingTime} min read</span>
-                  )}
-                  <span>334 views</span>
-                </div>
-
-                <div>shares 934</div>
-              </div>
-
-              <div className="absolute left-[0] top-[0] flex h-[100%] w-[100%] translate-y-[100%] items-center justify-between transition-all group-hover:translate-y-[0%]">
-                <span>Read more</span>
-                <CardShareIcons color="white" />
-              </div>
-            </div>
-          </div>
+          <CardFooterV3 estimatedReadingTime={item.estimatedReadingTime} />
         </div>
       </div>
     </div>

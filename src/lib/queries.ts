@@ -126,7 +126,7 @@ export const getAllArticlesQuery = (
 
 export const getAllCategoriesQuery = groq`
 *[_type == "category"] | order(date desc, _updatedAt desc) {
-  ${articleFields}
+  ${categoryFields}
 }`;
 
 export const getCategoryQuery = groq`

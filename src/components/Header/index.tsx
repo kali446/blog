@@ -97,7 +97,7 @@ const Header = () => {
                 height={logoHeight}
                 width={logoWidth}
                 className="h-[1.85rem] w-auto"
-                src="/images/logo.png"
+                src="/images/logo.svg"
                 alt="blog"
               />
             </Link>
@@ -106,8 +106,8 @@ const Header = () => {
               <Image
                 height={logoHeight}
                 width={logoWidth}
-                className="h-[1.85rem] w-auto"
-                src="/images/logo.png"
+                className="h-[1.5rem] w-auto"
+                src="/images/logo.svg"
                 alt="blog"
               />
             </Link>

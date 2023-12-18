@@ -1,18 +1,35 @@
 "use client";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Header from ".";
 import Button from "@/shared/Button/Button";
-import { MEGAMENU, NavItemType } from "@/data/navigation";
+import { NavItemType, fetchNavigationMenu } from "@/data/navigation";
 import { GlobalContext } from "@/context/global";
 import { useMediaQuery } from "react-responsive";
 
 const TriggeredNavbar = () => {
   const [selectedMenu, setSelectedMenu] = useState<NavItemType[] | null>(null);
   const { openNavMenu } = useContext(GlobalContext);
+  const [menu, setMenu] = useState<NavItemType[] | null>(null);
+
+  useEffect(() => {
+    // 🆗 Ship it
+    (async () => {
+      if (!menu) {
+        const menu = await fetchNavigationMenu();
+        setMenu(menu);
+      }
+    })();
+
+    return () => {
+      // this now gets called when the component unmounts
+    };
+  }, []);
 
   const mobile480 = useMediaQuery({
     query: "(max-width: 480px)",
   });
+
+  console.log(menu, "hii");
 
   return (
     <div
@@ -28,7 +45,7 @@ const TriggeredNavbar = () => {
           !selectedMenu?.length && (
             <div className="col-span-3 sm:col-span-12">
               <ul>
-                {MEGAMENU.map((item, i) => (
+                {menu?.map((item, i) => (
                   <MenuItem
                     key={i}
                     item={item}
@@ -43,7 +60,7 @@ const TriggeredNavbar = () => {
         ) : (
           <div className="col-span-3 sm:col-span-12">
             <ul>
-              {MEGAMENU.map((item, i) => (
+              {menu?.map((item, i) => (
                 <MenuItem
                   key={i}
                   item={item}
@@ -113,7 +130,7 @@ const TriggeredNavbar = () => {
         <span className="cursor-pointer text-[1.35rem] font-semibold text-light-primary transition-colors hover:text-accent dark:text-dark-primary">
           manjiljunior@gmail.com
         </span>
-        <p className="mt-2 mb-4 text-sm font-medium leading-[1.6] text-light-secondary dark:text-dark-primary">
+        <p className="mb-4 mt-2 text-sm font-medium leading-[1.6] text-light-secondary dark:text-dark-primary">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
           similique totam vel molestias provident, culpa modi veniam nemo
           distinctio, odit molestiae. Aperiam sed molestiae aspernatur tempora

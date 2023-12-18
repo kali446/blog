@@ -13,8 +13,8 @@ const Footer = () => {
           <Image
             height={100}
             width={250}
-            className="h-[1.75rem] w-auto"
-            src="/images/logo.png"
+            className="h-[1.8rem] w-auto"
+            src="/images/logo.svg"
             alt="blog"
           />
         </div>

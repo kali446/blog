@@ -5,6 +5,7 @@ import Date from "@/shared/Date";
 import { Article } from "@/lib/queries";
 import { generateImageUrl, truncateString } from "@/utils";
 import CardShareIcons from "@/shared/CardShareIcons";
+import CardFooterV3 from "@/shared/CardFooterV3";
 
 interface Props {
   item: Article;
@@ -34,7 +35,7 @@ const CardArticle5 = ({ item }: Props) => {
       </div>
 
       <div className="absolute left-[0] top-[0] z-20 h-full w-full bg-light-overlay/50"></div>
-      <div className="relative z-30 px-3 pb-3 pt-[7rem] text-white">
+      <div className="relative z-30 px-3 pt-[7rem] text-white">
         <Link href={`/category/${item.category.slug}`}>
           <div className="text-xs font-medium uppercase tracking-normal drop-shadow-md transition-colors hover:text-accent">
             {item?.category?.name}
@@ -89,25 +90,7 @@ const CardArticle5 = ({ item }: Props) => {
           </p>
         </Link>
 
-        <div className="absolute bottom-[0] left-[0] h-[2.75rem] w-full overflow-hidden px-3">
-          <div className="relative h-full w-full border-t border-light-contrast-300/30 text-[.725rem] uppercase tracking-wide text-white/90 transition-all group-hover:text-white">
-            <div className="flex h-[100%] items-center justify-between transition-all group-hover:translate-y-[-100%]">
-              <div className="flex gap-3">
-                {item.estimatedReadingTime > 0 && (
-                  <span>{item.estimatedReadingTime} min read</span>
-                )}
-                <span>334 views</span>
-              </div>
-
-              <div>shares 934</div>
-            </div>
-
-            <div className="absolute left-[0] top-[0] flex h-[100%] w-[100%] translate-y-[100%] items-center justify-between transition-all group-hover:translate-y-[0%]">
-              <span>Read more</span>
-              <CardShareIcons color="white" />
-            </div>
-          </div>
-        </div>
+        <CardFooterV3 estimatedReadingTime={item.estimatedReadingTime} />
       </div>
     </div>
   );

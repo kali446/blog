@@ -24,7 +24,7 @@ const Social = ({ url, title }: Props) => {
             <FacebookShareButton key={i} url={url} title={title}>
               <li>
                 <Image
-                  className="opacity-60 invert transition-all hover:opacity-100"
+                  className="dark:invert-0 opacity-60 invert transition-all hover:opacity-100"
                   height={item.size.height}
                   width={item.size.width}
                   src={item.icon}
@@ -40,7 +40,7 @@ const Social = ({ url, title }: Props) => {
             <InstapaperShareButton key={i} url={url} title={title}>
               <li>
                 <Image
-                  className="opacity-60 invert transition-all hover:opacity-100"
+                  className="dark:invert-0 opacity-60 invert transition-all hover:opacity-100"
                   height={item.size.height}
                   width={item.size.width}
                   src={item.icon}
@@ -56,7 +56,7 @@ const Social = ({ url, title }: Props) => {
             <TwitterShareButton key={i} url={url} title={title}>
               <li>
                 <Image
-                  className="opacity-60 invert transition-all hover:opacity-100"
+                  className="dark:invert-0 opacity-60 invert transition-all hover:opacity-100"
                   height={item.size.height}
                   width={item.size.width}
                   src={item.icon}
@@ -72,7 +72,7 @@ const Social = ({ url, title }: Props) => {
             <WhatsappShareButton key={i} url={url} title={title}>
               <li>
                 <Image
-                  className="opacity-60 invert transition-all hover:opacity-100"
+                  className="dark:invert-0 opacity-60 invert transition-all hover:opacity-100"
                   height={item.size.height}
                   width={item.size.width}
                   src={item.icon}
@@ -88,7 +88,7 @@ const Social = ({ url, title }: Props) => {
             <RedditShareButton key={i} url={url} title={title}>
               <li>
                 <Image
-                  className="opacity-60 invert transition-all hover:opacity-100"
+                  className="dark:invert-0 opacity-60 invert transition-all hover:opacity-100"
                   height={item.size.height}
                   width={item.size.width}
                   src={item.icon}
@@ -104,7 +104,7 @@ const Social = ({ url, title }: Props) => {
             <LinkedinShareButton key={i} url={url} title={title}>
               <li>
                 <Image
-                  className="opacity-60 invert transition-all hover:opacity-100"
+                  className="dark:invert-0 opacity-60 invert transition-all hover:opacity-100"
                   height={item.size.height}
                   width={item.size.width}
                   src={item.icon}
