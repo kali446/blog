@@ -23,6 +23,7 @@ export interface Category {
   description?: string;
   thumbnail?: any;
   total?: number;
+  isHighlighted?: boolean;
 }
 
 export interface Article {
@@ -96,6 +97,7 @@ const categoryFields = groq`
   name,
   description,
   thumbnail,
+  isHighlighted,
   "slug": slug.current,
 `;
 

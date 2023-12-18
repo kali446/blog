@@ -9,7 +9,7 @@ export interface NavItemType {
   targetBlank?: boolean;
   children?: NavItemType[];
   href?: string;
-  isNew?: boolean;
+  isHighlighted?: boolean;
 }
 
 export const fetchNavigationMenu = async () => {
@@ -30,7 +30,7 @@ export const fetchNavigationMenu = async () => {
           id: randomId(),
           href: `/category/${item.slug}`,
           name: item.name,
-          isNew: false,
+          isHighlighted: item.isHighlighted,
         };
       }),
     },

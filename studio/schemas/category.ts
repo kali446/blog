@@ -11,6 +11,12 @@ export default {
     },
 
     {
+      name: 'isHighlighted',
+      type: 'boolean',
+      title: 'Highlighted Category ?',
+    },
+
+    {
       title: 'Slug',
       name: 'slug',
       type: 'slug',
@@ -19,6 +25,15 @@ export default {
         maxLength: 200, // will be ignored if slugify is set
         slugify: (input: string) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
       },
+    },
+
+    {
+      title: 'Tags',
+      name: 'tags',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'tag'}]}],
+      validation: (Rule: any) =>
+        Rule.max(10).error('You can only add maximum of 5 tags in a category!'),
     },
 
     {
@@ -52,4 +67,7 @@ export default {
       ],
     },
   ],
+  initialValue: {
+    isHighlighted: false,
+  },
 }

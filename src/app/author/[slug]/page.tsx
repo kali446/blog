@@ -93,7 +93,7 @@ export default async function CategoryPage({
     },
   });
 
-  console.log(totalPages, 'total')
+  console.log(totalPages, "total");
 
   return (
     <div className="mx-auto grid w-[95%] grid-cols-12 py-6 xs:py-4">
@@ -103,7 +103,7 @@ export default async function CategoryPage({
             <span className="text-[.725rem] uppercase tracking-wide text-light-primary dark:text-white">
               Browsing {data.author.name}&apos;s articles
             </span>
-            <h1 className="pb-1 pt-4 text-[2.65rem] font-semibold capitalize leading-none text-light-primary dark:text-white">
+            <h1 className="pb-1 pt-4 text-[2.65rem] font-bold capitalize leading-none tracking-[-2px] text-light-primary dark:text-white">
               {data.author.name}
             </h1>
             <span className="text-xs lowercase text-light-secondary dark:text-dark-contrast-800">

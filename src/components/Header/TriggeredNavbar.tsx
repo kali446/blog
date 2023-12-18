@@ -5,10 +5,12 @@ import Button from "@/shared/Button/Button";
 import { NavItemType, fetchNavigationMenu } from "@/data/navigation";
 import { GlobalContext } from "@/context/global";
 import { useMediaQuery } from "react-responsive";
+import { useRouter } from "next/navigation";
 
 const TriggeredNavbar = () => {
+  const router = useRouter();
   const [selectedMenu, setSelectedMenu] = useState<NavItemType[] | null>(null);
-  const { openNavMenu } = useContext(GlobalContext);
+  const { openNavMenu, setOpenNavMenu } = useContext(GlobalContext);
   const [menu, setMenu] = useState<NavItemType[] | null>(null);
 
   useEffect(() => {
@@ -103,6 +105,10 @@ const TriggeredNavbar = () => {
 
               {selectedMenu?.map((item, i) => (
                 <li
+                  onClick={() => {
+                    router.push(item?.href || "/");
+                    setOpenNavMenu(false);
+                  }}
                   className={`flex cursor-pointer gap-2 rounded-md p-2 text-sm font-semibold capitalize transition-all duration-300 hover:bg-light-contrast-200 dark:hover:bg-dark-contrast-300 ${
                     i === 0
                       ? "bg-light-contrast-200 dark:bg-dark-contrast-300"
@@ -111,9 +117,9 @@ const TriggeredNavbar = () => {
                   key={i}
                 >
                   {item?.name}
-                  {item?.isNew && (
-                    <span className="flex items-center justify-center rounded-md bg-accent px-[.35rem] text-xs uppercase !leading-[0] text-white dark:text-dark-primary">
-                      {item.isNew && "new"}
+                  {item?.isHighlighted && (
+                    <span className="flex items-center tracking-wide justify-center rounded-[3px] bg-accent px-[.3rem] text-[.55rem] uppercase text-white dark:text-dark-primary">
+                      {item.isHighlighted && "new"}
                     </span>
                   )}
                 </li>
@@ -151,6 +157,8 @@ interface Props {
 }
 
 const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
+  const { setOpenNavMenu } = useContext(GlobalContext);
+  const router = useRouter();
   const mobile480 = useMediaQuery({
     query: "(max-width: 480px)",
   });
@@ -158,16 +166,14 @@ const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
   return (
     <li
       onClick={() => {
-        if (!mobile480) {
-          return;
-        }
-
         if (hasChildren && setMenu && item?.children) {
           setMenu(item.children);
         }
 
         if (setMenu && !item?.children?.length) {
           setMenu(null);
+          router.push(item?.href || "/");
+          setOpenNavMenu(false);
         }
       }}
       onMouseEnter={() => {
@@ -186,7 +192,7 @@ const MenuItem = ({ item, hasChildren, active, setMenu }: Props) => {
       className={`group flex cursor-pointer items-center justify-between pb-[.5rem] last:pb-[0]`}
     >
       <span
-        className={`text-[2.5rem] font-extrabold capitalize tracking-tight group-hover:text-accent ${
+        className={`text-[2.5rem] font-extrabold capitalize tracking-[-1px] group-hover:text-accent ${
           active ? "text-accent" : "text-light-primary dark:text-dark-primary"
         }`}
       >
