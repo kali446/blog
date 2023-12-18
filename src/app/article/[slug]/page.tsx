@@ -20,7 +20,6 @@ import {
 } from "@/lib/client";
 import { generateImageUrl, shareURL } from "@/utils";
 import { HomeSEO } from "@/data/seo";
-import { title } from "process";
 
 interface Props {
   slug: string;
@@ -70,7 +69,6 @@ export async function generateMetadata({
         url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${data.slug}`,
         description: data.excerpt,
         siteName: HomeSEO.title,
-        images: [`${getThumbnailUrl}`],
       },
     };
   } catch (error) {
@@ -123,7 +121,7 @@ export default async function ArticlePage({
 
         <div className="col-span-7 lg:col-span-8 md:order-last md:col-span-12">
           <Content data={data?.content} />
-          <Share url={shareUrl} title={data.title} />
+          <Share url={shareUrl} title={data.title} author={data.author.name} />
           <Author data={data?.author} />
           <PrevNext data={prevNextArticles} />
         </div>

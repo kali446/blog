@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { SOCIAL_SHARE } from "@/data/global";
 import {
   FacebookShareButton,
@@ -14,25 +13,24 @@ import {
 interface Props {
   url: string;
   title: string;
+  author: string;
 }
 
-const Social = ({ url, title }: Props) => {
+const Social = ({ url, title, author }: Props) => {
   return (
     <ul className="flex cursor-pointer items-center gap-4 text-light-secondary dark:text-dark-secondary xs:gap-3">
       {SOCIAL_SHARE.map((item, i) => {
         if (item.name === "facebook") {
           return (
-            <FacebookShareButton key={i} url={url} title="">
+            <FacebookShareButton key={i} url={url} title={title}>
               <li>
-                <Link href={url} target="_blank">
-                  <Image
-                    className="opacity-60 invert transition-all hover:opacity-100"
-                    height={item.size.height}
-                    width={item.size.width}
-                    src={item.icon}
-                    alt={`Share to ${item.name}`}
-                  />
-                </Link>
+                <Image
+                  className="opacity-60 invert transition-all hover:opacity-100"
+                  height={item.size.height}
+                  width={item.size.width}
+                  src={item.icon}
+                  alt={`Share to ${item.name}`}
+                />
               </li>
             </FacebookShareButton>
           );
@@ -40,17 +38,15 @@ const Social = ({ url, title }: Props) => {
 
         if (item.name === "instagram") {
           return (
-            <InstapaperShareButton key={i} url={url}>
+            <InstapaperShareButton key={i} url={url} title={title}>
               <li>
-                <Link href={url} target="_blank">
-                  <Image
-                    className="opacity-60 invert transition-all hover:opacity-100"
-                    height={item.size.height}
-                    width={item.size.width}
-                    src={item.icon}
-                    alt={`Share to ${item.name}`}
-                  />
-                </Link>
+                <Image
+                  className="opacity-60 invert transition-all hover:opacity-100"
+                  height={item.size.height}
+                  width={item.size.width}
+                  src={item.icon}
+                  alt={`Share to ${item.name}`}
+                />
               </li>
             </InstapaperShareButton>
           );
@@ -61,18 +57,16 @@ const Social = ({ url, title }: Props) => {
             <TwitterShareButton
               key={i}
               url={url}
-              title={`"${title}" by @manjiljunior #clonedverse ${url}`}
+              title={`"${title}" by ${author} #ClonedVerse ${url}`}
             >
               <li>
-                <Link href={url} target="_blank">
-                  <Image
-                    className="opacity-60 invert transition-all hover:opacity-100"
-                    height={item.size.height}
-                    width={item.size.width}
-                    src={item.icon}
-                    alt={`Share to ${item.name}`}
-                  />
-                </Link>
+                <Image
+                  className="opacity-60 invert transition-all hover:opacity-100"
+                  height={item.size.height}
+                  width={item.size.width}
+                  src={item.icon}
+                  alt={`Share to ${item.name}`}
+                />
               </li>
             </TwitterShareButton>
           );
@@ -80,17 +74,15 @@ const Social = ({ url, title }: Props) => {
 
         if (item.name === "whatsapp") {
           return (
-            <WhatsappShareButton key={i} url={url}>
+            <WhatsappShareButton key={i} url={url} title={title}>
               <li>
-                <Link href={url} target="_blank">
-                  <Image
-                    className="opacity-60 invert transition-all hover:opacity-100"
-                    height={item.size.height}
-                    width={item.size.width}
-                    src={item.icon}
-                    alt={`Share to ${item.name}`}
-                  />
-                </Link>
+                <Image
+                  className="opacity-60 invert transition-all hover:opacity-100"
+                  height={item.size.height}
+                  width={item.size.width}
+                  src={item.icon}
+                  alt={`Share to ${item.name}`}
+                />
               </li>
             </WhatsappShareButton>
           );
@@ -98,17 +90,15 @@ const Social = ({ url, title }: Props) => {
 
         if (item.name === "reddit") {
           return (
-            <RedditShareButton key={i} url={url}>
+            <RedditShareButton key={i} url={url} title={title}>
               <li>
-                <Link href={url} target="_blank">
-                  <Image
-                    className="opacity-60 invert transition-all hover:opacity-100"
-                    height={item.size.height}
-                    width={item.size.width}
-                    src={item.icon}
-                    alt={`Share to ${item.name}`}
-                  />
-                </Link>
+                <Image
+                  className="opacity-60 invert transition-all hover:opacity-100"
+                  height={item.size.height}
+                  width={item.size.width}
+                  src={item.icon}
+                  alt={`Share to ${item.name}`}
+                />
               </li>
             </RedditShareButton>
           );
@@ -116,17 +106,15 @@ const Social = ({ url, title }: Props) => {
 
         if (item.name === "linkedin") {
           return (
-            <LinkedinShareButton key={i} url={url}>
+            <LinkedinShareButton key={i} url={url} title={title}>
               <li>
-                <Link href={url} target="_blank">
-                  <Image
-                    className="opacity-60 invert transition-all hover:opacity-100"
-                    height={item.size.height}
-                    width={item.size.width}
-                    src={item.icon}
-                    alt={`Share to ${item.name}`}
-                  />
-                </Link>
+                <Image
+                  className="opacity-60 invert transition-all hover:opacity-100"
+                  height={item.size.height}
+                  width={item.size.width}
+                  src={item.icon}
+                  alt={`Share to ${item.name}`}
+                />
               </li>
             </LinkedinShareButton>
           );
@@ -139,6 +127,3 @@ const Social = ({ url, title }: Props) => {
 };
 
 export default Social;
-
-
-

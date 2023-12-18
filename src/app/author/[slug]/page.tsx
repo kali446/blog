@@ -93,6 +93,8 @@ export default async function CategoryPage({
     },
   });
 
+  console.log(totalPages, 'total')
+
   return (
     <div className="mx-auto grid w-[95%] grid-cols-12 py-6 xs:py-4">
       <div className="col-span-9 lg:col-span-12">
@@ -168,7 +170,7 @@ export default async function CategoryPage({
           )}
         </div>
 
-        {data?.articles?.length && hasNextPage ? (
+        {data?.articles?.length && totalPages > 1 ? (
           <div className="mt-[4rem] text-center sm:mt-[2rem]">
             <Pagination
               path={`/author/${data.author.slug}`}

@@ -7,9 +7,10 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 interface Props {
   url: string;
   title: string;
+  author: string;
 }
 
-const Share = ({ title, url }: Props) => {
+const Share = ({ title, url, author }: Props) => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Share = ({ title, url }: Props) => {
         Share this Article
       </h1>
 
-      <Social url={url} title={title} />
+      <Social url={url} title={title} author={author} />
 
       <div className="flex w-full flex-col items-center">
         <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
