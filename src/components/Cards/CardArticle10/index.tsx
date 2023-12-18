@@ -5,6 +5,7 @@ import { Article } from "@/lib/queries";
 import Date from "@/shared/Date";
 import CardShareIcons from "@/shared/CardShareIcons";
 import { generateImageUrl } from "@/utils";
+import CardFooterV1 from "@/shared/CardFooterV1";
 
 interface Props {
   item: Article;
@@ -55,26 +56,15 @@ const CardArticle10 = ({ item }: Props) => {
           </span>
         </p>
 
-        <div className="h-[2.5rem] w-full overflow-hidden">
-          <div className="relative h-full w-full text-[.7rem] font-medium uppercase tracking-wide text-light-secondary transition-all group-hover:text-light-primary dark:border-dark-contrast-200/60 dark:text-dark-secondary dark:group-hover:text-dark-primary">
-            <div className="flex h-[100%] items-center justify-between transition-all group-hover:translate-y-[-100%]">
-              <div className="flex gap-3">
-                {item.estimatedReadingTime > 0 && (
-                  <span>{item.estimatedReadingTime} min read</span>
-                )}
-                <span>334 views</span>
-              </div>
-
-              <div>shares 934</div>
-            </div>
-
-            <div className="absolute left-[0] top-[0] flex h-[100%] w-[100%] translate-y-[100%] items-center justify-between transition-all group-hover:translate-y-[0%]">
-              <span>Read more</span>
-
-              <CardShareIcons color="black" darkInvert={true} />
-            </div>
-          </div>
-        </div>
+        <CardFooterV1
+          article={{
+            estimatedReadingTime: item.estimatedReadingTime,
+            title: item.title,
+            url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${item.slug}`,
+          }}
+          darkInvert={true}
+          color="black"
+        />
       </div>
     </div>
   );

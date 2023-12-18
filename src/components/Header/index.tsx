@@ -158,7 +158,7 @@ const Header = () => {
                 height={logoHeight}
                 width={logoWidth}
                 className="mobile414:h-[1.6rem] h-[1.85rem] w-auto"
-                src="/images/logo.png"
+                src="/images/logo.svg"
                 alt="blog"
               />
             </Link>

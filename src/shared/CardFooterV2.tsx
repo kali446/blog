@@ -2,13 +2,17 @@ import React from "react";
 import CardShareIcons from "./CardShareIcons";
 
 interface Props {
-  estimatedReadingTime: number;
+  article: {
+    estimatedReadingTime: number;
+    title: string;
+    url: string;
+  };
   color?: string;
   darkInvert?: boolean;
 }
 
 const CardFooterV2 = ({
-  estimatedReadingTime,
+  article: { estimatedReadingTime, title, url },
   color = "white",
   darkInvert,
 }: Props) => {
@@ -34,6 +38,10 @@ const CardFooterV2 = ({
         <CardShareIcons
           color={color || "white"}
           darkInvert={darkInvert || false}
+          article={{
+            title,
+            url,
+          }}
         />
       </div>
     </div>

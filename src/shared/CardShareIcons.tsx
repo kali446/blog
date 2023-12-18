@@ -1,7 +1,17 @@
+"use client";
 import Image from "next/image";
 import React from "react";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "react-share";
 
 interface Props {
+  article: {
+    url: string;
+    title: string;
+  };
   color?: string;
   darkInvert?: boolean;
 }
@@ -13,7 +23,7 @@ const ITEMS = [
   },
 
   {
-    name: "x.com",
+    name: "twitter",
     icon: "/icons/share/x.svg",
   },
 
@@ -23,7 +33,7 @@ const ITEMS = [
   },
 ];
 
-const CardShareIcons = ({ color, darkInvert }: Props) => {
+const CardShareIcons = ({ color, darkInvert, article }: Props) => {
   const renderColor = () => {
     switch (color) {
       case "white":
@@ -37,21 +47,69 @@ const CardShareIcons = ({ color, darkInvert }: Props) => {
 
   return (
     <ul className={`flex items-center gap-3 font-light ${renderColor()}`}>
-      {ITEMS.map((item, i) => (
-        <li key={i} className="flex items-center">
-          <Image
-            className={`${
-              item.name === "x.com" ? "w-[14px]" : "w-[17px]"
-            } h-auto ${color === "black" && "invert"}  ${
-              darkInvert && "dark:invert-0"
-            }`}
-            height={14}
-            width={14}
-            src={item.icon}
-            alt={`Share to ${item.name}`}
-          />
-        </li>
-      ))}
+      {ITEMS.map((item, i) => {
+        if (item.name === "facebook") {
+          return (
+            <FacebookShareButton
+              url={article.url}
+              title={article.title}
+              key={i}
+            >
+              <li className="flex items-center">
+                <Image
+                  className={`h-auto w-[17px] ${
+                    color === "black" && "invert"
+                  }  ${darkInvert && "dark:invert-0"}`}
+                  height={14}
+                  width={14}
+                  src={item.icon}
+                  alt={`Share to ${item.name}`}
+                />
+              </li>
+            </FacebookShareButton>
+          );
+        }
+
+        if (item.name === "twitter") {
+          return (
+            <TwitterShareButton url={article.url} title={article.title} key={i}>
+              <li className="flex items-center">
+                <Image
+                  className={`h-auto w-[14px] ${
+                    color === "black" && "invert"
+                  }  ${darkInvert && "dark:invert-0"}`}
+                  height={14}
+                  width={14}
+                  src={item.icon}
+                  alt={`Share to ${item.name}`}
+                />
+              </li>
+            </TwitterShareButton>
+          );
+        }
+
+        if (item.name === "whatsapp") {
+          return (
+            <WhatsappShareButton
+              url={article.url}
+              title={article.title}
+              key={i}
+            >
+              <li className="flex items-center">
+                <Image
+                  className={`h-auto w-[17px] ${
+                    color === "black" && "invert"
+                  }  ${darkInvert && "dark:invert-0"}`}
+                  height={14}
+                  width={14}
+                  src={item.icon}
+                  alt={`Share to ${item.name}`}
+                />
+              </li>
+            </WhatsappShareButton>
+          );
+        }
+      })}
     </ul>
   );
 };

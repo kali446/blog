@@ -90,7 +90,13 @@ const CardArticle5 = ({ item }: Props) => {
           </p>
         </Link>
 
-        <CardFooterV3 estimatedReadingTime={item.estimatedReadingTime} />
+        <CardFooterV3
+          article={{
+            estimatedReadingTime: item.estimatedReadingTime,
+            title: item.title,
+            url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${item.slug}`,
+          }}
+        />
       </div>
     </div>
   );

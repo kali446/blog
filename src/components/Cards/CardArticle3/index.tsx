@@ -51,7 +51,11 @@ const CardArticle3 = ({ item }: Props) => {
 
         <div className="w-full">
           <CardFooterV2
-            estimatedReadingTime={item.estimatedReadingTime}
+            article={{
+              estimatedReadingTime: item.estimatedReadingTime,
+              title: item.title,
+              url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${item.slug}`,
+            }}
             color="black"
             darkInvert={true}
           />

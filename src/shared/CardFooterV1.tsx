@@ -2,19 +2,23 @@ import React from "react";
 import CardShareIcons from "./CardShareIcons";
 
 interface Props {
-  estimatedReadingTime: number;
+  article: {
+    estimatedReadingTime: number;
+    title: string;
+    url: string;
+  };
   color?: string;
   darkInvert?: boolean;
 }
 
 const CardFooterV1 = ({
-  estimatedReadingTime,
+  article: { estimatedReadingTime, title, url },
   color = "white",
   darkInvert,
 }: Props) => {
   return (
     <div
-      className={`relative h-[2.75rem] overflow-hidden border-t border-light-contrast-200 text-[.735rem] font-medium uppercase text-light-secondary transition-all group-hover:border-light-contrast-300/[.25] dark:border-dark-contrast-200 dark:text-dark-contrast-900 md:border-light-contrast-300/[.25] ${
+      className={`relative h-[2.75rem] overflow-hidden border-t border-light-contrast-200 text-[.735rem] font-medium uppercase text-light-secondary transition-all group-hover:border-light-contrast-300/[.25] dark:border-dark-contrast-200 dark:text-dark-contrast-900 md:border-light-contrast-300/[.25] md:text-white ${
         color === "white" && "group-hover:text-white"
       } ${
         color === "black" &&
@@ -34,6 +38,10 @@ const CardFooterV1 = ({
         <CardShareIcons
           color={color || "white"}
           darkInvert={darkInvert || false}
+          article={{
+            title,
+            url,
+          }}
         />
       </div>
     </div>

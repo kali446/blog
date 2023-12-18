@@ -45,7 +45,11 @@ const CardArticle2 = ({ data }: Props) => {
           </h1>
 
           <CardFooterV2
-            estimatedReadingTime={data.estimatedReadingTime}
+            article={{
+              estimatedReadingTime: data.estimatedReadingTime,
+              title: data.title,
+              url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/article/${data.slug}`,
+            }}
             color="black"
             darkInvert={true}
           />

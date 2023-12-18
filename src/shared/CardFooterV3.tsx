@@ -2,11 +2,18 @@ import React from "react";
 import CardShareIcons from "./CardShareIcons";
 
 interface Props {
-  estimatedReadingTime: number;
+  article: {
+    estimatedReadingTime: number;
+    title: string;
+    url: string;
+  };
   darkInvert?: boolean;
 }
 
-const CardFooterV3 = ({ estimatedReadingTime, darkInvert }: Props) => {
+const CardFooterV3 = ({
+  article: { estimatedReadingTime, title, url },
+  darkInvert,
+}: Props) => {
   return (
     <div
       className={`relative h-[2.75rem] overflow-hidden border-t border-light-contrast-200/30 text-[.735rem] font-medium uppercase text-dark-secondary transition-all dark:text-dark-contrast-900`}
@@ -21,7 +28,13 @@ const CardFooterV3 = ({ estimatedReadingTime, darkInvert }: Props) => {
 
       <div className="absolute left-[0] top-[0] flex h-[100%] w-[100%] translate-y-[150%] items-center justify-between transition-all group-hover:translate-y-[0%] md:translate-y-[0%]">
         <span>Read more</span>
-        <CardShareIcons darkInvert={darkInvert || false} />
+        <CardShareIcons
+          darkInvert={darkInvert || false}
+          article={{
+            title,
+            url,
+          }}
+        />
       </div>
     </div>
   );
