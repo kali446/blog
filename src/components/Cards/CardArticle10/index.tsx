@@ -41,7 +41,7 @@ const CardArticle10 = ({ item }: Props) => {
 
       <div className="col-span-10 pl-3">
         <h2 className="ArticleTitle text-[1.15rem] font-semibold text-light-primary transition-colors hover:text-accent dark:text-dark-primary xs:text-[.95rem]">
-          <Link href={`/article/`}>{item.title}</Link>
+          <Link href={`/article/${item.slug}`}>{item.title}</Link>
         </h2>
 
         <p className="pb-3 font-medium capitalize text-light-primary dark:text-white/50">
@@ -64,6 +64,7 @@ const CardArticle10 = ({ item }: Props) => {
           }}
           darkInvert={true}
           color="black"
+          className="md:text-light-primary"
         />
       </div>
     </div>

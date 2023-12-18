@@ -36,7 +36,7 @@ const Footer = () => {
         </p>
       </div>
 
-      <div className="flex justify-center border-t border-light-contrast-200 py-3 dark:border-dark-contrast-200">
+      <div className="flex justify-center border-t border-light-contrast-200 py-3 dark:border-dark-contrast-200/40">
         <p className="xs:text-xs mobile414:text-[.7rem] mobile375:text-[.6rem] text-sm text-light-secondary dark:text-dark-secondary">
           Copyright © {year} ClonedVerse. All Rights Reserved.
         </p>

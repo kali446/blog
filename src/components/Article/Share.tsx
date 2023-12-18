@@ -28,7 +28,7 @@ const Share = ({ title, url }: Props) => {
 
       <div className="flex w-full flex-col items-center">
         <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
-          <div className="group relative mx-auto w-[90%] overflow-hidden rounded-md border bg-light-contrast-200/50 py-1 hover:border-green-500/50 dark:bg-dark-site">
+          <div className="group relative mx-auto w-[90%] overflow-hidden rounded-md border border-transparent bg-light-contrast-200/50 py-1 hover:border-green-500/50 dark:bg-dark-site">
             <input
               className="w-[100%] bg-white/0 px-2 text-sm text-light-primary dark:text-dark-contrast-900 xs:text-xs"
               type="text"
@@ -67,6 +67,7 @@ const Share = ({ title, url }: Props) => {
                   </svg>
                 ) : (
                   <Image
+                  className="dark:invert"
                     height={15}
                     width={15}
                     src={"/icons/tick.svg"}

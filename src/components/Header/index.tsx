@@ -228,7 +228,13 @@ const Header = () => {
               </div>
             </div>
 
-            {showResults && <SearchResults show={showResults} />}
+            {showResults && (
+              <SearchResults
+                show={showResults}
+                setShow={setShowResults}
+                setShowSearch={setShowSearch}
+              />
+            )}
           </>
         )}
       </div>

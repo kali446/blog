@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-} from "react";
+import React, { useContext, useState, useEffect, useMemo } from "react";
 import Loader from "@/shared/Loader";
 import debounce from "lodash/debounce";
 import CardArticle10 from "../Cards/CardArticle10";
@@ -12,14 +6,18 @@ import { GlobalContext } from "@/context/global";
 import { getClient, getSearchedArticles } from "@/lib/client";
 import { Article } from "@/lib/queries";
 import { SEARCH_RESUTS_LIMIT } from "@/utils";
+import { usePathname } from "next/navigation";
 
 interface Props {
   show: boolean;
+  setShow: (val: boolean) => void;
+  setShowSearch: (val: boolean) => void;
 }
 
-const SearchResults = ({ show }: Props) => {
+const SearchResults = ({ show, setShow, setShowSearch }: Props) => {
   const client = getClient();
-  const { searchText } = useContext(GlobalContext);
+  const pathname = usePathname();
+  const { searchText, setSearchText } = useContext(GlobalContext);
   const [results, setResults] = useState<Article[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
@@ -32,6 +30,15 @@ const SearchResults = ({ show }: Props) => {
       searchHandler(searchText);
     }
   }, [searchText]);
+
+  useEffect(() => {
+    if (results?.length) {
+      setResults(null);
+      setSearchText("");
+      setShow(false);
+      setShowSearch(false);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (results?.length) {
@@ -105,7 +112,7 @@ const SearchResults = ({ show }: Props) => {
               <b className="pl-1">{total}</b>
             </span>
 
-            <span className="rounded-full bg-black/[.1] px-3 py-1 text-sm capitalize leading-[1] text-light-primary dark:bg-white/[.1] dark:text-dark-secondary">
+            <span className="rounded-full bg-black/[.1] px-3 py-1 text-sm capitalize leading-[1] text-light-primary dark:bg-white/[.1] dark:text-dark-secondary xs:text-xs">
               search query:
               <b className="pl-1">{searchText}</b>
             </span>

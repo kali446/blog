@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Date from "@/shared/Date";
 import { Article } from "@/lib/queries";
 import { generateImageUrl, truncateString } from "@/utils";
-import Date from "@/shared/Date";
 
 interface Props {
   data: Article;
@@ -43,8 +43,10 @@ const ThumbnailHeader = ({
   return (
     <div className="pt-3">
       <div className="mx-auto w-[60%] lg:w-[80%] md:w-[90%]">
-        <div className="mb-4 flex cursor-pointer items-center gap-3 border-b border-light-contrast-300 py-4 text-[1rem] font-light capitalize text-black dark:border-dark-contrast-400/50 dark:text-dark-primary lg:text-[.95rem] sm:flex-col sm:gap-1 sm:py-3 sm:text-[.85rem]">
-          <div className="transition-colors duration-300">Home</div>
+        <div className="mb-4 flex cursor-pointer items-center gap-3 border-b border-light-contrast-300 pb-3 pt-2 text-[.9rem] font-light capitalize text-black dark:border-dark-contrast-400/50 dark:text-dark-primary lg:text-[.85rem] sm:flex-col sm:pt-0 sm:gap-1 sm:py-3 sm:text-[.8rem]">
+          <div className="transition-colors duration-300 hover:text-accent hover:underline">
+            Home
+          </div>
           <div>
             <svg
               className="sm:rotate-90"
@@ -61,7 +63,7 @@ const ThumbnailHeader = ({
             </svg>
           </div>
 
-          <div className="transition-colors duration-300">
+          <div className="transition-colors duration-300 hover:text-accent hover:underline">
             <Link href={`/category/${category?.slug}`}>{category?.name}</Link>
           </div>
 

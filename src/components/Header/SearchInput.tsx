@@ -16,7 +16,7 @@ const SearchInput = ({ close }: Props) => {
   }, []);
 
   return (
-    <div className="absolute left-[0px] top-[0px] h-[100%] md:fixed md:h-header md:border-b md:border-black/10">
+    <div className="z-[100] absolute left-[0px] top-[0px] h-[100%] md:fixed md:h-header md:border-b md:border-black/10">
       <input
         ref={ref}
         type="text"

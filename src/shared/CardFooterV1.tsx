@@ -9,12 +9,14 @@ interface Props {
   };
   color?: string;
   darkInvert?: boolean;
+  className?: string;
 }
 
 const CardFooterV1 = ({
   article: { estimatedReadingTime, title, url },
   color = "white",
   darkInvert,
+  className,
 }: Props) => {
   return (
     <div
@@ -23,7 +25,7 @@ const CardFooterV1 = ({
       } ${
         color === "black" &&
         "group-hover:text-black dark:group-hover:text-white"
-      }`}
+      } ${className}`}
     >
       <div className="flex h-[100%] items-center justify-between transition-all group-hover:translate-y-[-150%] md:translate-y-[-100%]">
         <div className="flex gap-3">
