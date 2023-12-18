@@ -64,7 +64,7 @@ const CardArticle10 = ({ item }: Props) => {
           }}
           darkInvert={true}
           color="black"
-          className="md:text-light-primary"
+          className="!text-light-primary"
         />
       </div>
     </div>
