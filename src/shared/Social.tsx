@@ -13,7 +13,7 @@ import {
 interface Props {
   url: string;
   title: string;
-  author: string;
+  author?: string;
 }
 
 const Social = ({ url, title, author }: Props) => {
@@ -57,7 +57,9 @@ const Social = ({ url, title, author }: Props) => {
             <TwitterShareButton
               key={i}
               url={url}
-              title={`"${title}" by ${author} #ClonedVerse ${url}`}
+              title={`"${title}" by ${
+                author ? author : null
+              } #ClonedVerse ${url}`}
             >
               <li>
                 <Image
