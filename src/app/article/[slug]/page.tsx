@@ -72,7 +72,6 @@ export async function generateMetadata({
       },
     };
   } catch (error) {
-    console.error(error);
     return {
       title: "Not Found",
       description: "The page you are looking for does not exist.",
@@ -111,17 +110,13 @@ export default async function ArticlePage({
           <Tableofcontents />
 
           <div className="inline-block md:hidden">
-            <Share2
-              url={shareUrl}
-              title={data.title}
-              author={data.author.name}
-            />
+            <Share2 url={shareUrl} title={data.title} />
           </div>
         </div>
 
         <div className="col-span-7 lg:col-span-8 md:order-last md:col-span-12">
           <Content data={data?.content} />
-          <Share url={shareUrl} title={data.title} author={data.author.name} />
+          <Share url={shareUrl} title={data.title} />
           <Author data={data?.author} />
           <PrevNext data={prevNextArticles} />
         </div>

@@ -12,16 +12,17 @@ import {
 interface Props {
   url: string;
   title: string;
-  author: string;
 }
 
-const Share2 = ({ url, title, author }: Props) => {
+const Share2 = ({ url, title }: Props) => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setCopied(false);
-    }, 1000);
+    if (copied) {
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    }
   }, [copied]);
 
   const itemClasses = `dark:text-dark-secondary dark:border-dark-contrast-300 group relative flex h-[2.75rem] w-[2.75rem] cursor-pointer items-center justify-center overflow-hidden rounded-full border border-light-contrast-400 text-light-secondary hover:border-none`;
@@ -88,10 +89,7 @@ const Share2 = ({ url, title, author }: Props) => {
       </InstapaperShareButton>
 
       {/* twitter */}
-      <TwitterShareButton
-        url={url}
-        title={`"${title}" by ${author} #ClonedVerse ${url}`}
-      >
+      <TwitterShareButton url={url} title={title}>
         <div className={itemClasses}>
           <div className={itemIcon1Classes}>
             <Image
@@ -150,7 +148,7 @@ const Share2 = ({ url, title, author }: Props) => {
       >
         <div className="relative">
           <div
-            className={`absolute left-[50%] top-[50%] w-[7.5rem] translate-x-[-50%] translate-y-[-50%] scale-0 rounded-md bg-green-600/10 py-1 text-center text-sm font-semibold text-green-600 opacity-0 drop-shadow-sm transition-all duration-200 ${
+            className={`absolute left-[50%] top-[50%] w-[7.5rem] translate-x-[-50%] translate-y-[-50%] scale-0 rounded-md bg-green-600 py-1 text-center text-sm font-semibold text-white opacity-0 drop-shadow-sm transition-all duration-200 ${
               copied && "left-[115%] translate-x-0 scale-100 opacity-100"
             }`}
           >

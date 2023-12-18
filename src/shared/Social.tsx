@@ -13,10 +13,9 @@ import {
 interface Props {
   url: string;
   title: string;
-  author?: string;
 }
 
-const Social = ({ url, title, author }: Props) => {
+const Social = ({ url, title }: Props) => {
   return (
     <ul className="flex cursor-pointer items-center gap-4 text-light-secondary dark:text-dark-secondary xs:gap-3">
       {SOCIAL_SHARE.map((item, i) => {
@@ -54,13 +53,7 @@ const Social = ({ url, title, author }: Props) => {
 
         if (item.name === "twitter") {
           return (
-            <TwitterShareButton
-              key={i}
-              url={url}
-              title={`"${title}" by ${
-                author ? author : null
-              } #ClonedVerse ${url}`}
-            >
+            <TwitterShareButton key={i} url={url} title={title}>
               <li>
                 <Image
                   className="opacity-60 invert transition-all hover:opacity-100"
