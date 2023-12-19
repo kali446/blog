@@ -31,8 +31,6 @@ const TriggeredNavbar = () => {
     query: "(max-width: 480px)",
   });
 
-  console.log(menu, "hii");
-
   return (
     <div
       className={`fixed left-[0] top-[0] z-[1005] flex h-[100vh] w-full flex-col justify-between overflow-y-auto overflow-x-hidden bg-white transition-all duration-500 dark:bg-dark-site ${
@@ -118,7 +116,7 @@ const TriggeredNavbar = () => {
                 >
                   {item?.name}
                   {item?.isHighlighted && (
-                    <span className="flex items-center tracking-wide justify-center rounded-[3px] bg-accent px-[.3rem] text-[.55rem] uppercase text-white dark:text-dark-primary">
+                    <span className="flex items-center justify-center rounded-[3px] bg-accent px-[.3rem] text-[.55rem] uppercase tracking-wide text-white dark:text-dark-primary">
                       {item.isHighlighted && "new"}
                     </span>
                   )}

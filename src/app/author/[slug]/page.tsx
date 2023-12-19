@@ -93,8 +93,6 @@ export default async function CategoryPage({
     },
   });
 
-  console.log(totalPages, "total");
-
   return (
     <div className="mx-auto grid w-[95%] grid-cols-12 py-6 xs:py-4">
       <div className="col-span-9 lg:col-span-12">
