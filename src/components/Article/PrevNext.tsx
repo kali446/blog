@@ -34,8 +34,10 @@ const PrevNext = ({ data }: Props) => {
                 prev post
               </span>
 
-              <h2 className="text-md mt-4 font-semibold leading-5 transition-colors duration-200 hover:text-accent sm:mt-0">
-                {data?.prev?.title}
+              <h2 className="ArticleTitle text-md mt-4 font-semibold leading-5 transition-colors duration-200 hover:text-accent sm:mt-0">
+                <Link href={`/article/${data.next?.slug}`}>
+                  {data?.prev?.title}
+                </Link>
               </h2>
             </div>
           </div>
@@ -60,8 +62,10 @@ const PrevNext = ({ data }: Props) => {
                 next post
               </span>
 
-              <h2 className="text-md mt-4 text-right font-semibold leading-5 transition-colors duration-200 hover:text-accent sm:mt-0">
-                {data.next?.title}
+              <h2 className="ArticleTitle text-md mt-4 text-right font-semibold leading-5 transition-colors duration-200 hover:text-accent sm:mt-0">
+                <Link href={`/article/${data.next.slug}`}>
+                  {data.next?.title}
+                </Link>
               </h2>
             </div>
           </div>

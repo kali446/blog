@@ -43,7 +43,7 @@ const ThumbnailHeader = ({
   return (
     <div className="pt-3">
       <div className="mx-auto w-[60%] lg:w-[80%] md:w-[90%]">
-        <div className="mb-4 flex cursor-pointer items-center gap-3 border-b border-light-contrast-300 pb-3 pt-2 text-[.9rem] font-light capitalize text-black dark:border-dark-contrast-400/50 dark:text-dark-primary lg:text-[.85rem] sm:flex-col sm:pt-0 sm:gap-1 sm:py-3 sm:text-[.8rem]">
+        <div className="mb-4 flex cursor-pointer items-center gap-3 border-b border-light-contrast-300 pb-3 pt-2 text-[.9rem] font-light capitalize text-black dark:border-dark-contrast-400/50 dark:text-dark-primary lg:text-[.85rem] sm:hidden sm:flex-col sm:gap-1 sm:py-3 sm:pt-0 sm:text-[.8rem]">
           <div className="transition-colors duration-300 hover:text-accent hover:underline">
             Home
           </div>
@@ -88,11 +88,11 @@ const ThumbnailHeader = ({
           </span>
         </div>
 
-        <h1 className="mb-3 text-4xl font-bold leading-[1.2] text-light-primary dark:text-dark-primary">
+        <h1 className="mb-3 text-4xl font-bold leading-[1.25] text-light-primary dark:text-dark-primary xs:text-3xl">
           {title}
         </h1>
 
-        <p className="mb-6 text-[1.05rem] font-light leading-[2] text-light-secondary dark:text-dark-primary xs:mb-4">
+        <p className="mb-6 text-[1.05rem] font-light leading-[2] text-light-primary/80 dark:text-dark-primary/80 xs:mb-4">
           {excerpt}
         </p>
 
