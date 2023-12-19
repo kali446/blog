@@ -24,13 +24,13 @@ const Description = ({ description }: Props) => {
   }
 
   return (
-    <p className="w-[65%] pb-6 pt-4 text-[1.1rem] font-light leading-relaxed text-light-primary dark:text-dark-contrast-900 md:w-full">
+    <p className="xs:text-[1rem] w-[65%] pb-6 pt-4 text-[1.1rem] font-light leading-relaxed text-light-primary dark:text-dark-contrast-900 md:w-full">
       {!showFullDescription ? (
         <>
           {truncateString(description, 200)}
           <span
             onClick={() => setShowFullDescription(true)}
-            className="hover:bg-blue-600 text-blue-600 ml-2 inline-flex cursor-pointer items-center gap-1 rounded-full bg-white px-[.75rem] py-[.5rem] text-[.65rem] font-semibold uppercase leading-none drop-shadow-sm transition-all duration-300 hover:text-white"
+            className="xs:text-[.55rem] hover:bg-blue-600 text-blue-600 ml-2 inline-flex cursor-pointer items-center gap-1 rounded-full bg-white px-[.75rem] py-[.5rem] text-[.65rem] font-semibold uppercase leading-none drop-shadow-sm transition-all duration-300 hover:text-white"
           >
             <svg
               width={10}

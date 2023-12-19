@@ -6,7 +6,7 @@ import { useFormik, FormikProvider } from "formik";
 import supabase from "@/utils/supabase";
 
 export const ContactYupSchema = Yup.object().shape({
-  name: Yup.string().required("Please provide your good name!"),
+  name: Yup.string().required("Please provide your fullname!"),
   email: Yup.string()
     .email("Please provide valid email address!")
     .required("Email is required!"),
@@ -80,8 +80,8 @@ const Form = () => {
       >
         <div className="grid grid-cols-12 gap-4 sm:gap-0 sm:gap-y-4">
           <div className="relative col-span-6 xs:col-span-12">
-            <div className="font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-secondary sm:text-sm">
-              your fullname*
+            <div className="text-xs font-medium uppercase tracking-[5px] text-light-primary drop-shadow-sm first-letter:capitalize dark:text-dark-secondary">
+              fullname
             </div>
             <input
               className={`mt-[3px] h-[4rem] w-full  rounded-md border border-black/30 px-3 text-light-primary drop-shadow-sm focus:outline-none dark:border-white/0 dark:bg-dark-input dark:text-dark-primary xs:h-[3rem] ${
@@ -105,8 +105,8 @@ const Form = () => {
           </div>
 
           <div className="relative col-span-6 xs:col-span-12">
-            <div className="font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-secondary sm:text-sm">
-              your email*
+            <div className="text-xs font-medium uppercase tracking-[5px] text-light-primary drop-shadow-sm first-letter:capitalize dark:text-dark-secondary">
+              email
             </div>
             <input
               className={`mt-[3px] h-[4rem] w-full  rounded-md border border-black/30 px-3 text-light-primary drop-shadow-sm focus:outline-none dark:border-white/0 dark:bg-dark-input dark:text-dark-primary xs:h-[3rem] ${
@@ -130,8 +130,8 @@ const Form = () => {
           </div>
 
           <div className="relative col-span-12">
-            <div className="sm:text-sm font-bold lowercase text-light-primary first-letter:capitalize dark:text-dark-secondary">
-              your message*
+            <div className="text-xs font-medium uppercase tracking-[5px] text-light-primary drop-shadow-sm first-letter:capitalize dark:text-dark-secondary">
+              message
             </div>
             <textarea
               className={`mt-[3px] h-[10rem] w-full resize-none rounded-md border border-black/30 px-3 py-3 text-light-primary drop-shadow-sm focus:outline-none dark:border-white/0 dark:bg-dark-input dark:text-dark-primary ${

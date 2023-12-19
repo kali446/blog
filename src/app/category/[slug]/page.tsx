@@ -86,7 +86,7 @@ export default async function CategoryPage({
         <span className="text-[.7rem] font-light uppercase tracking-wide text-light-primary dark:text-white">
           Browsing category
         </span>
-        <h1 className="pb-1 pt-4 text-[2.65rem] font-bold tracking-[-2px] capitalize leading-none text-light-primary dark:text-white">
+        <h1 className="xs:text-[1.8rem] sm:text-[2rem] pb-1 pt-4 text-[2.65rem] font-bold tracking-[-2px] capitalize leading-none text-light-primary dark:text-white">
           {data?.category?.name}
         </h1>
         <span className="text-xs lowercase text-light-secondary dark:text-dark-contrast-800">

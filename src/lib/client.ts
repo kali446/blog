@@ -22,9 +22,9 @@ import {
 } from "./queries";
 
 export function getClient(preview?: { token: string }): SanityClient {
-  const projectId = "jg0vxk9b";
-  const dataset = "development";
-  const apiVersion = "2021-10-21";
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+  const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION;
   const useCdn = false;
 
   const client = createClient({

@@ -33,7 +33,7 @@ const ContactUs = () => {
         {CONTACT_OPTIONS.map((item, i) => (
           <li
             key={i}
-            className="flex cursor-pointer items-center justify-between border-b border-black/40 py-4 first:border-t dark:border-white/40"
+            className="mobile414:flex-col mobile414:gap-y-3 flex cursor-pointer items-center justify-between border-b border-black/40 py-4 first:border-t dark:border-white/40"
           >
             <div className="text-3xl font-light capitalize text-black dark:text-white sm:text-2xl">
               {item.name}
