@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { getPlaiceholder } from "plaiceholder";
 
 interface Props {
   width: number;
@@ -9,25 +8,14 @@ interface Props {
   src: string;
 }
 
-export default async function ColorPlaceholderBlur({
+export default function ColorPlaceholderBlur({
   width,
   height,
   alt,
   src,
 }: Props) {
-  const buffer = await fetch(src).then(async (res) => {
-    return Buffer.from(await res.arrayBuffer());
-  });
-
-  const { color } = await getPlaiceholder(buffer);
-
   return (
-    <div
-      style={{
-        backgroundColor: color.hex,
-      }}
-      className={`h-full w-full overflow-hidden shadow-md`}
-    >
+    <div className={`h-full w-full overflow-hidden shadow-md`}>
       <Image
         className="h-full w-full bg-center object-cover"
         src={src}
