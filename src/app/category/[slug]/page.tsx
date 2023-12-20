@@ -86,7 +86,7 @@ export default async function CategoryPage({
         <span className="text-[.7rem] font-light uppercase tracking-wide text-light-primary dark:text-white">
           Browsing category
         </span>
-        <h1 className="xs:text-[1.8rem] sm:text-[2rem] pb-1 pt-4 text-[2.65rem] font-bold tracking-[-2px] capitalize leading-none text-light-primary dark:text-white">
+        <h1 className="pb-1 pt-4 text-[2.65rem] font-bold capitalize leading-none tracking-[-2px] text-light-primary dark:text-white sm:text-[2rem] xs:text-[1.8rem]">
           {data?.category?.name}
         </h1>
         <span className="text-xs lowercase text-light-secondary dark:text-dark-contrast-800">
@@ -105,26 +105,30 @@ export default async function CategoryPage({
 
         <div className="text-center">
           {!data?.articles?.length && (
-            <div className="inline-flex h-[3.5rem] items-center justify-center bg-black/[.09] px-5 text-sm font-bold uppercase text-light-secondary">
+            <div className="inline-flex h-[3rem] text-xs items-center justify-center bg-black/[.09] px-5 font-bold uppercase text-light-secondary">
               no articles found
             </div>
           )}
         </div>
 
-        {data?.articles?.length && totalPages > 1 ? (
-          <div className="mt-[4rem] text-center sm:mt-[2rem]">
-            <Pagination
-              path={`/category/${data.category.slug}`}
-              page={pageNumber}
-              totalPages={totalPages}
-              hasNextPage={hasNextPage}
-            />
-          </div>
-        ) : (
-          <div className="mt-[2.5rem] text-center text-xs uppercase text-light-primary underline drop-shadow-sm dark:text-light-secondary">
-            you reached the end!
-          </div>
-        )}
+        {data?.articles?.length ? (
+          <>
+            {totalPages > 1 ? (
+              <div className="mt-[4rem] text-center sm:mt-[2rem]">
+                <Pagination
+                  path={`/category/${data.category.slug}`}
+                  page={pageNumber}
+                  totalPages={totalPages}
+                  hasNextPage={hasNextPage}
+                />
+              </div>
+            ) : (
+              <div className="mt-[2.5rem] text-center text-xs uppercase text-light-primary underline drop-shadow-sm dark:text-light-secondary">
+                you reached the end!
+              </div>
+            )}
+          </>
+        ) : null}
       </div>
 
       <div className="col-span-3 lg:hidden">

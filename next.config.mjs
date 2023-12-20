@@ -1,4 +1,5 @@
-/** @type {import('next').NextConfig} */
+import withPlaiceholder from "@plaiceholder/next";
+
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -14,4 +15,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default withPlaiceholder(nextConfig);

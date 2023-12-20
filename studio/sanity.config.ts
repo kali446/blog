@@ -5,10 +5,10 @@ import {markdownSchema} from 'sanity-plugin-markdown'
 import {schemaTypes} from './schemas'
 
 export default defineConfig({
-  name: 'default',
-  title: 'manzil-blog',
-  projectId: 'jg0vxk9b',
-  dataset: 'development',
+  name: 'clonedverse',
+  title: 'Cloned Verse',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
+  dataset: process.env.SANITY_STUDIO_DATASET!,
   plugins: [deskTool(), visionTool(), markdownSchema()],
   schema: {
     types: schemaTypes,

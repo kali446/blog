@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Date from "@/shared/Date";
+import ColorPlaceholderBlur from "../Placeholder/ColorPlaceholderBlur";
 import { Article } from "@/lib/queries";
 import { generateImageUrl, truncateString } from "@/utils";
 
@@ -129,12 +130,11 @@ const ThumbnailHeader = ({
         </div>
       </div>
 
-      <div className="h-auto w-[100%] overflow-hidden">
-        <Image
-          className="h-full w-full bg-center object-cover"
-          src={thumbnailUrl}
+      <div className="aspect-[8/3] h-auto w-[100%] overflow-hidden">
+        <ColorPlaceholderBlur
           width={thumbnailWidth}
           height={thumbnailHeight}
+          src={thumbnailUrl}
           alt={title}
         />
       </div>

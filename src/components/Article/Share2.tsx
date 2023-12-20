@@ -12,9 +12,10 @@ import {
 interface Props {
   url: string;
   title: string;
+  layout?: "horizontal" | "vertical";
 }
 
-const Share2 = ({ url, title }: Props) => {
+const Share2 = ({ url, title, layout }: Props) => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -31,7 +32,13 @@ const Share2 = ({ url, title }: Props) => {
   const itemIcon2Classes = `absolute left-[-50%] top-[50%] z-20 translate-x-[-50%] translate-y-[-50%] text-white transition-all delay-75 duration-200 group-hover:left-[50%]`;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div
+      className={`flex ${
+        layout && layout === "horizontal"
+          ? "items-center gap-2"
+          : "flex-col gap-2"
+      }`}
+    >
       <span className="text-xs uppercase text-light-primary dark:text-dark-secondary">
         share
       </span>

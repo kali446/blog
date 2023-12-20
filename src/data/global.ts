@@ -73,6 +73,10 @@ export const SIDEBAR_PAGES: pageItemType[] = [
     href: "/contact-us",
   },
   {
+    name: "about us",
+    href: "/about-us",
+  },
+  {
     name: "privacy policy",
     href: "/privacy-policy",
   },

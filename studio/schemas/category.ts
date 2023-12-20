@@ -63,7 +63,7 @@ export default {
       title: 'Description',
       validation: (Rule: any) => [
         Rule.required().min(150).error('Description of minimum 150 characters is required'),
-        Rule.max(500).error('Description characters limit is 500.'),
+        Rule.max(1000).error('Description characters limit is 1000.'),
       ],
     },
   ],

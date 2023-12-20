@@ -109,13 +109,14 @@ export default async function ArticlePage({
       <div className="relative mx-auto grid w-[95%] grid-cols-12 items-start gap-5 pt-6 sm:gap-3">
         <div className="sticky top-[7rem] col-span-2 flex flex-col items-end gap-4 lg:order-last lg:col-span-4 lg:items-start md:static md:col-span-6 sm:col-span-12 ">
           <Tableofcontents />
-
-          <div className="inline-block md:hidden">
-            <Share2 url={shareUrl} title={data.title} />
-          </div>
         </div>
 
-        <div className="col-span-7 lg:col-span-8 md:order-last md:col-span-12">
+        <div className="relative col-span-7 lg:col-span-8 md:order-last md:col-span-12">
+          <div className="dark:bg-dark-layoutElement xs:flex-col xs:items-start xs:gap-y-3 flex items-center justify-between bg-white py-2 px-3 rounded-lg">
+            <Share2 layout="horizontal" url={shareUrl} title={data.title} />
+
+            <div className="dark:text-dark-secondary xs:w-full xs:text-center font-medium uppercase text-light-primary text-xs">1 min read</div>
+          </div>
           <Content data={data?.content} />
           <Share url={shareUrl} title={data.title} />
           <Author data={data?.author} />
