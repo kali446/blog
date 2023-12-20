@@ -12,6 +12,7 @@ import TriggeredNavbar from "@/components/Header/TriggeredNavbar";
 import ModalsWrapper from "@/components/ModalsWrapper";
 import { GlobalSEO } from "@/data/seo";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 //👇 Configure our font object
 const manrope = Manrope({
@@ -124,6 +125,7 @@ export default function RootLayout({
           <Footer />
           <ModalsWrapper />
           <Analytics />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>
