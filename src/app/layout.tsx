@@ -11,6 +11,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import TriggeredNavbar from "@/components/Header/TriggeredNavbar";
 import ModalsWrapper from "@/components/ModalsWrapper";
 import { GlobalSEO } from "@/data/seo";
+import { Analytics } from "@vercel/analytics/react";
 
 //👇 Configure our font object
 const manrope = Manrope({
@@ -122,6 +123,7 @@ export default function RootLayout({
           <ScrollToTop />
           <Footer />
           <ModalsWrapper />
+          <Analytics />
         </Providers>
       </body>
     </html>
