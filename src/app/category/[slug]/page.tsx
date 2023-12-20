@@ -24,10 +24,7 @@ export const revalidate = 60;
 
 const client = getClient();
 
-export async function generateMetadata({
-  params: { slug },
-  searchParams,
-}: PageProps) {
+export async function generateMetadata({ params: { slug } }: PageProps) {
   const data = await getCategory(client, slug);
 
   try {
@@ -105,7 +102,7 @@ export default async function CategoryPage({
 
         <div className="text-center">
           {!data?.articles?.length && (
-            <div className="inline-flex h-[3rem] text-xs items-center justify-center bg-black/[.09] px-5 font-bold uppercase text-light-secondary">
+            <div className="inline-flex h-[3rem] items-center justify-center bg-black/[.09] px-5 text-xs font-bold uppercase text-light-secondary">
               no articles found
             </div>
           )}

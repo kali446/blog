@@ -115,7 +115,7 @@ export default async function ArticlePage({
           <div className="dark:bg-dark-layoutElement xs:flex-col xs:items-start xs:gap-y-3 flex items-center justify-between bg-white py-2 px-3 rounded-lg">
             <Share2 layout="horizontal" url={shareUrl} title={data.title} />
 
-            <div className="dark:text-dark-secondary xs:w-full xs:text-center font-medium uppercase text-light-primary text-xs">1 min read</div>
+            <div className="dark:text-dark-secondary xs:w-full xs:text-center uppercase text-light-primary text-xs">1 min read</div>
           </div>
           <Content data={data?.content} />
           <Share url={shareUrl} title={data.title} />

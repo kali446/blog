@@ -274,6 +274,6 @@ export const getAllCategoriesForSitemapQuery = groq`
 }`;
 
 export const getAllAuthorsForSitemapQuery = groq`
-*[_type == "category"] | order(date desc, _updatedAt desc) {
+*[_type == "author"] | order(date desc, _updatedAt desc) {
   ${authorFieldsForSitemap}
 }`;

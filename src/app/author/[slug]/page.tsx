@@ -26,10 +26,7 @@ export const revalidate = 60;
 
 const client = getClient();
 
-export async function generateMetadata({
-  params: { slug },
-  searchParams,
-}: PageProps) {
+export async function generateMetadata({ params: { slug } }: PageProps) {
   const data = await getAuthor(client, slug);
 
   try {

@@ -59,10 +59,6 @@ export default async function Home() {
     3,
   );
 
-  // const startTime = process.hrtime();
-  // const elapsed = process.hrtime(startTime);
-  // const responseTimeInMs = elapsed[0] * 1000 + elapsed[1] / 1000000;
-
   return (
     <div className="min-h-screen px-5 py-4 xs:px-3">
       {sectionArticles?.sectionOne && (
