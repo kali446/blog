@@ -91,7 +91,7 @@ export default async function CategoryPage({
   });
 
   return (
-    <div className="mx-auto grid w-[95%] grid-cols-12 py-6 xs:py-4">
+    <div className="mx-auto grid w-[95%] gap-4 grid-cols-12 py-6 xs:py-4">
       <div className="col-span-9 lg:col-span-12">
         <div className="grid grid-cols-12 gap-4 pb-[5rem] xs:pb-[2.5rem]">
           <div className="col-span-6 sm:order-last sm:col-span-12 sm:px-4 xs:px-2">

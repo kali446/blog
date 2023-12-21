@@ -50,21 +50,21 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen px-5 py-4 xs:px-3">
-      {sectionArticles?.sectionOne && (
+      {sectionArticles?.sectionOne ? (
         <LatestArticles data={sectionArticles.sectionOne} />
-      )}
-      {sectionArticles?.sectionTwo && (
+      ) : null}
+      {sectionArticles?.sectionTwo ? (
         <FeaturedArticles data={sectionArticles.sectionTwo} />
-      )}
-      {categoryArticles1?.articles?.length && (
-        <CategoryArticles data={categoryArticles3} />
-      )}
-      {categoryArticles2?.articles?.length && (
+      ) : null}
+      {categoryArticles1?.articles?.length ? (
+        <CategoryArticles data={categoryArticles1} />
+      ) : null}
+      {categoryArticles2?.articles?.length ? (
         <SliderArticles data={categoryArticles2} />
-      )}
-      {categoryArticles3?.articles?.length && (
-        <SmallCategoryArticles data={categoryArticles1} />
-      )}
+      ) : null}
+      {categoryArticles3?.articles?.length ? (
+        <SmallCategoryArticles data={categoryArticles3} />
+      ) : null}
       <Newsletter />
       <Articles />
     </div>

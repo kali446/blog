@@ -22,8 +22,14 @@ export default {
       type: 'slug',
       options: {
         source: 'name',
-        maxLength: 200, // will be ignored if slugify is set
-        slugify: (input: string) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
+        slugify: (input: any) =>
+          input
+            .toLowerCase()
+            //Remove spaces
+            .replace(/\s+/g, '-')
+            //Remove special characters
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ''),
+        validation: (Rule: any) => Rule.required(),
       },
     },
 

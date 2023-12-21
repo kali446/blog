@@ -24,7 +24,7 @@ const Description = ({ description }: Props) => {
   }
 
   return (
-    <p className="w-[65%] pb-6 pt-4 text-[1.1rem] font-light leading-relaxed text-light-primary dark:text-dark-contrast-900 md:w-full xs:text-[1rem]">
+    <p className="w-full pb-6 pt-4 text-[1.1rem] font-light leading-relaxed text-light-primary dark:text-dark-contrast-900 md:w-full xs:text-[1rem]">
       {!showFullDescription ? (
         <>
           {truncateString(description, 200)}
