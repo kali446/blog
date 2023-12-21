@@ -39,25 +39,14 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 1800;
+export const revalidate = 5;
 
 export default async function Home() {
   const client = getClient();
   const sectionArticles = await getHomeSectionArticles(client);
-  const categoryArticles1 = await getArticlesByCategory(
-    client,
-    "natural-landforms",
-  );
-  const categoryArticles2 = await getArticlesByCategory(
-    client,
-    "natural-landforms",
-  );
-  const categoryArticles3 = await getArticlesByCategory(
-    client,
-    "natural-landforms",
-    1,
-    3,
-  );
+  const categoryArticles1 = await getArticlesByCategory(client, "technology");
+  const categoryArticles2 = await getArticlesByCategory(client, "programming");
+  const categoryArticles3 = await getArticlesByCategory(client, "ai", 1, 3);
 
   return (
     <div className="min-h-screen px-5 py-4 xs:px-3">
@@ -67,9 +56,15 @@ export default async function Home() {
       {sectionArticles?.sectionTwo && (
         <FeaturedArticles data={sectionArticles.sectionTwo} />
       )}
-      <CategoryArticles data={categoryArticles3} />
-      <SliderArticles data={categoryArticles2} />
-      <SmallCategoryArticles data={categoryArticles1} />
+      {categoryArticles1?.articles?.length && (
+        <CategoryArticles data={categoryArticles3} />
+      )}
+      {categoryArticles2?.articles?.length && (
+        <SliderArticles data={categoryArticles2} />
+      )}
+      {categoryArticles3?.articles?.length && (
+        <SmallCategoryArticles data={categoryArticles1} />
+      )}
       <Newsletter />
       <Articles />
     </div>

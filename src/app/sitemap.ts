@@ -5,6 +5,8 @@ import {
   getClient,
 } from "@/lib/client";
 
+export const revalidate = 5;
+
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const client = getClient();
