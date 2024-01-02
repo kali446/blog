@@ -154,11 +154,11 @@ export const getArticleBySlugQuery = groq`
 
 export const getPrevNextArticleQuery = groq`
 *[_type == "article" && slug.current == $slug][0] {
-  "prev": *[_type == "article" && ^.publishedAt > publishedAt] | order(publishedAt asc)[0] {
+  "prev": *[_type == "article" && ^._createdAt > _createdAt] | order(publishedAt asc)[0] {
     ${articleFields}
   },
   
-  "next": *[_type == "article" && ^.publishedAt < publishedAt] | order(publishedAt asc)[0] {
+  "next": *[_type == "article" && ^._createdAt < _createdAt] | order(publishedAt asc)[0] {
     ${articleFields}
   }
 }

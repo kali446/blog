@@ -7,10 +7,17 @@ import { Article } from "@/lib/queries";
 import { getAllArticles, getClient } from "@/lib/client";
 import { HOME_ARTICLES_RESULTS_LIMIT } from "@/utils";
 
-const Articles = () => {
+interface Props {
+  data: {
+    articles?: Article[];
+    total: number;
+  };
+}
+
+const Articles = ({ data }: Props) => {
   const client = getClient();
-  const [articles, setArticles] = useState<Article[]>();
-  const [total, setTotal] = useState<number>(0);
+  const [articles, setArticles] = useState<Article[]>(data?.articles || []);
+  const [total, setTotal] = useState<number>(data.total);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const pageSize = HOME_ARTICLES_RESULTS_LIMIT;

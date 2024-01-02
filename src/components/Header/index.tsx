@@ -3,22 +3,15 @@ import React, { useEffect, useState, useContext } from "react";
 import SearchInput from "./SearchInput";
 import SearchResults from "./SearchResults";
 import Link from "next/link";
-import Featured from "./Featured";
+import Image from "next/image";
+import Headroom from "react-headroom";
 import { useTheme } from "next-themes";
 import { GlobalContext } from "@/context/global";
-import { getArticlesByCategory, getClient } from "@/lib/client";
-import { Article } from "@/lib/queries";
-import Image from "next/image";
 
 const Header = () => {
-  const client = getClient();
   const { theme, setTheme } = useTheme();
   const [showSearch, setShowSearch] = useState(false);
   const [showResults, setShowResults] = useState(false);
-  const [showDropdown, setShowDropdown] = useState("");
-  const [popularArticles, setPopularArticles] = useState<Article[] | null>(
-    null,
-  );
 
   const {
     setOpenNavMenu,
@@ -36,32 +29,13 @@ const Header = () => {
     }
   }, [searchText]);
 
-  useEffect(() => {
-    (async () => {
-      if (!popularArticles) {
-        const data = await getArticlesByCategory(
-          client,
-          "natural-landforms",
-          1,
-          4,
-        );
-
-        if (data?.articles) {
-          setPopularArticles(data.articles);
-        }
-      }
-    })();
-
-    return () => {};
-  }, []);
-
   const logoHeight = 100;
   const logoWidth = 250;
 
   return (
-    <>
+    <Headroom>
       <div
-        className={`mobile414:px-2 fixed left-[0] top-[0] z-[1000] flex h-header w-full items-center justify-between bg-light-header px-6 dark:bg-dark-header sm:px-4 ${
+        className={`z-[1000] flex h-header w-full items-center justify-between bg-light-header px-6 dark:bg-dark-header sm:px-4 mobile414:px-2 ${
           openNavMenu && "bg-transparent dark:bg-dark-site"
         }`}
       >
@@ -114,38 +88,10 @@ const Header = () => {
           )}
 
           <div className="border-x border-light-contrast-300 px-3 py-1  text-[.75rem] font-medium capitalize text-light-secondary dark:border-dark-contrast-500/40 dark:text-dark-contrast-800 lg:hidden">
-            Discover your next gadget review
+            Your ultimate programming hub
           </div>
           {!openNavMenu && (
             <>
-              <div
-                onMouseEnter={() => {
-                  setShowDropdown("featured");
-                }}
-                onClick={() => {
-                  if (showDropdown === "featured") {
-                    setShowDropdown("");
-                  } else {
-                    setShowDropdown("featured");
-                  }
-                }}
-                className="group h-header cursor-pointer px-4 text-light-primary hover:text-accent dark:text-white lg:px-0 sm:hidden"
-              >
-                <svg
-                  className="transition-all group-hover:rotate-90"
-                  width={18}
-                  height="auto"
-                  viewBox="0 0 416 96"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M208 0C181.536 0 160 21.536 160 48C160 74.464 181.536 96 208 96C234.464 96 256 74.464 256 48C256 21.536 234.464 0 208 0ZM48 0C21.536 0 0 21.536 0 48C0 74.464 21.536 96 48 96C74.464 96 96 74.464 96 48C96 21.536 74.464 0 48 0ZM368 0C341.536 0 320 21.536 320 48C320 74.464 341.536 96 368 96C394.464 96 416 74.464 416 48C416 21.536 394.464 0 368 0Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-
               {showSearch && <SearchInput close={() => setShowSearch(false)} />}
             </>
           )}
@@ -157,7 +103,7 @@ const Header = () => {
               <Image
                 height={logoHeight}
                 width={logoWidth}
-                className="mobile414:h-[1.6rem] h-[1.85rem] w-auto"
+                className="h-[1.85rem] w-auto mobile414:h-[1.6rem]"
                 src="/images/logo.svg"
                 alt="blog"
               />
@@ -198,7 +144,7 @@ const Header = () => {
                 className={"cursor-pointer text-light-primary dark:text-white"}
               >
                 <Image
-                  className="mobile414:w-[1.15rem] mobile414:h-auto dark:invert"
+                  className="dark:invert mobile414:h-auto mobile414:w-[1.15rem]"
                   height={22}
                   width={22}
                   src="/icons/search.svg"
@@ -215,11 +161,11 @@ const Header = () => {
                   }
                 }}
                 className={
-                  "mobile414:h-[2.2rem] mobile414:w-[2.2rem] mobile414:rounded-md flex h-[2.5rem] w-[2.5rem] cursor-pointer items-center justify-center rounded-[.4rem] bg-light-contrast-200 shadow-sm transition-all hover:bg-light-contrast-300 dark:bg-dark-contrast-100 dark:text-dark-contrast-900"
+                  "flex h-[2.5rem] w-[2.5rem] cursor-pointer items-center justify-center rounded-[.4rem] bg-light-contrast-200 shadow-sm transition-all hover:bg-light-contrast-300 dark:bg-dark-contrast-100 dark:text-dark-contrast-900 mobile414:h-[2.2rem] mobile414:w-[2.2rem] mobile414:rounded-md"
                 }
               >
                 <Image
-                  className="mobile414:w-[1.15rem] mobile414:h-auto dark:invert"
+                  className="dark:invert mobile414:h-auto mobile414:w-[1.15rem]"
                   height={22}
                   width={22}
                   src="/icons/dark-mode.svg"
@@ -238,13 +184,7 @@ const Header = () => {
           </>
         )}
       </div>
-
-      <Featured
-        data={popularArticles}
-        show={showDropdown}
-        setShow={setShowDropdown}
-      />
-    </>
+    </Headroom>
   );
 };
 

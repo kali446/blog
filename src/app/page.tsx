@@ -1,16 +1,8 @@
 import Newsletter from "@/components/Newsletter";
 import Articles from "@/components/Sections/Articles";
-import CategoryArticles from "@/components/Sections/CategoryArticles";
-import FeaturedArticles from "@/components/Sections/FeaturedArticles";
-import LatestArticles from "@/components/Sections/LatestArticles";
-import SliderArticles from "@/components/Sections/SliderArticles";
-import SmallCategoryArticles from "@/components/Sections/SmallCategoryArticles";
 import { HomeSEO } from "@/data/seo";
-import {
-  getClient,
-  getHomeSectionArticles,
-  getArticlesByCategory,
-} from "@/lib/client";
+import { getAllArticles, getClient } from "@/lib/client";
+import { HOME_ARTICLES_RESULTS_LIMIT } from "@/utils";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -39,34 +31,25 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 5;
+export const revalidate = 60;
 
 export default async function Home() {
   const client = getClient();
-  const sectionArticles = await getHomeSectionArticles(client);
-  const categoryArticles1 = await getArticlesByCategory(client, "technology");
-  const categoryArticles2 = await getArticlesByCategory(client, "programming");
-  const categoryArticles3 = await getArticlesByCategory(client, "ai", 1, 3);
+  const recentArticles = await getAllArticles(
+    client,
+    1,
+    HOME_ARTICLES_RESULTS_LIMIT,
+  );
 
   return (
     <div className="min-h-screen px-5 py-4 xs:px-3">
-      {sectionArticles?.sectionOne ? (
-        <LatestArticles data={sectionArticles.sectionOne} />
-      ) : null}
-      {sectionArticles?.sectionTwo ? (
-        <FeaturedArticles data={sectionArticles.sectionTwo} />
-      ) : null}
-      {categoryArticles1?.articles?.length ? (
-        <CategoryArticles data={categoryArticles1} />
-      ) : null}
-      {categoryArticles2?.articles?.length ? (
-        <SliderArticles data={categoryArticles2} />
-      ) : null}
-      {categoryArticles3?.articles?.length ? (
-        <SmallCategoryArticles data={categoryArticles3} />
-      ) : null}
+      <Articles
+        data={{
+          articles: recentArticles.articles,
+          total: recentArticles.total,
+        }}
+      />
       <Newsletter />
-      <Articles />
     </div>
   );
 }

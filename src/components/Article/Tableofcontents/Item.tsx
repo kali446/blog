@@ -12,7 +12,7 @@ const Item = ({ text, id, level, active, num }: Props) => {
   return (
     <li
       className={`
-     group relative cursor-pointer px-4 py-[.25rem] text-sm transition-all duration-200
+     group relative cursor-pointer px-4 py-[.1rem] text-sm transition-all duration-200
       ${
         active
           ? "relative mb-1  text-accent"

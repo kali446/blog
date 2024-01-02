@@ -2,10 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Date from "@/shared/Date";
+import CardFooterV2 from "@/shared/CardFooterV2";
+import SlideImagePlaceholder from "@/shared/ImagePlaceholder/Slide";
 import { Article } from "@/lib/queries";
 import { generateImageUrl, truncateString } from "@/utils";
-import CardShareIcons from "@/shared/CardShareIcons";
-import CardFooterV2 from "@/shared/CardFooterV2";
 
 interface Props {
   item: Article;
@@ -46,12 +46,13 @@ const CardArticle8 = ({ item }: Props) => {
         </div>
 
         <div className="mb-5 h-[9.5rem] w-full overflow-hidden">
-          <Image
-            className="h-full w-full bg-center object-cover transition-all duration-300 group-hover:scale-110"
+          <SlideImagePlaceholder
             src={thumbnailUrl}
-            width={thumbnailWidth}
-            height={thumbnailHeight}
             alt={item.title}
+            size={{
+              height: thumbnailHeight,
+              width: thumbnailWidth,
+            }}
           />
         </div>
 

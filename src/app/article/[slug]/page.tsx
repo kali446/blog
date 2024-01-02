@@ -15,7 +15,6 @@ import {
   getClient,
   getArticleBySlug,
   getPrevNextArticle,
-  getSidebarSectionArticles,
   getAllArticles,
 } from "@/lib/client";
 import { generateImageUrl, shareURL } from "@/utils";
@@ -26,6 +25,8 @@ interface Props {
 }
 
 const client = getClient();
+
+export const revalidate = 60;
 
 export async function generateMetadata({
   params: { slug },
@@ -96,9 +97,7 @@ export default async function ArticlePage({
   params: Props;
 }) {
   const data = await getArticleBySlug(client, slug);
-  const sidebarArticles = await getSidebarSectionArticles(client);
   const prevNextArticles: any = await getPrevNextArticle(client, slug);
-
   const shareUrl = shareURL({ slug: data.slug });
 
   return (
@@ -106,38 +105,23 @@ export default async function ArticlePage({
       <ProgressBar />
       <ThumbnailHeader data={data} />
 
-      <div className="relative mx-auto grid w-[95%] grid-cols-12 items-start gap-5 pt-6 sm:gap-3">
-        <div className="sticky top-[7rem] col-span-2 flex flex-col items-end gap-4 lg:order-last lg:col-span-4 lg:items-start md:static md:col-span-6 sm:col-span-12 ">
+      <div className="relative mx-auto mt-[2.5rem] w-[55%] lg:w-[70%] md:w-[80%] sm:w-[90%]">
+        <div className="flex items-center justify-between rounded-lg bg-white px-3 py-2 dark:bg-dark-layoutElement xs:flex-col xs:items-start xs:gap-y-3">
+          <Share2 layout="horizontal" url={shareUrl} title={data.title} />
+
+          <div className="PrimaryGradient relative bg-clip-text text-xs font-black uppercase text-light-primary text-transparent before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-[100%] before:bg-accent dark:text-dark-secondary xs:w-full xs:text-center xs:before:hidden">
+            1 min read
+          </div>
+        </div>
+
+        <div className="mb-[2.5rem] mt-[1rem]">
           <Tableofcontents />
         </div>
 
-        <div className="relative col-span-7 lg:col-span-8 md:order-last md:col-span-12">
-          <div className="dark:bg-dark-layoutElement xs:flex-col xs:items-start xs:gap-y-3 flex items-center justify-between bg-white py-2 px-3 rounded-lg">
-            <Share2 layout="horizontal" url={shareUrl} title={data.title} />
-
-            <div className="dark:text-dark-secondary xs:w-full xs:text-center uppercase text-light-primary text-xs">1 min read</div>
-          </div>
-          <Content data={data?.content} />
-          <Share url={shareUrl} title={data.title} />
-          <Author data={data?.author} />
-          <PrevNext data={prevNextArticles} />
-        </div>
-
-        <div className="sticky top-[7rem] col-span-3 lg:hidden">
-          <div className="flex flex-col gap-5">
-            <Newsletter />
-
-            {sidebarArticles?.sectionOne?.length && (
-              <FeaturedPosts data={sidebarArticles.sectionOne} />
-            )}
-            {sidebarArticles?.sectionTwo?.length && (
-              <WeeklyTop data={sidebarArticles.sectionTwo} />
-            )}
-            {sidebarArticles?.sectionThree?.length && (
-              <Categories data={sidebarArticles.sectionThree} />
-            )}
-          </div>
-        </div>
+        <Content data={data?.content} />
+        <Share url={shareUrl} title={data.title} />
+        <Author data={data?.author} />
+        <PrevNext data={prevNextArticles} />
       </div>
     </div>
   );

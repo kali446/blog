@@ -4,7 +4,7 @@ import Newsletter from "@/components/Sidebar/Newsletter";
 import Categories from "@/components/Sidebar/Categories";
 import FeaturedPosts from "@/components/Sidebar/Posts1";
 import WeeklyTop from "@/components/Sidebar/Posts2";
-import Description from "../[slug]/Description";
+import Description from "@/shared/Description";
 import Link from "next/link";
 import CardArticle9 from "@/components/Cards/CardArticle9";
 import Pagination from "@/shared/Pagination";
@@ -91,7 +91,7 @@ export default async function CategoryPage({
   });
 
   return (
-    <div className="mx-auto grid w-[95%] gap-4 grid-cols-12 py-6 xs:py-4">
+    <div className="mx-auto grid w-[95%] grid-cols-12 gap-4 py-6 xs:py-4">
       <div className="col-span-9 lg:col-span-12">
         <div className="grid grid-cols-12 gap-4 pb-[5rem] xs:pb-[2.5rem]">
           <div className="col-span-6 sm:order-last sm:col-span-12 sm:px-4 xs:px-2">
@@ -105,7 +105,7 @@ export default async function CategoryPage({
               {data?.articles?.length} posts
             </span>
 
-            <div className="my-3 flex items-center gap-3 border-y border-black/30 py-3 dark:border-white/30">
+            <div className="my-3 flex items-center gap-3 border-y border-black/20 py-3 dark:border-white/10">
               <span className="PrimaryGradient bg-clip-text text-xs font-bold uppercase text-transparent drop-shadow-sm">
                 Senior Developer
               </span>
@@ -131,7 +131,9 @@ export default async function CategoryPage({
               </ul>
             </div>
 
-            <Description description={data.author.bio} />
+            <div className="pt-2">
+              <Description description={data.author.bio} limit={250} />
+            </div>
           </div>
 
           <div className="col-span-6 sm:col-span-12">

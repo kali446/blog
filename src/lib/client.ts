@@ -3,7 +3,6 @@ import {
   type Article,
   type Category,
   type Author,
-  type Tag,
   getAllArticlesQuery,
   getArticleBySlugQuery,
   getPrevNextArticleQuery,

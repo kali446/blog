@@ -4,7 +4,7 @@ import Newsletter from "@/components/Sidebar/Newsletter";
 import Categories from "@/components/Sidebar/Categories";
 import FeaturedPosts from "@/components/Sidebar/Posts1";
 import WeeklyTop from "@/components/Sidebar/Posts2";
-import Description from "./Description";
+import Description from "@/shared/Description";
 import Pagination from "@/shared/Pagination";
 import {
   getClient,
@@ -90,7 +90,9 @@ export default async function CategoryPage({
           {data?.articles?.length} posts
         </span>
 
-        <Description description={data.category?.description} />
+        <div className="pt-2 pb-[4rem]">
+          <Description description={data.category?.description || ""} />
+        </div>
 
         <div className="mt-8 grid grid-cols-12 gap-5 md:gap-4 sm:gap-0 sm:gap-y-5">
           {data?.articles?.map((item, i) => (

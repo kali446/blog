@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Author } from "@/lib/queries";
 import { generateImageUrl } from "@/utils";
+import Description from "@/shared/Description";
 
 interface Props {
   data?: Author;
@@ -53,9 +54,9 @@ const Author = ({ data }: Props) => {
         </h1>
       </div>
 
-      <p className="text-center text-[.925rem] font-light leading-relaxed text-light-primary dark:text-dark-secondary">
-        {data?.bio}
-      </p>
+      <div>
+        <Description description={data?.bio || ""} limit={300} align="center" />
+      </div>
     </div>
   );
 };

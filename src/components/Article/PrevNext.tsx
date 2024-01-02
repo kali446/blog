@@ -35,7 +35,7 @@ const PrevNext = ({ data }: Props) => {
               </span>
 
               <h2 className="ArticleTitle text-md mt-4 font-semibold leading-5 transition-colors duration-200 hover:text-accent sm:mt-0">
-                <Link href={`/article/${data.next?.slug}`}>
+                <Link href={`/article/${data.prev.slug}`}>
                   {data?.prev?.title}
                 </Link>
               </h2>
