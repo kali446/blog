@@ -40,7 +40,8 @@ const TriggeredNavbar = () => {
       <div className="absolute right-[-5rem] top-[50%] h-[22.5rem] w-[22.5rem] translate-y-[-50%] rounded-full bg-black bg-gradient-to-t from-[rgb(255,206,236)] to-[rgb(152,150,240)] blur-3xl dark:hidden lg:h-[15rem] lg:w-[15rem]"></div>
 
       <Header />
-      <div className="mb-5 mt-header grid grid-cols-12 gap-7 px-5 pt-5 sm:gap-0 sm:gap-y-4">
+
+      <div className="mb-5 grid grid-cols-12 gap-7 px-5 sm:gap-0 sm:gap-y-4">
         {mobile480 ? (
           !selectedMenu?.length && (
             <div className="col-span-3 sm:col-span-12">
@@ -131,7 +132,7 @@ const TriggeredNavbar = () => {
       </div>
 
       <div className="max-w-[480px] px-5 pb-5">
-        <span className="cursor-pointer text-[1.35rem] font-semibold text-light-primary transition-colors hover:text-accent dark:text-dark-primary">
+        <span className="cursor-pointer text-[1.35rem] font-light lowercase  text-light-primary transition-colors hover:text-accent dark:text-dark-primary">
           manjiljunior@gmail.com
         </span>
         <p className="mb-4 mt-2 text-sm font-medium leading-[1.6] text-light-secondary dark:text-dark-primary">

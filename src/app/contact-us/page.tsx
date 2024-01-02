@@ -23,7 +23,7 @@ const CONTACT_OPTIONS = [
 const ContactUs = () => {
   return (
     <div className="mx-auto w-[80%] pt-5 lg:w-[90%]">
-      <h1 className="mb-[5rem] flex flex-col text-[6.5rem] font-thin leading-[1.35] lg:text-[5.5rem] md:mb-[2.5rem] md:text-[4rem] sm:text-[3rem] xs:text-[2.5rem]">
+      <h1 className="xs:text-center mb-[5rem] flex flex-col text-[6.5rem] font-thin leading-[1.35] lg:text-[5.5rem] md:mb-[2.5rem] md:text-[4rem] sm:text-[3rem] xs:text-[2.25rem]">
         <div className="self-start">Have any query?</div>
         <div className="self-center">We are excited</div>
         <div className="self-end">to discuss with you.</div>

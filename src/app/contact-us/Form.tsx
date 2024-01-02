@@ -4,6 +4,7 @@ import Image from "next/image";
 import * as Yup from "yup";
 import { useFormik, FormikProvider } from "formik";
 import supabase from "@/utils/supabase";
+import ButtonV2 from "@/shared/Button/ButtonV2";
 
 export const ContactYupSchema = Yup.object().shape({
   name: Yup.string().required("Please provide your fullname!"),
@@ -160,33 +161,9 @@ const Form = () => {
           </span>
         )}
 
-        <button
-          type="submit"
-          className="group relative mt-6 flex h-[5rem] w-[20rem] items-center justify-start rounded-full bg-black pl-5 text-[1rem] font-semibold capitalize tracking-normal text-white transition-all xs:mt-5 xs:h-[4rem] xs:w-[16rem] xs:text-xs"
-        >
-          <span className="relative z-20">
-            {loading ? "Sending..." : "send message"}
-          </span>
-          <div className="absolute right-[.75rem] top-[.75rem] z-10 flex h-[3.5rem] w-[3.5rem] origin-center items-center justify-center rounded-full bg-accent text-white transition-all duration-700 group-hover:right-0 group-hover:top-0 group-hover:h-full group-hover:w-full xs:right-[.5rem] xs:top-[.5rem] xs:h-[3rem] xs:w-[3rem]"></div>
-
-          <div className="absolute right-[.75rem] top-[.75rem] z-20 flex h-[3.5rem] w-[3.5rem] items-center justify-center overflow-hidden bg-transparent xs:right-[.5rem] xs:top-[.5rem] xs:h-[3rem] xs:w-[3rem]">
-            <Image
-              height={40}
-              width={40}
-              className="absolute left-[50%] top-[50%] h-auto w-[1.25rem] translate-x-[-50%] translate-y-[-50%] invert transition-all duration-500 group-hover:left-[150%]"
-              src="/icons/arrow.svg"
-              alt=""
-            />
-
-            <Image
-              height={40}
-              width={40}
-              className="absolute left-[-150%] top-[50%] h-auto w-[1.25rem] translate-y-[-50%] invert transition-all duration-500 group-hover:left-[50%]"
-              src="/icons/arrow.svg"
-              alt=""
-            />
-          </div>
-        </button>
+        <div className="mt-6 xs:mt-4">
+        <ButtonV2 text={`${loading ? "Please wait..." : "Send message"}`} />
+        </div>
       </form>
     </FormikProvider>
   );

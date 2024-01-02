@@ -1,4 +1,4 @@
-import { Manrope } from "next/font/google";
+import { Manrope, Lora } from "next/font/google";
 import type { Metadata } from "next";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -18,6 +18,13 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-lora",
 });
 
 export const metadata: Metadata = {
@@ -115,7 +122,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`relative bg-light-site dark:bg-dark-site sm:select-none ${manrope.className}`}
+        className={`relative bg-light-site dark:bg-dark-site sm:select-none ${manrope.className} ${lora.variable}`}
       >
         <Providers>
           <Header />

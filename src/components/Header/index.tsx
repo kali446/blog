@@ -87,9 +87,6 @@ const Header = () => {
             </Link>
           )}
 
-          <div className="border-x border-light-contrast-300 px-3 py-1  text-[.75rem] font-medium capitalize text-light-secondary dark:border-dark-contrast-500/40 dark:text-dark-contrast-800 lg:hidden">
-            Your ultimate programming hub
-          </div>
           {!openNavMenu && (
             <>
               {showSearch && <SearchInput close={() => setShowSearch(false)} />}

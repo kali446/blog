@@ -94,6 +94,10 @@ const config: Config = {
         buttonHover: "#a30d94",
         buttonHoverContrast: "#ffffff",
       },
+
+      fontFamily: {
+        lora: ["var(--font-lora)"],
+      },
     },
 
     spacing: {

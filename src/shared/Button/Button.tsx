@@ -55,7 +55,7 @@ const Button = ({
       break;
   }
 
-  let CLASSES = `py-[.6rem] px-4 leading-none rounded-md capitalize font-medium text-[.9rem] ${colors} ${shape} ${className}`;
+  let CLASSES = `font-lora italic py-[.75rem] px-5 leading-none rounded-lg capitalize font-medium text-[.9rem] ${colors} ${shape} ${className}`;
 
   if (!!href) {
     return (
